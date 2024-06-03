@@ -1,0 +1,100 @@
+<!-- table練習 -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/myall.css">
+
+    <style>
+        @media screen and (max-width: 768px){
+            .table-rwd thead{
+                display: none;
+            }
+            .table-rwd tbody tr{
+                display: block;
+                border: 2px solid var(--mycolor04);
+                margin-top: 20px;
+            }
+            .table-rwd tbody tr td{
+                display: block;
+                overflow: hidden;
+            }
+            .table-rwd tbody tr td::before{
+                content: attr(data-th)" : ";
+                color: var(--textcolor03);
+                font-weight: 900;
+                display: block;
+                float: left;
+                width: 6em;
+                text-align: right;
+                padding-right: 1em;
+            }
+            .table-rwd tbody tr td span.table-col{                
+                display: block;
+                float: left;
+                width: calc(100% - 6em);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <table class="table table-bordered table-hover table-sm border-success table-rwd">
+            <caption class="text-end"></caption>
+            <thead class="table-dark">
+                <tr>
+                    <td width="10%">商品標號</td>
+                    <td width="30%">商品圖片</td>
+                    <td width="10%">商品名稱</td>
+                    <td width="10%">商品數量</td>
+                    <td width="10%">商品價格</td>
+                    <td width="30%">商品備註</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td data-th="商品編號"><span class="table-col">001</span></td>
+                    <td data-th="商品圖片"><span class="table-col"><img src="https://fakeimg.pl/300x200/200" class="img-fluid"></samp>
+                    </td>
+                    <td data-th="商品名稱" class="bg-danger"><samp class="table-col">美式咖啡</span></td>
+                    <td data-th="商品數量"><span class="table-col">100</span></td>
+                    <td data-th="商品價格"><span class="table-col">45</span></td>
+                    <td data-th="商品備註"><span class="table-col">採訪硬盤，無法一方面一塊媽媽都不運行很多人。</span></td>
+                </tr>
+                <tr>
+                    <td>002</td>
+                    <td><img src="https://fakeimg.pl/300x200/200" class="img-fluid"></td>
+                    <td>拿鐵咖啡</td>
+                    <td>100</td>
+                    <td>75</td>
+                    <td>很好喝!!</td>
+                </tr>
+                <tr>
+                    <td>003</td>
+                    <td><img src="https://fakeimg.pl/300x200/200" class="img-fluid"></td>
+                    <td>美式奶茶</td>
+                    <td>100</td>
+                    <td>85</td>
+                    <td>很好喝!!</td>
+                </tr>
+                <tr>
+                    <td>004</td>
+                    <td><img src="https://fakeimg.pl/300x200/200" class="img-fluid"></td>
+                    <td>美式奶茶</td>
+                    <td>100</td>
+                    <td>85</td>
+                    <td>很好喝!!</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,49 @@
+<!-- wow套件的練習，可在物件上面使用動畫 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>動畫練習</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="css/myall.css">
+    <link rel="stylesheet" href="css/all.min.css">
+    <style>
+        .box{
+            width: 200px;
+            height: 200px;
+            line-height: 200px;
+            text-align: center;
+        }
+        .text-center{
+            height: 200px;
+        }
+    </style>
+</head>
+<body>
+    <div class="vh-100 bg-info"></div>
+    <div class="box bg-danger d-block mx-auto m-4 wow animate__animated animate__fadeInLeftBig" data-wow-duration="0.5s" data-wow-delay="0s" data-wow-iteration="1">
+        fadeInLeftBig
+    </div>
+
+    <div class="box bg-danger d-block mx-auto m-4 wow animate__fadeInLeftBig" data-wow-duration="1s" data-wow-delay="0s" data-wow-iteration="1">
+        fadeInLeftBig
+    </div>
+
+    <div class="box bg-danger d-block mx-auto m-4 wow animate__fadeInLeftBig" data-wow-duration="1.5s" data-wow-delay="0s" data-wow-iteration="1">
+        fadeInLeftBig
+    </div>
+
+    <div class="text-center">
+        <i class="fa-regular fa-face-kiss-wink-heart fa-8x text-danger wow animate__heartBeat" data-wow-duration="0.3s" data-wow-delay="0s" data-wow-iteration="infinite"></i>
+    </div>
+    
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/wow.min.js"></script>
+    <script>
+        new WOW().init();
+    </script>
+
+</body>
+</html>

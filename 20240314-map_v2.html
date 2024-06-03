@@ -1,0 +1,48 @@
+<!-- OSM MAP地圖使用 -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OSM MAP練習</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/myall.css">
+    <!-- leaflet 交互式地圖的前置 -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+</head>
+
+<body>
+    <!-- 地圖放置的地方 -->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div id="map" class="vh-100"></div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <!-- leaflet 交互式地圖的前置 -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script>
+        var map = L.map('map').setView([24.171477, 120.609643], 18);
+
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        // 經緯度
+        L.marker([24.171477, 120.609643]).addTo(map)
+        // 點擊後會出現的字
+            .bindPopup('<h1 class="text-danger fw-900">烘培班01</h1>');
+        L.marker([24.171477, 120.609943]).addTo(map)
+            .bindPopup('<h1 class="text-danger fw-900">吸菸區</h1>');
+        // .openPopup(); : 進入畫面就會自動點擊
+        // .openPopup();
+    </script>
+</body>
+
+</html>

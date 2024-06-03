@@ -1,0 +1,76 @@
+<!-- 用js抓取【.json】檔案的資料(這裡抓取所有資料) -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>串接資料練習</title>
+    <link rel="shortcut icon" href="images/icon/icon.ico" type="images/x-icon"><!-- icon更換 -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/myall.css">
+</head>
+<body>
+    <div class="container">
+        <div class="row" id="mydata">
+            <div class="col-md-4 mt-3 d-flex flex-column">
+                <img src="https://fakeimg.pl/600x300/200" class="img-fluid">
+                <h4>店名: xxxx</h4>
+                <h4>地址: xxxxxx</h4>
+                <h4>電話: xxxx</h4>
+                <button class="btn btn-warning w-100 mt-auto">詳細資料</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <script>
+        // jquery的主程式
+        $(function(){
+            //console.log("hello world!");
+            // console.log : 只會顯示在網頁F12的Console，通常是拿來偵錯的
+            // for(var i=0; i<9; i++){
+            //     console.log("hello world!"+i);
+            // }
+
+            // 串接資料
+            // ajax 非同步
+            $.ajax({
+                type: "GET",
+                // GET : 抓資料的意思
+                url: "https://data.moa.gov.tw/Service/OpenData/ODwsv/ODwsvTravelFood.aspx?IsTransData=1&UnitId=193",
+                // url : 網址，配合GET，就是抓這個網址裡面的資料
+                success: showdata,
+                // success : showdata : 抓資料成功的話，會將資料傳到showdata函式
+                error: function(){
+                    alert("系統錯誤!")
+                    // alert : 跳出警告視窗
+                }
+                // error 資料抓失敗
+            });
+        });
+
+        function showdata(data){
+            // data代表上面ajex傳下來的資料，data可改名，改成你想要的
+            console.log(data);
+            // 在console顯示data，也就是網址抓下的資料，顯示出來
+            for(var i=0;i<3;i++){
+                console.log(data[i]);
+            }
+            // 顯示3筆資料
+            for(var i=0;i<data.length;i++){
+                // console.log(data[i].Name);
+                // $("#mydata").append("<h1>"+i+":"+data[i].Name+"  </h1>");
+                var img=data[i].PicURL
+                var name=data[i].Name;
+                var address=data[i].Address;
+                var tel=data[i].Tel;
+                $("#mydata").append('<div class="col-md-4 mt-3 d-flex flex-column"><img src="'+img+'" class="img-fluid"><h4>店名: '+name+'</h4><h4>地址: '+data[i].Address+'</h4><h4>電話: '+tel+'</h4><button class="btn btn-warning w-100 mt-auto">詳細資料</button></div>');
+            }
+            // 顯示陣列的某一個東西
+            // append("<h1>"+data[i].Name+"  </h1>");  : 要在jquery加上html語法的話，要用【""】或【''】包覆和【+】連接
+            // append("<h1>"+data[i].Name+"  </h1>");  : 這行代表data[i].Name會變成h1的字體
+        }
+    </script>
+</body>
+</html>

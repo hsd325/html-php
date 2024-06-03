@@ -1,0 +1,49 @@
+<!-- 顯示20240116-Read3.php傳遞過來的所有內容 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="css/myall.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+</head>
+<body>
+
+    <div id="mylist"></div>
+
+<script src="js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/counterup2@2.0.2/dist/index.js">	</script>
+    <script src="js/wow.min.js"></script>
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <script>
+        //主程式
+        $(function(){
+            $.ajax({
+                type: "GET",
+                url: "20240116-Read3.php",
+                dataType: "json",
+                /*
+                因為連線的程式為php，電腦會無法辨識，就算php裡面的內容是.json格式，
+                所以用【dataType:】告訴電腦這個檔案是.json檔案
+                */
+                success: showdata,
+                error: function(){
+                    alert("系統錯誤!");
+                }
+            });
+        });
+        
+        function showdata(data){
+            console.log(data.data);
+            // 顯示.json檔案(data)裡的data區域
+            //  for(var i=0; i<2; i++){
+            //      var strHTML = 'ID為:' + data[i].ID+'<br>';
+            //      $("#mylist").append(strHTML);
+            //  }
+        }
+    </script>
+</body>
+</html>

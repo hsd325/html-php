@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>作品集</title>
+    <link rel="shortcut icon" href="images/icon/icon.ico" type="images/x-icon"><!-- icon更換 -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/myall.css">
+    <link rel="stylesheet" href="css/index.css">
+    <style>
+        body {
+            background-image: url(images/background01.jpg);
+            background-attachment: fixed;
+            /* 固定背景圖像 */
+        }
+
+        /* 作品連結的div */
+        .box02 {
+            height: 180px;
+            margin-top: 5px;
+            line-height: 180px;
+            background-color: var(--textcolor05);
+            color: var(--textcolor04);
+        }
+
+        /* 作品連結 */
+        .box02 a {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            /* 去除預設下劃線 */
+            color: inherit;
+            /* 繼承父元素文字顏色 */
+            /* 字的外框 */
+            text-shadow:
+                0 0 10px var(--textcolor01),
+                0 0 10px var(--textcolor01),
+                0 0 10px var(--textcolor01),
+                0 0 10px var(--textcolor01);
+            border-radius: 50%;
+        }
+
+        /* 解說 */
+        .box03 {
+            border: 2px solid var(--mycolor05);
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 2px 2px 5px 5px var(--mycolor05);
+            height: 100%;
+            background-color: white;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .box03 .h4 {
+            margin-top: 15px;
+            margin-bottom: 15px;
+        }
+
+        ul {
+            margin-bottom: 0;
+            /* 移除底部邊距 */
+        }
+
+        /* 小於多少 */
+        @media screen and (max-width: 1200px) {
+            .box02 {
+                height: 100px;
+                line-height: 100px;
+            }
+
+            .box02:hover {
+                background-color: var(--textcolor02);
+                color: var(--mycolor03);
+            }
+        }
+
+        /* 大於多少 */
+        @media screen and (min-width: 1200px) {
+            .box02 {
+                width: 260px;
+                height: 260px;
+                line-height: 260px;
+                margin-top: 25px;
+                margin-bottom: 25px;
+                border-radius: 50%;
+            }
+
+            .box02:hover {
+                background-color: var(--textcolor02);
+                color: var(--mycolor03);
+                box-shadow: 5px 5px 5px 5px var(--mycolor06);
+                /* 設置陰影效果 */
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-lg">
+        <!-- 標題 -->
+        <div class="row text-type mt-3">
+            <div class="col-12 d-none d-sm-block">
+                <div class="section01">
+                    <div class="box1"></div>
+                    <div class="box2"></div>
+                    <div class="box3"></div>
+                    <div class="box4"></div>
+                    <div class="logoimg bg-cover"></div>
+                    <div class="user_text">
+                        <h1 class="fw-900">作品集</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 作品連結 -->
+        <div class="row">
+            <div class="col-sm-6 col-md-3">
+                <div class="box02 h1 fw-900 text-center img" style="background-image: url('images/works01.png');">
+                    <a class="fw-900" href="index-type.html" target="_blank">排版練習</a>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-3">
+                <div class="box02 h1 fw-900 text-center img" style="background-image: url('images/works02.png');">
+                    <a href="20231222-get_opendata.html" target="_blank">抓取js資料</a>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-3">
+                <div class="box02 h1 fw-900 text-center img" style="background-image: url('images/works03.png');">
+                    <a href="20231226-cake-index.html" target="_blank">蛋糕首頁</a>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-3">
+                <div class="box02 h1 fw-900 text-center img" style="background-image: url('images/works04.png');">
+                    <a href="20240201-SPA.html" target="_blank">汽車首頁</a>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-3">
+                <div class="box02 h1 fw-900 text-center img" style="background-image: url('images/works05.png');">
+                    <a href="20240222-hoteldata.html" target="_blank">旅館資料</a>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-3">
+                <div class="box02 h1 fw-900 text-center img" style="background-image: url('images/works06.png');">
+                    <a href="index-chart.html" target="_blank">統計圖表</a>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-3">
+                <div class="box02 h1 fw-900 text-center img" style="background-image: url('images/works07.png');">
+                    <a href="20240312-chartjs-hotel_c_V2.html" target="_blank">縣市長條圖</a>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-3">
+                <div class="box02 h1 fw-900 text-center img" style="background-image: url('images/works09.png');">
+                    <a href="20240314-map_v1.html" target="_blank">口罩地圖</a>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-3">
+                <div class="box02 h1 fw-900 text-center img" style="background-image: url('images/works10.png');">
+                    <a href="20240314-map_v3.html" target="_blank">全台藥局</a>
+                </div>
+            </div>
+        </div>
+        <!-- 作品介紹 -->
+        <div class="row g-3">
+            <!-- 排版練習 -->
+            <div class="box04 col-md-6 col-lg-4">
+                <div class="box03">
+                    <!-- img-fluid :根據父類別調整寬度 -->
+                    <div class="text-center">
+                        <img src="images/works01.png" class="img-fluid" alt="" style="height: 270px;">
+                        <div class="h4 fw-900 mt-4">排版練習</div>
+                    </div>
+                    <hr>
+                    <div class="row container-lg mb-3">
+                        <div class="row gx-1">
+                            <div class="col-2 set-right p-1">
+                                <span class="fw-900">內容:&ensp;</span>
+                            </div>
+                            <div class="col-10">
+                                <span class="fw-500">html、css、RWD的排版練習，裡面總共有14個</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-auto">
+                        <hr>
+                        <div class="row text-center">
+                            <span class="fw-900">作品連結:</span>
+                            <a href="index-type.html" target="_blank">排版練習</a>
+                        </div>
+                        <hr>
+                        <div class="row text-center mb-2">
+                            <span class="fw-900">github網址:</span>
+                            <a href="">github</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 抓取js資料 -->
+            <div class="box04 col-md-6 col-lg-4">
+                <div class="box03">
+                    <!-- img-fluid :根據父類別調整寬度 -->
+                    <div class="text-center">
+                        <img src="images/works02.png" class="img-fluid" alt="" style="height: 270px;">
+                        <div class="h4 fw-900 mt-4">抓取js資料</div>
+                    </div>
+                    <hr>
+                    <div class="row container-lg mb-3">
+                        <div class="row gx-1">
+                            <div class="col-2 set-right p-1">
+                                <span class="fw-900">內容:&ensp;</span>
+                            </div>
+                            <div class="col-10">
+                                <span class="fw-500">抓取指定的 json 文件資料，再將資料進行分類後來完成排版</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-auto">
+                        <hr>
+                        <div class="row text-center">
+                            <span class="fw-900">作品連結:</span>
+                            <a href="20231222-get_opendata.html" target="_blank">抓取js資料</a>
+                        </div>
+                        <hr>
+                        <div class="row text-center mb-2">
+                            <span class="fw-900">github網址:</span>
+                            <a href="">github</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 蛋糕首頁 -->
+            <div class="box04 col-md-6 col-lg-4">
+                <div class="box03">
+                    <!-- img-fluid :根據父類別調整寬度 -->
+                    <div class="text-center">
+                        <img src="images/works03.png" class="img-fluid" alt="" style="height: 270px;">
+                        <div class="h4 fw-900 mt-4">蛋糕首頁</div>
+                    </div>
+                    <hr>
+                    <div class="row container-lg mb-2">
+                        <div class="row gx-1 mb-2">
+                            <div class="col-2 set-right p-1">
+                                <span class="fw-900">內容:&ensp;</span>
+                            </div>
+                            <div class="col-10">
+                                <span class="fw-500">有首頁、公司介紹、產品介紹、產品頁面這4頁</span>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row gx-1">
+                        <div class="col-2 set-right p-1">
+                            <span class="fw-900">技術:&ensp;</span>
+                        </div>
+                        <div class="col-10">
+                            <span class="fw-500">首頁: <br>使用RWD技術 <br><br>產品介紹: <br>抓取特定jason檔案來完成排版</span>
+                        </div>
+                    </div>
+                    <div class="mt-auto">
+                        <hr>
+                        <div class="row text-center">
+                            <span class="fw-900">作品連結:</span>
+                            <a href="20231226-cake-index.html" target="_blank">蛋糕首頁</a>
+                        </div>
+                        <hr>
+                        <div class="row text-center mb-2">
+                            <span class="fw-900">github網址:</span>
+                            <a href="">github</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 汽車首頁 -->
+            <div class="box04 col-md-6 col-lg-4">
+                <div class="box03">
+                    <!-- img-fluid :根據父類別調整寬度 -->
+                    <div class="text-center">
+                        <img src="images/works04.png" class="img-fluid" alt="" style="height: 270px;">
+                        <div class="h4 fw-900 mt-4">汽車首頁</div>
+                    </div>
+                    <hr>
+                    <!-- 內容 -->
+                    <div class="row container-lg mb-2">
+                        <div class="row gx-1 mb-2">
+                            <div class="col-2 set-right p-1">
+                                <span class="fw-900">內容:&ensp;</span>
+                            </div>
+                            <div class="col-10">
+                                <span class="fw-500">首頁登入會員後，可使用高級技術-商品建檔+管理、會員管理</span>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <!-- 技術 -->
+                    <div class="row gx-1">
+                        <div class="col-2 set-right p-1">
+                            <span class="fw-900">技術:&ensp;</span>
+                        </div>
+                        <div class="col-10">
+                            <span class="fw-500">首頁: <br>1.使用 wow.js 來執行排版的動畫 <br>2.註冊後的會員密碼會進行加密
+                                <br>3.使用cookie頁面重新開啟也是登錄狀態 <br><br> 資料庫: <br>註冊、登入、商品建檔+管理、會員管理技術皆有使用資料庫進行連接</span>
+                        </div>
+                    </div>
+                    <div class="mt-auto">
+                        <hr>
+                        <div class="row text-center">
+                            <span class="fw-900">作品連結:</span>
+                            <a href="20240201-SPA.html" target="_blank">汽車首頁</a>
+                        </div>
+                        <hr>
+                        <div class="row text-center mb-2">
+                            <span class="fw-900">github網址:</span>
+                            <a href="">github</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 旅館資料 -->
+            <div class="box04 col-md-6 col-lg-4">
+                <div class="box03">
+                    <!-- img-fluid :根據父類別調整寬度 -->
+                    <div class="text-center">
+                        <img src="images/works05.png" class="img-fluid" alt="" style="height: 270px;">
+                        <div class="h4 fw-900 mt-4">旅館資料</div>
+                    </div>
+                    <hr>
+                    <!-- 內容 -->
+                    <div class="row container-lg">
+                        <div class="row gx-1 mb-2">
+                            <div class="col-2 set-right">
+                                <span class="fw-900">內容:&ensp;</span>
+                            </div>
+                            <br>
+                            <div class="col-10">
+                                <ul>
+                                    <li>點選左邊的清單列表，右邊會出現對應的旅館資料</li>
+                                    <li>點擊旅館的google map按鈕會跳轉至旅館位置</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <!-- 技術 -->
+                    <div class="row gx-1">
+                        <div class="col-2 set-right p-1">
+                            <span class="fw-900">技術:&ensp;</span>
+                        </div>
+                        <div class="col-10">
+                            <span class="fw-500">資料重組進行分類: <br>使用資料庫抓取資料，再用jquery進行分類，而不是依靠資料庫本身進行分類<br><br>google map
+                                api
+                                code: <br>只要提供經緯度就可在google map獲得相應位置</span>
+                        </div>
+                    </div>
+                    <div class="mt-auto">
+                        <hr>
+                        <div class="row text-center">
+                            <span class="fw-900">作品連結:</span>
+                            <a href="20240222-hoteldata.html" target="_blank">旅館資料</a>
+                        </div>
+                        <hr>
+                        <div class="row text-center mb-2">
+                            <span class="fw-900">github網址:</span>
+                            <a href="">github</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 統計圖表 -->
+            <div class="box04 col-md-6 col-lg-4">
+                <div class="box03">
+                    <!-- img-fluid :根據父類別調整寬度 -->
+                    <div class="text-center">
+                        <img src="images/works06.png" class="img-fluid" alt="" style="height: 270px;">
+                        <div class="h4 fw-900 mt-4">統計圖表</div>
+                    </div>
+                    <hr>
+                    <!-- 內容 -->
+                    <div class="row container-lg">
+                        <div class="row gx-1 mb-2">
+                            <div class="col-2 set-right">
+                                <span class="fw-900">內容:&ensp;</span>
+                            </div>
+                            <br>
+                            <div class="col-10">
+                                <ul>
+                                    <li>總共有 長條圖+圓餅圖、折線圖 這2個作品 </li>
+                                    <li>長條圖+圓餅圖 -> 使用資料庫完成</li>
+                                    <li>折線圖 -> 使用axios，抓取 jason檔案 完成</li>
+                                    <li>皆用 chart.js 製作而成</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-auto">
+                        <hr>
+                        <div class="row text-center">
+                            <span class="fw-900">作品連結:</span>
+                            <a href="index-chart.html" target="_blank">統計圖表</a>
+                        </div>
+                        <hr>
+                        <div class="row text-center mb-2">
+                            <span class="fw-900">github網址:</span>
+                            <a href="">github</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 縣市長條圖 -->
+            <div class="box04 col-md-6 col-lg-4">
+                <div class="box03">
+                    <!-- img-fluid :根據父類別調整寬度 -->
+                    <div class="text-center">
+                        <img src="images/works07.png" class="img-fluid" alt="" style="height: 270px;">
+                        <div class="h4 fw-900 mt-4">縣市長條圖</div>
+                    </div>
+                    <hr>
+                    <!-- 內容 -->
+                    <div class="row container-lg mb-2">
+                        <div class="row gx-1 mb-2">
+                            <div class="col-2 set-right p-1">
+                                <span class="fw-900">內容:&ensp;</span>
+                            </div>
+                            <div class="col-10">
+                                <span class="fw-500">點選左邊的縣市清單，右邊會出現縣市對應的旅館分布長條圖</span>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <!-- 技術 -->
+                    <div class="row gx-1">
+                        <div class="col-2 set-right p-1">
+                            <span class="fw-900">技術:&ensp;</span>
+                        </div>
+                        <div class="col-10">
+                            <span class="fw-500">使用chart.js來製造長條圖<br><br>資料重組進行分類:
+                                <br>使用資料庫抓取資料，再用jquery進行分類，而不是依靠資料庫本身進行分類</span>
+                        </div>
+                    </div>
+                    <div class="mt-auto">
+                        <hr>
+                        <div class="row text-center">
+                            <span class="fw-900">作品連結:</span>
+                            <a href="20240312-chartjs-hotel_c_V2.html" target="_blank">縣市長條圖</a>
+                        </div>
+                        <hr>
+                        <div class="row text-center mb-2">
+                            <span class="fw-900">github網址:</span>
+                            <a href="">github</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 口罩地圖 -->
+            <div class="box04 col-md-6 col-lg-4">
+                <div class="box03">
+                    <!-- img-fluid :根據父類別調整寬度 -->
+                    <div class="text-center">
+                        <img src="images/works09.png" class="img-fluid" alt="" style="height: 270px;">
+                        <div class="h4 fw-900 mt-4">口罩地圖</div>
+                    </div>
+                    <hr>
+                    <!-- 內容 -->
+                    <div class="row container-lg mb-2">
+                        <div class="row gx-1 mb-2">
+                            <div class="col-2 set-right p-1">
+                                <span class="fw-900">內容:&ensp;</span>
+                            </div>
+                            <div class="col-10">
+                                <span class="fw-500">左邊的下拉選單選擇縣市、區域，右邊會藉由地圖、水滴座標顯示對應的藥局位置</span>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <!-- 技術 -->
+                    <div class="row gx-1">
+                        <div class="col-2 set-right p-1">
+                            <span class="fw-900">技術:&ensp;</span>
+                        </div>
+                        <div class="col-10">
+                            <span class="fw-500">Leaflet(OMS地圖)交互式地圖: <br>外部插建API，顯示地圖和增加水滴座標
+                                <br><br>Leaflet.markercluster: <br>外部插建API，用來提升Leaflet的顯示效能，地圖縮小時會將水滴座標集合起來</span>
+                        </div>
+                    </div>
+                    <div class="mt-auto">
+                        <hr>
+                        <div class="row text-center">
+                            <span class="fw-900">作品連結:</span>
+                            <a href="20240314-map_v1.html" target="_blank">口罩地圖</a>
+                        </div>
+                        <hr>
+                        <div class="row text-center mb-2">
+                            <span class="fw-900">github網址:</span>
+                            <a href="">github</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 全台藥局 -->
+            <div class="box04 col-md-6 col-lg-4   d-flex flex-column">
+                <div class="box03">
+                    <!-- img-fluid :根據父類別調整寬度 -->
+                    <div class="text-center">
+                        <img src="images/works10.png" class="img-fluid" alt="" style="height: 270px;">
+                        <div class="h4 fw-900 mt-4">全台藥局</div>
+                    </div>
+                    <hr>
+                    <!-- 內容 -->
+                    <div class="row container-lg mb-2">
+                        <div class="row gx-1 mb-2">
+                            <div class="col-2 set-right p-1">
+                                <span class="fw-900">內容:&ensp;</span>
+                            </div>
+                            <div class="col-10">
+                                <span class="fw-500">顯示全台灣的藥局位置</span>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <!-- 技術 -->
+                    <div class="row gx-1">
+                        <div class="col-2 set-right p-1">
+                            <span class="fw-900">技術:&ensp;</span>
+                        </div>
+                        <div class="col-10">
+                            <span class="fw-500">Leaflet(OMS地圖)交互式地圖: <br>外部插建API，顯示地圖和增加水滴座標
+                                <br><br>Leaflet.markercluster: <br>外部插建API，用來提升Leaflet的顯示效能，地圖縮小時會將水滴座標集合起來</span>
+                        </div>
+                    </div>
+                    <div class="mt-auto">
+                        <hr>
+                        <div class="row text-center mt-auto">
+                            <span class="fw-900">作品連結:</span>
+                            <a href="20240314-map_v3.html" target="_blank">全台藥局</a>
+                        </div>
+                        <hr>
+                        <div class="row text-center mb-2">
+                            <span class="fw-900">github網址:</span>
+                            <a href="">github</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="height: 100px;"></div>
+            <!-- <div class="row">
+            <div class="col-12 mt-3 d-none d-md-block">
+                <img src="https://fakeimg.pl/1400x150/200" class="img-fluid">
+            </div>
+        </div> -->
+        </div>
+        <script src="js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

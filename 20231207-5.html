@@ -1,0 +1,38 @@
+<!-- 元件的出現和隱藏 -->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ch6. 欄與列</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/myall.css">
+    <style>
+        .box {
+            width: 200px;
+            height: 200px;
+            margin: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <p class="h1 fw-900">1. d-none(隱藏)</p>
+        <div class="box bg-success d-sm-none"></div>
+        <div class="box bg-danger d-md-none"></div>
+        <div class="box bg-info d-lg-none"></div>
+    </div>
+
+    <div class="container">
+        <p class="h1 fw-900">1. d-block(出現)</p>
+        <div class="box bg-primary d-sm-block"></div>
+        <div class="box bg-primary d-md-block"></div>
+        <div class="box bg-primary d-lg-block"></div>
+    </div>
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

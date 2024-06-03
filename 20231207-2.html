@@ -1,0 +1,117 @@
+<!-- html的講解，h1~float -->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ch3.文字相關+ boostraps 語法練習</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/myall.css">
+    <style>
+
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>1.h1~h5，盡量不要用這種方式寫</h1>
+        <div class="demo">
+            <!-- 此div裡面內容為文字大小-h1~h5，
+                 盡量不要用這種方式寫 -->
+            <h1>h1: 考察谷歌出版社一看。</h1>
+            <h2>h2: 考察谷歌出版社一看。</h2>
+            <h3>h3: 考察谷歌出版社一看。</h3>
+            <h4>h4: 考察谷歌出版社一看。</h4>
+            <h5>h5: 考察谷歌出版社一看。</h5>
+        </div>
+        <p class="h1">1-1.p寫法的h1~h5，盡量用這種方式寫</p>
+        <div class="demo">
+            <!-- 此div裡面內容為文字大小，有用boostraps的話，
+                盡量用這種方式寫 -->
+            <p class="h1">就是神話，進入一道。</p>
+            <p class="h2">就是神話，進入一道。</p>
+            <p class="h3">就是神話，進入一道。</p>
+            <p class="h4">就是神話，進入一道。</p>
+            <p class="h5">就是神話，進入一道。</p>
+        </div>
+        <p class="h1 fw-900">2. 標題</p>
+        <div class="demo">
+            <p class="display-1 fw-900">這是一個大標題</p>
+            <p class="display-2">這是一個大標題</p>
+            <p class="display-3">這是一個大標題</p>
+            <p class="display-4">這是一個大標題</p>
+            <p class="display-5">這是一個大標題</p>
+            <p class="display-6">這是一個大標題</p>
+        </div>
+
+        <p class="h1">第三章的文本元素</p>
+        <div class="demo">
+            <p>患者訂單，轎車上升。<mark>患者訂單。</mark>text.</p>
+            <!-- <mark>標記 -->
+            <p><del>患者訂單，轎車上升。患者訂單。</del></p>
+            <!-- <del>中間畫線 -->
+            <p><s>患者訂單，轎車上升。患者訂單。</s></p>
+            <!-- <s>中間畫線 -->
+            <p><ins>患者訂單，轎車上升。患者訂單。</ins></p>
+            <!-- <ins>下面畫線 -->
+            <p><u>患者訂單，轎車上升。患者訂單。</u></p>
+            <!-- <u>下面畫線 -->
+            <p><small>患者訂單，轎車上升。患者訂單。</small></p>
+            <!-- <small>字設定為細體 -->
+            <p><strong>患者訂單，轎車上升。患者訂單。</strong></p>
+            <!-- <strong>字設定為粗體 -->
+            <p><em>患者訂單，轎車上升。患者訂單。</em></p>
+            <!-- <em>字往右邊斜 -->
+        </div>
+
+        <p class="h1 fw-900">文字位置(text-start，text-center，text-end)</p>
+        <div class="demo">
+            <p class="text-start">有了出現在。</p>
+            <p class="text-center">有了出現在。</p>
+            <p class="text-end">有了出現在。</p>
+        </div>
+
+        <p class="h1 fw-900">list 相關</p>
+        <div class="demo">
+            <ul class="list-unstyled">
+                <li>有關部門之。</li>
+                <ul>
+                    <li>統計小姐去。</li>
+                    <li>統計小姐去。</li>
+                    <li>統計小姐去。</li>
+                </ul>
+                <li>有關部門之。</li>
+                <li>有關部門之。</li>
+            </ul>
+        </div>
+        <div class="demo">
+            <ul class="list-inline">
+                <li class="list-inline-item"></li>
+                <li class="list-inline-item"></li>
+                <li class="list-inline-item"></li>
+                <li class="list-inline-item"></li>
+            </ul>
+        </div>
+
+        <p class="h1 fw-900">文字截斷 text-truncate</p>
+        <div class="demo text-truncate">
+            想到女友畢業生對此都是指定辦公影片，地區鈴聲下載令人絶不評價配件網遊全家請求深刻，造型你說隊伍高校障礙網通照顧我都成熟喜愛報紙規律交易，獲得農業特色採購各自女孩都是眼前想起鏡頭，家電昨日站點情感有人，小心否則皇帝士兵聯絡人處理彼此進行可見歡迎光臨同意女孩子，用來一看將軍報紙激情引進感到很有，每年就好網址。
+        </div>
+
+        <p class="h1 fw-900">圖文位置排版 float</p>
+        <div class="demo">
+            <img src="images/car01.png" width="200px" alt="" class="float-start">
+            <p>出席正確資格結束豪華表面案例一定要事務放心屬於，網址結束安裝只要，女生運動新聞渠道不見品質信箱不少職責發表教育是怎麼，頻率唱片文學一級口氣總體歲月收益合作大型網站到了呼吸方案太麻里，聯合新手實在圍繞原本，看見圖書是因為，物品報導民族，隊員十大搭配網絡家族我就一股電器液晶發達，保存因為算是各個各國大全轉變，通信分為幾個青年德國地上，加快我一接觸一支就業意義執行時間才能貨幣聲音，世紀是由，三人全球古。</p>
+        </div>
+        <div class="demo">
+            <img src="images/car02.png" width="200px" alt="" class="float-end">
+            <p>特別是差不多我真解壓密碼面議部隊含有，打擊讓他做到一位英國發展主義是從正常進了查看，事故全國初音差距他是谷歌意見當然實現尤其是兩位登錄，宣傳創建作用說什麼主機貢獻知道自己的保險怎麼浪費春天旅遊說話，刺激標題文章左右一定會是啊司機出席提醒地址，選手對話頭銜投入較高供求肌膚，那樣設備臉上一定要魯蛇關注寫真寬頻每年趨勢空中考核頭髮登記，每次解壓密碼皇帝下了意見一張證實很有大型人才照顧也可能量，意見戰爭。</p>
+        </div>
+    </div>
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

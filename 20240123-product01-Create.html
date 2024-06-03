@@ -1,0 +1,382 @@
+<!-- 新建商品，主頁為20240201-SPA.html -->
+<!-- 使用API: 20240123-product01-Create-api.php -->
+<!-- 如果登入失敗，會跳到首頁20240201-SPA.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>表單練習(商品建檔)</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="css/myall.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                控制台
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <div class="ms-auto">
+                    <span class="text-warning h3" id="user_message"></span>
+                    <button class="btn btn-danger d-none" id="s02_logout_btn">登出</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="row justify-content-center py-5">
+            <div class="col-md-10 p-3 rounded-3 shadow-lg border border-2 border-dark">
+                <!-- rounded-3 : 圓角 、 shadow-lg: 陰影 -->
+                <div class="md-3 form-floating">
+                    <input type="text" class="form-control is-invalid" placeholder="" id="pname" name="pname" list="pname_option">
+                    <label for="">商品名稱</label>
+                    <!-- 下面為推薦選項，上面的input需用list連線datalist的id，來實行會在這個input推薦 -->
+                    <datalist id="pname_option">
+                        <option value="珍珠奶茶">珍珠奶茶</option>
+                        <option value="紅茶">紅茶</option>
+                        <option value="綠茶">綠茶</option>
+                        <option value="開水">開水</option>
+                    </datalist>
+                    <div class="valid-feedback">字數符合規定</div>
+                    <div class="invalid-feedback">字數不符合規定</div>
+                </div>
+                <!-- 價格 -->
+                <div class="mb-3">
+                    <label for="price" class="form-label">價格(NT.)</label>
+                    <input type="number" min="0" max="100" value="50" class="form-control is-valid" id="price" name="price">
+                    <div class="valid-feedback">價格符合規定(1~100)</div>
+                    <div class="invalid-feedback">價格不符合規定(1~100)</div>
+                </div>
+                <!-- 下面為下拉式選單 -->
+                <!-- 甜度 -->
+                <div class="mb-3">
+                    <select name="sugar" id="sugar" class="form-select" size="4">
+                        <option selected disabled>---選擇甜度---</option>
+                        <option value="全糖">全糖</option>
+                        <option value="半糖">半糖</option>
+                        <option value="少糖">少糖</option>
+                        <option value="無糖">無糖</option>
+                    </select>
+                </div>
+                <!-- 冰塊 -->
+                <div class="mb-3">
+                    <select name="ice" id="ice" class="form-select is-invalid">
+                        <option selected disabled>---選擇冰塊---</option>
+                        <option value="全冰">全冰</option>
+                        <option value="少冰">少冰</option>
+                        <option value="無冰">無冰</option>
+                    </select>
+                    <div class="valid-feedback">已選擇冰塊</div>
+                    <div class="invalid-feedback">請選擇冰塊</div>
+                </div>          
+                <!-- range及時監聽製作 -->
+                <div class="mb-3">
+                    <label for="num01" class="form-label">數量(杯): <span class="text-danger" id="num01_text">50</span></label>
+                    <!-- span的字會設定成隨著range變化 -->
+                    <input type="range" class="form-range" min="1" max="100" step="1" id="num01" name="num01">
+                </div>
+                <!-- switch及時監聽製作 -->
+                <div class="form-check form-switch">
+                    <input type="checkbox" name="switch01" id="switch01" class="form-check-input">
+                    <label for="" class="form-check-label">不需要外送</label>
+                </div>
+                <!-- 選擇配料，checkbox -->
+                <div class="my-3">
+                    <div class="form-check form-check-inline">
+                        <input type="checkbox" class="form-check-input" id="chk01" name="chk" value="珍珠">
+                        <label for="chk01" class="form-check-label">珍珠</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input type="checkbox" class="form-check-input" id="chk02" name="chk" value="粉圓">
+                        <label for="chk02" class="form-check-label">粉圓</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input type="checkbox" class="form-check-input" id="chk03" name="chk" value="布丁">
+                        <label for="chk03" class="form-check-label">布丁</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input type="checkbox" class="form-check-input" id="chk04" name="chk" value="椰果">
+                        <label for="chk04" class="form-check-label">椰果</label>
+                    </div>
+                </div>
+                <!-- 付錢方法，radio的監聽 -->
+                <div class="my-3">
+                    <div class="form-check form-check-inline">
+                        <input type="radio" class="form-check-input" id="radio01" name="rad" value="刷卡" checked>
+                        <!-- 預設為勾選這個 -->
+                        <label for="radio01" class="form-check-label">刷卡</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input type="radio" class="form-check-input" id="radio01" name="rad" value="line pay">
+                        <label for="radio01" class="form-check-label">line pay</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input type="radio" class="form-check-input" id="radio01" name="rad" value="付現">
+                        <label for="radio01" class="form-check-label">付現</label>
+                    </div>
+                </div>
+                <!-- 按鈕監聽，寫script來執行 -->
+                <div class="text-end">                   
+                    <button class="btn btn-info" id="ok_btn">確認</button>                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div id="showmsg"></div>
+    </div>
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/counterup2@2.0.2/dist/index.js">	</script>
+    <script src="js/wow.min.js"></script>
+    <script src="js/jquery-3.7.1.min.js"></script>
+
+    <script>
+        // 按鈕的旗子，判斷是否符合
+        var flag_pname=false;
+        var flag_ice=false;
+        var flag_price=true; // 因為預設是符合的
+
+        $(function(){
+            // 0217
+            //判斷是否登入
+            if (getCookie("UID01") != "") {
+                //UID01存在, 傳遞至後端api 判斷是否合法
+                var dataJSON = {};
+                dataJSON["UID01"] = getCookie("UID01");
+                console.log(JSON.stringify(dataJSON));
+                $.ajax({
+                    type: "POST",
+                    url: "member-Check_UID-api.php",
+                    data: JSON.stringify(dataJSON),
+                    dataType: "json",
+                    success: showdata_Check_UID,
+                    error: function () {
+                        alert("error-member-Check_UID-api.php");
+                    }
+                });
+            }else{
+                // 跳回主頁
+                location.href = "20231228-SPA.html";
+            }
+
+            // 0217
+            //登出按鈕監聽 #s02_logout_btn
+            $("#s02_logout_btn").click(function () {
+                setCookie("UID01", "", 7);
+                location.href = "20231228-SPA.html";
+            });
+
+            // 監聽_及時監聽 #pname，商品名稱的監聽，用is-valid來顯示畫面
+            $("#pname").bind("input propertychange", function(){
+                console.log($(this).val().length);
+                if($(this).val().length>0 && $(this).val().length<7){
+                    // 輸入字數的限制，要符合長度
+                    $(this).addClass("is-valid");
+                    // addClass : 物件的class增加後面寫的東西
+                    $(this).removeClass("is-invalid");
+                    // removeClass : 刪除物件的class裡面的字，刪除的字為跟後面寫的字串一樣
+
+                    // 按鈕的旗子，判斷是否符合
+                    flag_pname=true;
+                }else{
+                    // 字數長度不符合時
+                    $(this).addClass("is-invalid");
+                    $(this).removeClass("is-valid");
+                    flag_pname=false;
+                }
+            });
+
+            // 監聽_及時監聽 #pname，冰塊的監聽，用is-valid來顯示畫面
+            $("#ice").bind("input propertychange", function(){
+                if($(this).val() != ""){
+                    // 已選擇甜度
+                    $(this).addClass("is-valid");
+                    // addClass : 物件的class增加後面寫的東西
+                    $(this).removeClass("is-invalid");
+                    // removeClass : 刪除物件的class裡面的字，刪除的字為跟後面寫的字串一樣
+
+                    // 按鈕的旗子，判斷是否符合
+                    flag_ice=true;
+                }
+            });
+
+            // 監聽_及時監聽 #pname，價格N.T的監聽，用is-valid來顯示畫面
+            $("#price").bind("input propertychange", function(){
+                console.log($(this).val().length);
+                if($(this).val() <= 100 && $(this).val() > 0){
+                    $(this).addClass("is-valid");
+                    // addClass : 物件的class增加後面寫的東西
+                    $(this).removeClass("is-invalid");
+                    // removeClass : 刪除物件的class裡面的字，刪除的字為跟後面寫的字串一樣
+
+                    // 按鈕的旗子，判斷是否符合
+                    flag_price=true;
+                }else{
+                    $(this).addClass("is-invalid");
+                    $(this).removeClass("is-valid");
+                    flag_price=false;
+                }
+            });
+
+            var switch01='不需要外送!';//紀錄外送的狀態，預設為不勾選
+            // switch及時監聽-外送，製作
+            $("#switch01").change(function(){
+                // change : 右鍵按完彈起、且有變化時
+                // function : 執行
+                console.log($(this).is(':checked'));
+                // this : 目前元件的動作的意思
+                // checked : 有被開啟
+                // $(this).is(':checked') : 當有被開啟，$(this).is(':checked')內容為【true】
+                if($(this).is(':checked')){
+                    $(this).next().text('需要外送!');
+                    // next() :下一個元件
+                    // $(this).next().text('需要外送!'); : 目前元件(在this狀態)的往下數的下一個元件的text為【需要外送!】 
+                    switch01='需要外送!';
+                }else{
+                    $(this).next().text('不需要外送!');
+                    switch01='不需要外送!';
+                }
+            })
+
+            var num01; //紀錄杯數
+            //監聽_即時監聽  range #num01
+            $("#num01").bind("input propertychange", function(){
+                console.log($(this).val());
+                $("#num01_text").text($(this).val());
+                num01 = $(this).val();
+            });
+
+
+            // 按鈕監聽，按下按鈕(submit)後會執行
+            $("#ok_btn").click(function(){
+                if(flag_pname && flag_ice && flag_price){
+                // 上面if為判斷商品名字、冰塊、價格的輸入有沒有符合規定
+
+                console.log($("#pname").val());
+                console.log($("#price").val());
+                console.log($("#sugar").val());
+                console.log($("#ice").val());
+
+                // 選擇配料，收集checkbox 加料區的資料
+                // 創造一個陣列(chkArray)來用
+                var chkArray=[];
+                $.each($("input[name='chk']:checked"), function(){
+                    // each 掃描
+                    // input[name='chk']:checked : input的name叫chk的被勾選中
+                    // $.each($("input[name='chk']:checked"), function() : input的name叫chk的被勾選中，這些被勾選中的執行function
+                    console.log($(this).val());
+                    chkArray.push($(this).val());
+                    // push : 丟進去
+                    // chkArray.push($(this).val()); : chkArray陣列，丟進去資料
+
+                    if(chkArray.length==0){
+                        chkArray.push("不加料");
+                    }
+                    //沒輸入，顯示【不加料】
+                });
+
+                // radio的監聽和收集資料來確定
+                // 創造一個rad_pay來紀錄結果
+                var rad_pay;
+                $.each($("input[name='rad']:checked"), function(){
+                    console.log($(this).val());
+                    rad_pay=$(this).val();
+                });
+
+
+                $("#showmsg").html("<h1>商品名稱: "+$("#pname").val()+"</h1><h1>價格(NT.): "+$("#price").val()+"</h1><h1>甜度: "+$("#sugar").val()+"</h1><h1>冰塊: "+$("#ice").val()+"</h1><h1>外送需求: "+switch01+"</h1><h1>杯數: "+$("#num01_text").text()+"</h1><h1>加料: "+chkArray.join("/")+"</h1><h1>總價: "+$("#price").val()*$("#num01_text").text()+"元</h1><h1>付款方式: "+rad_pay+"</h1>");
+                // chkArray.join("/") :陣列內的每筆資料會顯示出來，同時每筆資料會有"/"來隔開   
+                
+                //將傳遞至後端api參數 轉換成json格式
+                //預想傳達到後端的: {"Pname":"奶茶", "Price":"50", "Sugar":"全糖", "Num":"10", "Delivery":"true", "Added":"珍珠","Pay":"刷卡","Total":"500"}
+
+                    var dataJSON = {};
+                    // 建立陣列
+                    dataJSON["Pname"] = $("#pname").val();
+                    dataJSON["Price"] = $("#price").val();
+                    dataJSON["Sugar"] = $("#sugar").val();
+                    dataJSON["Num"]   = $("#num01_text").text();
+                    dataJSON["Delivery"] = switch01;
+                    dataJSON["Added"] = chkArray.join(", ");
+                    dataJSON["Pay"]   = rad_pay;
+                    dataJSON["Total"] = $("#price").val()*$("#num01_text").text();
+
+                    console.log(JSON.stringify(dataJSON));
+                    // JSON.stringify() : javascript的專用方法，將陣列的資料變成json格式顯出來
+
+                    //傳遞至後端
+                    $.ajax({
+                        type: "POST",
+                        url: "http://192.168.10.56/20240123-product01-Create-api.php",
+                        data: JSON.stringify(dataJSON),
+                        contentType: "application/json;charset=utf-8",
+                        //上面這個為傳送中文的時候，讓中文不會變成亂碼，預設中文會變成亂碼的
+                        dataType: "json",
+                        success: showdata,
+                        error: function(){
+                            alert("error-http://192.168.10.201/202312/20240123-product01-Create-api.php");
+                        }
+                    });
+            }else{
+                alert("輸入有錯，請重新輸入");
+            }
+            });
+        });
+
+        // 此function為對應【$.ajax】的
+        function showdata(data){
+            console.log(data);
+        }
+
+        function showdata_Check_UID(data) {
+            console.log(data);
+            if (data.state) {
+                //驗證成功
+                $("#user_message").text(data.data[0].Username + "登入中!");
+
+                //顯示登出按鈕
+                $("#s02_logout_btn").removeClass("d-none");
+            }else{
+                location.href = "20240201-SPA.html";
+            }
+        }
+
+        // 0217
+        //w3s
+        function setCookie(cname, cvalue, exdays) {
+            const d = new Date();
+            d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+            let expires = "expires=" + d.toUTCString();
+            document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+        }
+        // 0217
+        //w3s
+        function getCookie(cname) {
+            let name = cname + "=";
+            let decodedCookie = decodeURIComponent(document.cookie);
+            let ca = decodedCookie.split(';');
+            for (let i = 0; i < ca.length; i++) {
+                let c = ca[i];
+                while (c.charAt(0) == ' ') {
+                    c = c.substring(1);
+                }
+                if (c.indexOf(name) == 0) {
+                    return c.substring(name.length, c.length);
+                }
+            }
+            return "";
+        }
+
+    </script>
+</body>
+</html>

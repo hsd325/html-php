@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>排版練習</title>
+    <link rel="shortcut icon" href="images/icon/icon.ico" type="images/x-icon"><!-- icon更換 -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/myall.css">
+    <link rel="stylesheet" href="css/index.css">
+    <style>
+        body {
+            background-image: url(images/background02.jpg);
+            background-attachment: fixed; /* 固定背景圖像 */
+        }
+        .box02 {
+            height: 180px;
+            margin-top: 5px;
+            line-height: 180px;
+            background-color: var(--textcolor05);
+            color: var(--textcolor04);
+        }
+        .box02 a {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;/* 去除預設下劃線 */
+            color: inherit;/* 繼承父元素文字顏色 */
+            /* 字的外框 */
+            text-shadow: 
+            0 0 10px  var(--textcolor01),
+            0 0 10px  var(--textcolor01),
+            0 0 10px  var(--textcolor01),
+            0 0 10px  var(--textcolor01);
+            border-radius: 50%;            
+        }
+        /* 小於多少 */
+        @media screen and (max-width: 1200px) {
+            .box02 {
+                height: 100px;
+                line-height: 100px;
+            }
+
+            .box02:hover {
+                background-color: var(--textcolor02);
+                color: var(--mycolor03);
+            }
+        }
+
+        /* 大於多少 */
+        @media screen and (min-width: 1200px) {
+            .box02 {
+                margin: 0px;
+                width: 300px;
+                height: 300px;
+                line-height: 260px;
+                margin-top: 25px;
+                margin-bottom: 25px;
+                border-radius: 50%;
+            }
+
+            .box02:hover {
+                background-color: var(--textcolor02);
+                color: var(--mycolor03);
+                box-shadow: 5px 5px 5px 5px var(--mycolor06);
+                /* 設置陰影效果 */
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-lg">
+        
+            <!-- 標題 -->
+            <div class="row text-type mt-3">
+                <div class="col-12 d-none d-sm-block">
+                    <div class="section01">
+                        <div class="box1"></div>
+                        <div class="box2"></div>
+                        <div class="box3"></div>
+                        <div class="box4"></div>
+                        <div class="logoimg bg-cover"></div>
+                        <div class="user_text">
+                            <h1 class="fw-900">排版練習</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+        <br><br><br>
+        <!-- 作品連結 -->
+        <div class="row">
+            <div class="col-sm-6 col-md-3">
+                <div class="box02 h1 fw-900 text-center img" style="background-image: url('images/works-type01.png');">
+                    <a class="fw-900" href="20231130-2.html" target="_blank">練習1</a>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-3">
+                <div class="box02 h1 fw-900 text-center img" style="background-image: url('images/works-type02.png');">
+                    <a href="20231205-1.html" target="_blank">練習2</a>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-3">
+                <div class="box02 h1 fw-900 text-center img" style="background-image: url('images/works-type03.png');">
+                    <a href="20231207-2.html" target="_blank">h1~float</a>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-3">
+                <div class="box02 h1 fw-900 text-center img" style="background-image: url('images/works-type04.png');">
+                    <a href="20231207-3.html" target="_blank">圖片練習</a>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-3">
+                <div class="box02 h1 fw-900 text-center img" style="background-image: url('images/works-type05.png');">
+                    <a href="20231207-4.html" target="_blank">table練習</a>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-3">
+                <div class="box02 h1 fw-900 text-center img" style="background-image: url('images/works-type06.png');">
+                    <a href="20231207-5.html" target="_blank">出現、隱藏</a>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-3">
+                <div class="box02 h1 fw-900 text-center img" style="background-image: url('images/works-type02.png');">
+                    <a href="20231207-6.html" target="_blank">RWD練習</a>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-3">
+                <div class="box02 h1 fw-900 text-center img" style="background-image: url('images/works-type07.png');">
+                    <a href="20231214-1.html" target="_blank">欄、列練習</a>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-3">
+                <div class="box02 h1 fw-900 text-center img" style="background-image: url('images/works-type08.png');">
+                    <a href="20231214-3.html" target="_blank">flex練習</a>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-3">
+                <div class="box02 h1 fw-900 text-center img" style="background-image: url('images/works-type09.png');">
+                    <a href="20231221-1.html" target="_blank">推格子練習</a>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-3">
+                <div class="box02 h1 fw-900 text-center img" style="background-image: url('images/works-type10.png');">
+                    <a href="20231221-2.html" target="_blank">圖片排版</a>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-3">
+                <div class="box02 h1 fw-900 text-center img" style="background-image: url('images/works-type11.png');">
+                    <a href="20231221-3.html" target="_blank">::before</a>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-3">
+                <div class="box02 h1 fw-900 text-center img" style="background-image: url('images/works-type12.png');">
+                    <a href="20231222-1.html" target="_blank">邊框、下拉</a>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-3">
+                <div class="box02 h1 fw-900 text-center img" style="background-image: url('images/works-type13.png');">
+                    <a href="20231222-2.html" target="_blank">位置置中</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

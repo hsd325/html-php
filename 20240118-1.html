@@ -1,0 +1,352 @@
+<!-- 排版練習，input和select的練習 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ch.11 表單</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="css/myall.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+</head>
+<body>
+    <div class="container py-5">
+        <p class="fw-900 display-4">1.表單樣式</p>
+        <form class="demo bg-light">
+            <div class="mb-3">
+                <label for="" class="form-label">帳號</label>
+                <input type="text" class="form-control">
+                <div class="form-text">不會記錄任何資訊!</div>
+            </div>
+            <div class="mb-3">
+                <label for="" class="form-label">密碼</label>
+                <input type="password" class="form-control">
+                <div class="form-text">不會記錄任何資訊!</div>
+            </div>
+            <button type="button" class="btn btn-warning">確認(button)</button>
+            <button type="submit" class="btn btn-primary">確認(submit)</button>
+            <!-- submit按鈕需搭配form(表單)使用 -->
+        </form>
+
+        <!-- 【1.】改成橫的 -->
+        <form class="container bg-light p-4 border border-2 border-danger">
+            <div class="row my-3 align-items-center">
+                <div class="col-auto">
+                    <label for="" class="form-label">帳號</label>
+                </div>
+                <!-- col-auto : 隨著內容自動調整大小 -->
+                <div class="col-auto">
+                    <input type="text" class="form-control">
+                </div>
+                <div class="col-auto">
+                    <div class="form-text">不會記錄任何資訊!</div>
+                </div>
+            </div>
+            <div class="row my-3 align-items-center">
+                <div class="col-auto">
+                    <label for="" class="form-label">密碼</label>
+                </div>
+                <!-- col-auto : 隨著內容自動調整大小 -->
+                <div class="col-auto">
+                    <input type="password" class="form-control">
+                </div>
+                <div class="col-auto">
+                    <div class="form-text">不會記錄任何資訊!</div>
+                </div>
+            </div>
+            <button type="button" class="btn btn-warning">確認(button)</button>
+            <button type="submit" class="btn btn-primary">確認(submit)</button>
+            <!-- submit按鈕需搭配form(表單)使用 -->
+        </form>
+
+        <p class="fw-900 display-4">2. File input 檔案上傳</p>
+        <div class="demo">
+            <div class="mb-3">
+                <lable for="" class="form-label">檔案上傳</lable>
+                <input type="file" name="" id="" class="form-control">
+            </div>
+            <div class="mb-3">
+                <lable for="" class="form-label">檔案上傳(多個檔案、複選) multiple</lable>
+                <input type="file" name="" id="" class="form-control" multiple>
+            </div>
+            <div class="mb-3">
+                <lable for="" class="form-label">檔案上傳(無法上傳) disabled</lable>
+                <input type="file" name="" id="" class="form-control" disabled>
+            </div>
+            <div class="mb-3">
+                <lable for="" class="form-label">檔案上傳(sm小的) 在class新增</lable>
+                <input type="file" name="" id="" class="form-control form-control-sm">
+            </div>
+            <div class="mb-3">
+                <lable for="" class="form-label">檔案上傳(lg大的) 在class新增</lable>
+                <input type="file" name="" id="" class="form-control form-control-lg">
+            </div>
+        </div>
+
+        <p class="fw-900 display-4">3. Datalist(提示輸入)</p>
+        <div class="demo">
+            <div class="mb-3">
+                <label for="">餐點選擇</label>
+                <input type="text" name="" id="" list="myoptions" class="form-control">
+                <datalist id="myoptions">
+                    <!-- datalist : 提示輸入 -->
+                    <!-- 和input產生聯結，datalist的id要用到input的list裡面 -->
+                    <option value="牛肉麵"></option>
+                    <option value="肯德基"></option>
+                    <option value="麥當勞"></option>
+                </datalist>
+            </div>
+        </div>
+
+        <p class="fw-900 display-4">4. select 下拉選單</p>
+        <div class="demo">
+            <select name="" id="" class="form-select">
+                <!-- select要好看要用form-select -->
+                <option selected disabled>請選擇餐點</option>
+                <!-- 預設的option -->
+                <option value="">牛肉麵</option>
+                <option value="">陽春麵</option>
+                <option value="">滷肉飯</option>
+                <option value="">雞腿飯</option>
+            </select>
+        </div>
+
+        <!-- 多選 -->
+        <div class="demo">
+            <p class="fw-800">多選</p>
+            <select name="" id="" class="form-select" multiple>
+                <!-- select要好看要用form-select -->
+                <option selected disabled>請選擇餐點</option>
+                <!-- 預設的option -->
+                <option value="">牛肉麵</option>
+                <option value="">陽春麵</option>
+                <option value="">滷肉飯</option>
+                <option value="">雞腿飯</option>
+            </select>
+        </div>
+
+        <!-- 較大，用在class裡面 -->
+        <div class="demo">
+            <p class="fw-800">較大，用在class裡面</p>
+            <select name="" id="" class="form-select form-select-lg">
+                <!-- select要好看要用form-select -->
+                <option selected disabled>請選擇餐點</option>
+                <!-- 預設的option -->
+                <option value="">牛肉麵</option>
+                <option value="">陽春麵</option>
+                <option value="">滷肉飯</option>
+                <option value="">雞腿飯</option>
+            </select>
+        </div>
+
+        <!-- 較小，用在class裡面 -->
+        <div class="demo">
+            <p class="fw-800">較小，用在class裡面</p>
+            <select name="" id="" class="form-select form-select-sm">
+                <!-- select要好看要用form-select -->
+                <option selected disabled>請選擇餐點</option>
+                <!-- 預設的option -->
+                <option value="">牛肉麵</option>
+                <option value="">陽春麵</option>
+                <option value="">滷肉飯</option>
+                <option value="">雞腿飯</option>
+            </select>
+        </div>
+
+        <!-- 變得跟多選很像，但不能多選，size顯示出始能看到幾個 -->
+        <div class="demo">
+            <p class="fw-800">變得跟多選很像，但不能多選，size顯示出始能看到幾個</p>
+            <select name="" id="" class="form-select" size="3">
+                <!-- size : 代表初始能看到幾個option，這裡為3個 -->
+                <!-- select要好看要用form-select -->
+                <option selected disabled>請選擇餐點</option>
+                <!-- 預設的option -->
+                <option value="">牛肉麵</option>
+                <option value="">陽春麵</option>
+                <option value="">滷肉飯</option>
+                <option value="">雞腿飯</option>
+            </select>
+        </div>
+
+        <p class="fw-900 display-4">5. checkbox 勾選選單，用input寫</p>
+        <div class="demo">
+            <div class="form-check">
+                <!-- 建議用form-check來寫，會比較好看 -->
+                <input type="checkbox" class="form-check-input">
+                <!-- form-check-input是跟form-check搭備的，會更好看 -->
+                <label for="" class="form-check-label">選項01</label>
+            </div>
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input">
+                <label for="" class="form-check-label">選項02</label>
+            </div>
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input">
+                <label for="" class="form-check-label">選項03</label>
+            </div>
+        </div>
+
+        <!-- 橫的 -->
+        <div class="demo">
+            <div class="form-check form-check-inline">
+                <!-- form-check-inline : 選項變成橫的排序 -->
+                <input type="checkbox" class="form-check-input">
+                <label for="" class="form-check-label">選項01</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input type="checkbox" class="form-check-input">
+                <label for="" class="form-check-label">選項02</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input type="checkbox" class="form-check-input">
+                <label for="" class="form-check-label">選項03</label>
+            </div>
+        </div>
+
+        <p class="fw-900 display-4">6. radio(單選) name必須一致</p>
+        <!-- radio(單選) : 選擇鈕(input)的name需要一致，這樣才能識別你們是一塊的，不然會變成多選 -->
+        <div class="demo">
+            <div class="form-check">
+                <input type="radio" class="form-check-input" id="" name="myradio">
+                <label for="" class="form-check-label">單選01</label>
+            </div>
+            <div class="form-check">
+                <input type="radio" class="form-check-input" id="" name="myradio">
+                <label for="" class="form-check-label">單選02</label>
+            </div>
+            <div class="form-check">
+                <input type="radio" class="form-check-input" id="" name="myradio">
+                <label for="" class="form-check-label">單選03</label>
+            </div>
+
+            <!-- 橫的 -->
+            <div class="form-check form-check-inline">
+                <!-- form-check-inline : 橫的 -->
+                <input type="radio" class="form-check-input" id="" name="myradio">
+                <label for="" class="form-check-label">單選01</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input type="radio" class="form-check-input" id="" name="myradio">
+                <label for="" class="form-check-label">單選02</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input type="radio" class="form-check-input" id="" name="myradio">
+                <label for="" class="form-check-label">單選03</label>
+            </div>
+        </div>
+
+        <p class="fw-900 display-4">7. switch，checkbox的變種版，在class增加form-switch</p>
+        <div class="demo">
+            <div class="form-check form-switch">
+                <input type="checkbox" class="form-check-input">
+                <label for="" class="form-check-label">關燈</label>
+            </div>
+            <div class="form-check form-switch">
+                <input type="checkbox" class="form-check-input" checked>
+                <!-- checked : 預設為開啟 -->
+                <label for="" class="form-check-label">開燈</label>
+            </div>
+        </div>
+
+        <!-- 橫的 -->
+        <div class="demo">
+            <div class="form-check form-switch form-check-inline">
+                <!-- form-check-inline加這個 -->
+                <input type="checkbox" class="form-check-input">
+                <label for="" class="form-check-label">關燈</label>
+            </div>
+            <div class="form-check form-switch">
+                <input type="checkbox" class="form-check-input" checked>
+                <!-- checked : 預設為開啟 -->
+                <label for="" class="form-check-label">開燈</label>
+            </div>
+        </div>
+
+        <p class="fw-900 display-4">8. range 可滑動決定的物件</p>
+        <div class="demo">
+            <label for="" class="form-label">數量: XX</label>
+            <input type="range" class="form-range" min="0" max="100" step="50">
+            <!-- step : 預設的初始位置 -->
+            <!-- 這裡用form-range會比較好看 -->
+        </div>
+
+        <p class="fw-900 display-4">9. 表單驗證</p>
+        <form class="demo bg-light">
+            <div class="mb-3">
+                <label for="" class="form-label">帳號</label>
+                <input type="text" class="form-control is-invalid">
+                <!-- is-invalid : input會顯示錯誤 -->
+                <div class="form-text">不會記錄任何資訊!</div>
+                <div class="valid-feedback">輸入正確!</div>
+                <div class="invalid-feedback">輸入錯誤!</div>
+            </div>
+            <div class="mb-3">
+                <label for="" class="form-label">密碼</label>
+                <input type="password" class="form-control is-valid">
+                <!-- is-valid : input會顯示正確 -->
+                <div class="form-text">不會記錄任何資訊!</div>
+                <div class="valid-feedback">輸入正確!</div>
+                <div class="invalid-feedback">輸入錯誤!</div>
+            </div>
+            <button type="button" class="btn btn-warning">確認(button)</button>
+            <button type="submit" class="btn btn-primary">確認(submit)</button>
+            <!-- submit按鈕需搭配form(表單)使用 -->
+        </form>
+
+        <p class="fw-900 display-4">10. floating lable(浮動標籤)，為input的浮動特效，一定要加placeholder，才會有浮動的動作</p>
+        <div class="demo bg-light">
+            <div class="mb-3 form-floating">
+                <input type="text" class="form-control is-invalid" placeholder="">
+                <!--placeholder : 一定要加placeholder，才會有浮動的動作 -->
+                <label for="" class="form-label">帳號</label>
+                <!-- is-invalid : input會顯示錯誤 -->
+                <div class="form-text">不會記錄任何資訊!</div>
+                <div class="valid-feedback">輸入正確!</div>
+                <div class="invalid-feedback">輸入錯誤!</div>
+            </div>
+            <div class="mb-3">
+                <label for="" class="form-label">密碼</label>
+                <input type="password" class="form-control is-valid">
+                <!-- is-valid : input會顯示正確 -->
+                <div class="form-text">不會記錄任何資訊!</div>
+                <div class="valid-feedback">輸入正確!</div>
+                <div class="invalid-feedback">輸入錯誤!</div>
+            </div>
+        </div>
+
+        <p class="fw-900 display-4">11. 表單群組(input-group，寫在div的class裡)</p>
+        <div class="demo">
+            <!-- 陽春版的 -->
+            <p>陽春版的</p>
+            <span>帳號</span>
+            <input type="text">
+            <br><br><br>
+
+            <!-- 進階版的 -->
+            <p>進階版的</p>
+            <div class="input-group mb-3">
+                <span class="input-group-text">帳號</span>
+                <input type="text" class="form-control">
+                <!-- 字在右邊 -->
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text">電話</span>
+                <input type="text" class="form-control">
+            </div>
+            <div class="input-group mb-3">
+                <input type="text" class="form-control">
+                <button class="btn btn-primary">搜尋</button>
+                <!-- 字在左邊 -->
+            </div>
+        </div>
+
+
+    </div>
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/counterup2@2.0.2/dist/index.js">	</script>
+    <script src="js/wow.min.js"></script>
+    <script src="js/jquery-3.7.1.min.js"></script>
+</body>
+</html>

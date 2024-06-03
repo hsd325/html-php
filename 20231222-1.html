@@ -1,0 +1,204 @@
+<!-- 排版練習，div外框的設定+js抓【.json】檔案的資料(這裡抓圖片) -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ch9</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/myall.css">
+    <style>
+        .box01{
+            width: 120px;
+            height: 120px;
+            background-color: var(--mycolor01);
+            display: inline-block;
+        }
+        .box02{
+            width: 250px;
+            height: 120px;
+            background-color: var(--mycolor01);
+            display: inline-block;
+        }
+        .box03{
+            width: 280px;
+            height: 280px;
+        }
+    </style>
+</head>
+<body style="background-color: rgb(184, 180, 180);">
+    <div class="container p-5">
+        <div class="display-4 fw-900">1.border(邊框，厚度，位置)</div>
+        <div class="box01 border border-5"></div>
+        <div class="box01 border-top border-5"></div>
+        <div class="box01 border-bottom border-5"></div>
+        <div class="box01 border-start border-5"></div>
+        <div class="box01 border-end border-5"></div>
+    </div>
+
+    <div class="container p-5">
+        <div class="display-4 fw-900">2.border(移除邊框)</div>
+        <div class="box01 border border-5"></div>
+        <div class="box01 border border-5 border-0"></div>
+        <div class="box01 border border-5 border-start-0"></div>
+        <div class="box01 border border-5 border-top-0"></div>
+        <div class="box01 border border-5 border-bottom-0"></div>
+        <div class="box01 border border-5 border-end-0"></div>
+    </div>
+
+    <div class="container p-5">
+        <div class="display-4 fw-900">3.border(外框顏色和形狀)</div>
+        <div class="box01 border border-5 border-primary"></div>
+        <div class="box01 border border-5 border-info"></div>
+        <div class="box01 border border-5 border-warning"></div>
+        <div class="box01 border border-5 border-secondary"></div>
+        <div class="box01 border border-5 border-danger"></div>
+        <!-- 下面為形狀 -->
+        <div class="box01 border border-5 border-dark rounded"></div>
+        <!-- 尖角變圓 -->
+        <div class="box01 border border-5 border-dark rounded-top"></div>
+        <!-- 只有上面的尖角變圓 -->
+        <div class="box01 border border-5 border-dark rounded-bottom"></div>
+        <div class="box01 border border-5 border-dark rounded-circle"></div>
+        <!-- 高和寬一樣變成一個圓形，高和寬不一樣會變成橢圓形 -->
+        <div class="box01 border border-5 border-dark rounded-circle"></div>
+        <!-- 高和寬不一樣會變成橢圓形 -->
+        <div class="box02 border border-5 border-dark rounded-pill"></div>
+        <!-- 變成類似放字的橢圓形，但css裡的寬度要調的跟高度不一樣 -->
+    </div>
+
+    <div class="container p-5">
+        <div class="display-4 fw-900">4.文字顏色(text-primary,info...(文字顏色); link-primary,onfo...(超連結顏色))</div>
+        <p class="text-primary">轉換警察就會病人一件接着遵守。<a href="#" class="link-danger">這是一個超連結</a>回事並不投資者，網。</p>
+        <p class="text-info">轉換警察就會病人一件接着遵守。<a href="#" class="link-warning">這是一個超連結</a>回事並不投資者，網。</p>
+        <p class="text-warning">轉換警察就會病人一件接着遵守。</p>
+        <p class="text-danger">轉換警察就會病人一件接着遵守。</p>
+        <p class="text-success">轉換警察就會病人一件接着遵守。</p>
+        <p class="text-secondary">轉換警察就會病人一件接着遵守。</p>      
+    </div>
+
+    <div class="container p-5">
+        <div class="display-4 fw-900">5.文字背景顏色(text-bg-primary,dark...)</div>
+        <div class="text-bg-primary p-2">望着物理懂得生產過程到處不願開口電信台。</div>
+        <div class="text-bg-dark p-2">望着物理懂得生產過程到處不願開口電信台。</div>
+        <div class="text-bg-danger p-2">望着物理懂得生產過程到處不願開口電信台。</div>
+        <div class="text-bg-warning p-2">望着物理懂得生產過程到處不願開口電信台。</div>
+        <div class="text-bg-success p-2">望着物理懂得生產過程到處不願開口電信台。</div>
+        <div class="text-bg-secondary p-2">望着物理懂得生產過程到處不願開口電信台。</div>
+    </div>
+
+    <div class="container p-5">
+        <div class="display-4 fw-900 mb-3">6.【div】使用display(d-inline)</div>
+        <div class="display-4 fw-900 mb-3">原本</div>
+        <div class="text-bg-warning p-2 h2">d-inline</div>
+        <div class="text-bg-warning p-2 h2">d-inline</div>
+        <div class="text-bg-warning p-2 h2">d-inline</div>
+        <!-- 用滿一行 -->
+        <div class="display-4 fw-900 mb-3">加上d-inline</div>
+        <div class="text-bg-warning p-2 h2 d-inline">d-inline</div>
+        <div class="text-bg-warning p-2 h2 d-inline">d-inline</div>
+        <div class="text-bg-warning p-2 h2 d-inline">d-inline</div>
+        <!-- 會調整成剛好符合文字內容的大小 -->
+    </div>
+
+    <div class="container p-5">
+        <div class="display-4 fw-900 mb-3">7.【span】使用display(d-block)</div>
+        <div class="display-4 fw-900 mb-3">原本</div>
+        <span class="text-bg-success p-2 h2">d-block</span>
+        <span class="text-bg-success p-2 h2">d-block</span>
+        <span class="text-bg-success p-2 h2">d-block</span>
+
+        <div class="display-4 fw-900 mb-3">加上d-block</div>
+        <span class="text-bg-success p-2 h2 d-block">d-block</span>
+        <span class="text-bg-success p-2 h2 d-block">d-block</span>
+        <span class="text-bg-success p-2 h2 d-block">d-block</span>
+    </div>
+
+    <div class="container p-5">
+        <div class="display-4 fw-900 mb-3">8.overflow(可下拉的div)</div>
+            <div class="box01">導致一會決策戀愛連載突出，蘋果著名，魯。堅持人大半年一半金融達到，試試但我東西。試試但我東西。</div>
+            <div class="box01 overflow-auto">導致一會決策戀愛連載突出，蘋果著名，魯。堅持人大半年一半金融達到，試試但我東西。試試但我東西。</div>
+            <!-- auto-可以下拉 -->
+            <div class="box01 overflow-hidden">導致一會決策戀愛連載突出，蘋果著名，魯。堅持人大半年一半金融達到，試試但我東西。試試但我東西。</div>
+            <!-- Hidden-只顯示框框內的文字 -->
+            <div class="box01 overflow-visible">導致一會決策戀愛連載突出，蘋果著名，魯。堅持人大半年一半金融達到，試試但我東西。試試但我東西。</div>
+            <!-- Visble-文字全都顯示，不管框框 -->
+            <div class="box01 overflow-scroll">導致一會決策戀愛連載突出，蘋果著名，魯。堅持人大半年一半金融達到，試試但我東西。試試但我東西。</div>
+            <!-- scroll-可以下拉，也可以左右拉 -->
+        </div>
+
+        <div class="display-4 fw-900 mb-3">選單例子</div>
+        <div class="bg-secondary w-100">
+            <ul class="list-unstyled d-flex justify-content-between flex-nowrap overflow-auto">
+                <!-- 這裡寫overflow-auto，變成可以下拉 -->
+                <li class="text-nowrap p-3 text-bg-primary me-1">選單-首頁</li>
+                <li class="text-nowrap p-3 text-bg-primary me-1">選單-公司介紹</li>
+                <li class="text-nowrap p-3 text-bg-primary me-1">選單-產品介紹</li>
+                <li class="text-nowrap p-3 text-bg-primary me-1">選單-聯絡資訊</li>
+                <li class="text-nowrap p-3 text-bg-primary me-1">選單-功能001</li>
+                <li class="text-nowrap p-3 text-bg-primary me-1">選單-功能002</li>
+                <li class="text-nowrap p-3 text-bg-primary me-1">選單-功能003</li>
+            </ul>
+        </div> 
+        
+        <div class="display-4 fw-900 mb-3">圖片例子</div>
+        <div class="bg-secondary w-100">
+            <ul class="list-unstyled d-flex justify-content-between flex-nowrap overflow-auto">
+                <li class="text-nowrap p-1 me-0">
+                    <div class="box03 bg-cover" style="background-image: url(images/cake01.jpg);"></div>
+                </li>
+                <li class="text-nowrap p-1 me-0">
+                    <div class="box03 bg-cover" style="background-image: url(images/cake02.jpg);"></div>
+                </li>
+                <li class="text-nowrap p-1 me-0">
+                    <div class="box03 bg-cover" style="background-image: url(images/cake03.jpg);"></div>
+                </li>
+                <li class="text-nowrap p-1 me-0">
+                    <div class="box03 bg-cover" style="background-image: url(images/cake04.jpg);"></div>
+                </li>
+                <li class="text-nowrap p-1 me-0">
+                    <div class="box03 bg-cover" style="background-image: url(images/cake05.jpg);"></div>
+                </li>
+                <li class="text-nowrap p-1 me-0">
+                    <div class="box03 bg-cover" style="background-image: url(images/cake01.jpg);"></div>
+                </li>
+                <li class="text-nowrap p-1 me-0">
+                    <div class="box03 bg-cover" style="background-image: url(images/cake02.jpg);"></div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="display-4 fw-900 mb-3">農村地方美食小吃特色料理 - 圖片例子</div>
+        <div class="bg-secondary w-100">
+            <ul class="list-unstyled d-flex justify-content-between flex-nowrap overflow-auto" id="mylist">
+                <li class="text-nowrap p-1 me-0">
+                    <div class="box03 bg-cover" style="background-image: url(images/cake01.jpg);"></div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <script>
+        $(function(){
+            $.ajax({
+                type: "GET",
+                url: "https://data.moa.gov.tw/Service/OpenData/ODwsv/ODwsvTravelFood.aspx?IsTransData=1&UnitId=193",
+                success: showdata,
+                error: function(){
+                    alert("系統錯誤!");
+                }
+            });
+        });
+        function showdata(data){
+            console.log(data);
+            for(var i=0;i<data.length;i++){
+                var html='<li class="text-nowrap p-1 me-0"><div class="box03 bg-cover" style="background-image: url(' + data[i].PicURL + ');"></div></li>';
+                $("#mylist").append(html);
+            }
+        }
+    </script>
+</body>
+</html>

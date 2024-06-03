@@ -1,0 +1,147 @@
+<!-- 蛋糕-公司介紹，使用線在中間，css的【::before】應用 -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>甜食-公司介紹</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/myall.css">
+    <style>
+        .banner{
+            height: 320px;
+            background-image: url(images/sweetcake01.jpg);
+        }
+        .img01{
+            height: 280px;
+            background-image: url(images/party000.jpg);
+        }
+        .img02{
+            height: 280px;
+            background-image: url(images/party001.jpg);
+        }
+        .timeline-section{
+            position: relative;
+        }
+        .timeline-section::before{
+            position: absolute;
+            content: "";
+            top: 0;
+            bottom: 0;
+            width: 5px;
+            /* background-color: #ccc; */
+            background-image: linear-gradient(45deg, rgba(53, 30, 184, 0.05), rgba(201, 13, 13, 0.7));
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .timeline-section-pointer{
+            position: relative;
+        }
+        .timeline-section-pointer::before{
+            position: absolute;
+            content: "";
+            width: 25px;
+            height: 25px;
+            background-color: #fff;
+            top: 0;
+            border-radius: 50%;
+            border: 8px solid #b81111;
+        }
+        .timeline-section-pointer:hover::before{
+            width: 28px;
+            height: 28px;
+            background-color: #fff;
+            border: 8px solid #8f057c;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand fw-900 text-warning" href="#">甜食.Sweet</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="20231226-cake-index.html">首頁</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="20231226-cake-about.html" target="_blank">公司介紹</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            服務項目
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">麵包</a></li>
+                            <li><a class="dropdown-item" href="#">蛋糕</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#">甜點</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="20231226-cake-product.html">產品介紹</a>
+                    </li>
+                </ul>
+                <!-- <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">search</button>
+                </form> -->
+            </div>
+        </div>
+    </nav>
+    <div class="banner bg-info bg-cover"></div>
+    <div class="container">
+        <div class="timeline-section">
+            <div class="row mt-3 justify-content-center align-items-center timeline-section-pointer">
+                <div class="col-md-5 text-center">
+                    <div class="text01">
+                        <h3 class="fw-900 text-danger">關於我們<small class="text-muted">About Us</small></h3>
+                        <p>本店家 宜蘭路線學生很久職工的說，經。</p>
+                        <ul class="list-unstyled">
+                            <li>服務品質 衝突商機，具備。</li>
+                            <li>服務品質 衝突商機，具備。</li>
+                            <li>服務品質 衝突商機，具備。</li>
+                            <li>服務品質 衝突商機，具備。</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <div class="img01 bg-cover"></div>
+                </div>
+            </div>
+            <div class="row mt-3 justify-content-center align-items-center flex-row-reverse timeline-section-pointer">
+                <div class="col-md-5 text-center">
+                    <div class="text01">
+                        <h3 class="fw-900 text-success">店家資訊<small class="text-muted">Store Info.</small></h3>
+                        <p>本店家 宜蘭路線學生很久職工的說，經。</p>
+                        <ul class="list-unstyled">
+                            <li>電話: XXXXXXX</li>
+                            <li>地址: XXXXXXXXXX</li>
+                            <li>營業時間: XXXXXXXXXX</li>
+                            <li>服務品質 衝突商機，具備。</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <div class="img02 bg-cover"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer bg-dark text-white text-center fw-900 py-3 fixed-bottom">
+     @甜食 2023製作
+    </div>
+    <script src="js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,99 @@
+<!-- 蛋糕-產品介紹，可進去產品購買頁面，用產品【.json】檔案寫出來的 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>甜品-產品介紹</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/myall.css">
+    <style>
+        .banner{
+            height: 320px;
+            background-image: url(images/sweetcake03.jpg);
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand fw-900 text-warning" href="#">甜食.Sweet</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="20231226-cake-index.html">首頁</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="20231226-cake-about.html" target="_blank">公司介紹</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            服務項目
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">麵包</a></li>
+                            <li><a class="dropdown-item" href="#">蛋糕</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#">甜點</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#" >產品介紹</a>
+                    </li>
+                </ul>
+                <!-- <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">search</button>
+                </form> -->
+            </div>
+        </div>
+    </nav>
+    <div class="banner bg-info bg-cover"></div>
+    <div class="container">
+        <h2 class="text-danger fw-900 mt-3">|產品介紹<small class="fw-100 text-muted">Product</small></h2>
+        <div class="row" id="mydata">
+            <div class="col-md-4 text-center mt-3">
+                <div class="pimg bg-cover" style="background-image: url(images/cake01.jpg); height: 220px;"></div>
+                <h3>巧克力蛋糕01</h3>
+                <p>當年讓你強烈地面儘管伺服器，感謝得知插入出處第一章語言物品。</p>
+                <a href="20231226-cake-details.html" class="btn btn-success w-100">查看</a>
+            </div>
+        </div>
+    </div>
+    <div class="footer bg-dark text-white text-center fw-900 py-3 mt-4">
+        @甜食 2023製作
+    </div>
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <script>
+        $(function(){
+            $.ajax({
+                type: "GET",
+                url: "js/cake_by_chartgpt.json",
+                success: showdata,
+                error: function(){
+                    alert("串接錯誤!")
+                }
+            });
+        });
+        function showdata(data){
+            console.log(data);
+            console.log(data[0].簡介);
+            for(var i=0;i<data.length;i++)
+            {
+                var str='<div class="col-md-4 text-center mt-3 d-flex flex-column"><div class="pimg bg-cover" style="background-image: url('+data[i].圖片路徑+'); height: 220px;"></div><h3>'+data[i].品名+'</h3><p>'+data[i].單價+'</p><p>'+data[i].簡介+'</p><a href="20231226-cake-details.html" class="btn btn-success w-100 mt-auto">查看</a></div>'
+                $("#mydata").append(str);
+            }
+        }
+    </script>
+</body>
+</html>

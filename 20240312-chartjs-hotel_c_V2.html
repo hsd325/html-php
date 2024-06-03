@@ -1,0 +1,157 @@
+<!-- chart.js的練習，縣市人口分布長條圖，<li>按了之後會跳出不同的長條圖 -->
+<!-- axios的練習 -->
+<!-- 資料重構 -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>圖表練習 - 旅館民宿 - 觀光資訊資料庫</title>
+    <link rel="shortcut icon" href="images/icon/icon.ico" type="images/x-icon"><!-- icon更換 -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/myall.css">
+    <style>
+        .list-group {
+            height: 90vh;
+            overflow: scroll;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row pt-5">
+            <div class="col-md-3">
+                <ul class="list-group" id="regionList">
+                    <li class="list-group-item">
+                        <div class="d-flex">
+                            <div class="h5 fw-900 me-auto">南投縣</div>
+                            <span class="badge text-bg-warning h3 fw-900">99</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-9">
+                <div class="card">
+                    <div class="card-body">
+                        <canvas id="myChart01"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.6.7/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        var regionTitle = [];
+        var counter = [];
+        var regionData = [];
+        var chart01;
+        $(function () {
+            // 產生圖表
+            // 折線圖
+            var ctx01 = document.getElementById('myChart01');
+            chart01 = new Chart(ctx01, {
+                type: 'bar',// 折線圖
+                data: {
+                    labels: [],
+                    datasets: [{
+                        label: '各區旅館分布圖',
+                        data: [],
+                        borderWidth: 2,
+                        backgroundColor: ['#FAA98B', '#E6AECF', '#AEE0DD', '#01ACBD', '#FF445F', '#6F925A'],
+                        color: '#666'
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: false
+                        }
+                    }
+                }
+            });
+
+            //axios串接資料
+            axios.get('js/hotel_C_f.json')
+                .then(function (response) {
+                    // handle success
+                    console.log(response);
+                    console.log(response.data.XML_Head.Infos.Info);
+                    //資料重構
+                    response.data.XML_Head.Infos.Info.forEach(function (item) {
+                        var getRegion = item.Region;
+                        if (counter[getRegion] == undefined) {
+                            counter[getRegion] = regionData.length;
+                            regionData.push(new Array());
+                            regionTitle[counter[getRegion]] = getRegion;
+                        }
+                        regionData[counter[getRegion]].push(item);
+                    });
+
+                    console.log(regionTitle);
+                    console.log(counter);
+                    console.log(regionData);
+
+                    //左側縣市選單
+                    // 清空regionList的內容
+                    $("#regionList").empty();
+                    // 匯入縣市資料
+                    regionTitle.forEach(function (item, key) {
+                        var strHTML = '<li class="list-group-item" data-region="' + item + '"><div class="d-flex"><div class="h5 fw-900 me-auto">' + item + '</div><span class="badge text-bg-warning h3 fw-900">' + regionData[key].length + '</span></div></li>';
+                        $("#regionList").append(strHTML);
+                    });
+
+                    //左側縣市選單  監聽
+                    $("#regionList .list-group-item").bind("click", function () { // regionList為包圍這些id相同物件的物件id
+                        console.log($(this).data("region")); // 抓取data-region的寫法，也就是抓取當前被按到的縣市，會寫("region")是因為前面已經有寫data了，假如被按得div的data-region="2"，那出來的結果會是2
+
+                        //再次資料重構*******************************
+                        var getNewRegion = $(this).data("region");
+                        var townTitle = [];
+                        var townCounter = [];
+                        var townData = [];
+
+                        regionData[counter[getNewRegion]].forEach(function (item) {
+                            var getRegion = item.Town;
+                            // 創造當前縣市的陣列
+                            if (townCounter[getRegion] == undefined) {
+                                townCounter[getRegion] = townData.length;
+                                townData.push(new Array());
+                                townTitle[townCounter[getRegion]] = getRegion;
+                            }
+                            // 全部推進去
+                            townData[townCounter[getRegion]].push(item);
+                        });
+                        console.log(townTitle);
+                        console.log(townCounter);
+                        console.log(townData);
+
+                        //更新圖表數據
+                        chart01.data.labels = [];
+                        chart01.data.datasets[0].data = [];
+                        townTitle.forEach(function(item, key){
+                            chart01.data.labels.push(item); //x軸
+                            chart01.data.datasets[0].data.push(townData[key].length); //y軸
+                        });
+                        chart01.data.datasets[0].label = getNewRegion + '各區旅館數量分析圖表';
+                        chart01.update();
+                    })
+
+
+                })
+                .catch(function (error) {
+                    // handle error
+                    console.log(error);
+                })
+                .finally(function () {
+                    // always executed
+                });
+        });
+    </script>
+</body>
+
+</html>

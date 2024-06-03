@@ -1,0 +1,210 @@
+<!-- 商品更改(會跳出div)和刪除頁面 -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>產品列表</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="css/myall.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+</head>
+
+<body>
+    <div class="container py-5">
+        <table class="table table-bordered table-hover table-sm border-success table-rwd">
+            <caption class="text-end">商品列表</caption>
+            <thead class="table-dark">
+                <tr>
+                    <th>商品編號</th>
+                    <th>產品名稱</th>
+                    <th>產品價格</th>
+                    <th>產品甜度</th>
+                    <th>產品數量</th>
+                    <th>外送(是/否)</th>
+                    <th>加料</th>
+                    <th>付款方式</th>
+                    <th>總價</th>
+                    <th>產品建檔時間</th>
+                    <th>更新/刪除</th>
+                </tr>
+            </thead>
+            <tbody id="mydata">
+                <tr>
+                    <td>商品編號</td>
+                    <td>產品名稱</td>
+                    <td>產品價格</td>
+                    <td>產品甜度</td>
+                    <td>產品數量</td>
+                    <td>外送(是/否)</td>
+                    <td>加料</td>
+                    <td>付款方式</td>
+                    <td>總價</td>
+                    <td>產品建檔時間</td>
+                    <td>
+                        <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#updateModal"
+                            id="update_btn">更新</button>
+                        <!-- data-bs-toggle="modal"  :按了之後會跳出類似警告視窗(modal) -->
+                        <!-- data-bs-target="#updateModal" : 執行id叫【updateModal】的modal -->
+                        <button class="btn btn-danger">刪除</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- 跳出類似警告視窗，updateModal -->
+    <div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header text-bg-success">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">產品更新</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <!-- 下面為內容 -->
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="pname" class="form-label">商品名稱</label>
+                        <input type="text" class="form-control" id="pname" name="pname">
+                        <div class="valid-feedback">字數符合規定</div>
+                        <div class="invalid-feedback">字數不符合規定</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="price" class="form-label">商品價格</label>
+                        <input type="number" class="form-control" id="price" name="price" min="0" max="100">
+                        <div class="valid-feedback">價格符合規定(1-100)</div>
+                        <div class="invalid-feedback">價格不符合規定(1-100)</div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-primary" id="modal_update_btn">確認更新</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/counterup2@2.0.2/dist/index.js">	</script>
+    <script src="js/wow.min.js"></script>
+    <script src="js/jquery-3.7.1.min.js"></script>
+
+    <script>
+        // 下面這個為主程式
+        $(function () {
+            $.ajax({
+                type: "GET",
+                url: "http://192.168.10.56/20240125-product01-Read-api.php",
+                dataType: "json",
+                async: false,
+                success: showdata,
+                error: function () {
+                    alert("error-http://192.168.10.56/20240125-product01-Read-api.php");
+                }
+            });
+
+            //監聽#delete_btn
+            $("#mydata #delete_btn").click(function () {
+                if (confirm("確認刪除此筆資料嗎?")) {
+                    console.log($(this).data("id"));
+
+                    //產生json格式的參數
+                    var dataJSON = {};
+                    dataJSON["ID"] = $(this).data("id");
+                    console.log(JSON.stringify(dataJSON));
+
+                    //傳遞參數至後端api執行刪除功能
+                    $.ajax({
+                        type: "POST",
+                        url: "http://192.168.10.56/20240125-product01-Delete-api.php",
+                        data: JSON.stringify(dataJSON),
+                        dataType: "json",
+                        success: showdata_delete,
+                        error: function () {
+                            alert("error-http://192.168.10.56/20240125-product01-Delete-api.php");
+                        }
+                    });
+                }
+            });
+            
+            var u_id; // 建立u_id，下面要使用
+            //監聽#update_btn
+            $("#mydata #update_btn").click(function () {
+                // 上面的【$("#mydata #update_btn")】，意思為id為【mydata】的物件裡面->所有包含的id叫【update_btn】的物件，呼叫它
+                // 如果只寫【$("#update_btn")】的話，那只會呼叫第一個叫【update_btn】的物件，其他id有同名(update_btn)的物件就不會被呼叫到
+                console.log("update_btn_ok");
+                console.log($(this).data("id"));
+                console.log($(this).data("pname"));
+                console.log($(this).data("price")); 0
+
+                u_id = $(this).data("id");
+
+                // javascript裡讓html的物件內容改變的方法
+                $("#pname").val($(this).data("pname"));
+                $("#price").val($(this).data("price"));
+            });
+
+            // 監聽 #modal_update_btn
+            $("#modal_update_btn").click(function () {
+                //產生json格式的參數
+                var dataJSON = {};
+                dataJSON["ID"] = u_id;
+                dataJSON["Pname"] = $("#pname").val();
+                dataJSON["Price"] = $("#price").val();
+                console.log(dataJSON);
+                console.log(JSON.stringify(dataJSON));
+
+                //傳遞更新參數至後端api
+                $.ajax({
+                    type: "POST",
+                    url: "http://192.168.10.56/20240125-product01-Update-api.php",
+                    data: JSON.stringify(dataJSON),
+                    dataType: "json",
+                    success: showdata_updata,
+                    error: function () {
+                        alert("error-http://192.168.10.56/20240125-product01-Update-api.php");
+                    }
+                });
+            });
+        });
+
+        // .ajax的函數不能寫在主程式中
+        function showdata(data) {
+            console.log(data);
+            $("#mydata").empty();
+            // 清空<tbody>
+            data.data.forEach(function (item) {
+                // forEach : 顯示每筆資料，執行動作為每筆資料會執行一次function
+                // function(item) : item為【data.data.forEach】傳過來的資料(每次只會傳一筆資料)
+                console.log(item.Pname);
+                var strHTML = '<tr><td>' + item.ID + '</td><td>' + item.Pname + '</td><td>' + item.Price + '</td><td>' + item.Sugar + '</td><td>' + item.Num + '</td><td>' + item.Delivery + '</td><td>' + item.Added + '</td><td>' + item.Pay + '</td><td>' + item.Total + '</td><td>' + item.Created_at + '</td><td><button class="btn btn-success me-1"  data-bs-toggle="modal" data-bs-target="#updateModal" data-id="' + item.ID + '" data-pname="' + item.Pname + '" data-price="' + item.Price + '" id="update_btn">更新</button><button class="btn btn-danger" data-id="' + item.ID + '" id="delete_btn">刪除</button></td></tr>';
+                $("#mydata").append(strHTML);
+            });
+        }
+
+        function showdata_updata(data) {
+            console.log(data);
+            if (data.state) {
+                alert(data.message);
+                location.href = "20240125-product01-Read.html";
+            } else {
+                alert(data.message);
+            }
+        }
+
+        function showdata_delete(data) {
+            console.log(data);
+            if (data.state) {
+                alert(data.message);
+                location.href = "20240125-product01-Read.html";
+                // location.href = ""; :功能為跳轉網頁
+            } else {
+                alert(data.message);
+            }
+        }
+    </script>
+</body>
+
+</html>

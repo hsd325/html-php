@@ -1,0 +1,90 @@
+/* 標題的排版 */
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    background-size: cover;
+    /* 背景圖片覆蓋整個容器 */
+    background-position: center;
+    /* 背景圖片居中顯示 */
+    background-repeat: no-repeat;
+    /* 背景圖片不重複 */
+    overflow: auto; /* 允许内容滚动 */
+}
+
+
+/* 隐藏滚动条 用於Webkit瀏覽器（Chrome、Safari 和 Edge Chromium） */
+.content-div::-webkit-scrollbar {
+    display: none;
+}
+/* 超連結(a)的背景圖設定 */
+.img {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.section01{
+    background-color: white;
+    height: 300px;
+    position: relative;
+    /* 上面這個為宣告這個物件為外面(外框) */
+}
+.section01 .box1{
+    background-color: var(--mycolor02);
+    width: 200px;
+    height: 200px;
+    position: absolute;
+    /* 上面這個為宣告此原件在relative的內部裡 */
+    top: 0;
+    left: 0;
+}
+.section01 .box2{
+    background-color: var(--mycolor03);
+    width: 200px;
+    height: 200px;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+.section01 .box3{
+    background-color: var(--mycolor04);
+    width: 200px;
+    height: 200px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+.section01 .box4{
+    background-color: var(--mycolor05);
+    width: 200px;
+    height: 200px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+.section01 .logoimg{
+    position: absolute;
+    background-color: var(--mycolor06);
+    top: 30px;
+    bottom: 30px;
+    left: 30px;
+    right: 30px;
+    background-image: url(https://images.unsplash.com/photo-1519751138087-5bf79df62d5b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
+    background-attachment: fixed;
+}
+.section01 .user_text{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);/* 置中對齊 */
+    text-align: center;
+
+    background-color: var(--mycolor07);
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: -10px 10px 20px 5px var(--mycolor06) ;/* 設置陰影效果 */
+}
+.section01 .user_text p{
+    font-style: 24px;
+}

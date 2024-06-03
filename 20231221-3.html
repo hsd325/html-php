@@ -1,0 +1,115 @@
+<!-- 頁面的練習，線在中間，css的【::before】應用 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ch8排版練習03-時間軸排版</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/myall.css">
+    <style>
+        .myimg{
+            height: 250px;
+        }
+        .timeline-section{
+            position: relative;
+        }
+        .timeline-section::before{
+            position: absolute;
+            content: "";
+            top: 10px;
+            bottom: 10px;
+            width: 5px;
+            background-color: var(--mycolor01);
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .timeline-pointer{
+            position: relative;
+        }
+        .timeline-pointer::before{
+            position: absolute;
+            content: "";
+            top: 10px;
+            width: 20px;
+            height: 20px;
+            background-color: white;
+            border-radius: 50%;
+            border: 6px solid var(--mycolor02);
+        }
+        .timeline-pointer:hover::before{
+            width: 25px;
+            height: 25px;
+            border: 10px solid var(--mycolor05);
+        }
+
+        @media screen and (max-width: 768px){
+            .timeline-section::before, .timeline-pointer::before{
+                display: none;
+            }
+        }
+
+
+
+
+
+
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="timeline-section">
+            <div class="row justify-content-center align-items-center timeline-pointer">
+                <div class="col-md-5 mt-3">
+                    <div class="myimg bg-cover" style="background-image: url(images/cake01.jpg);"></div>
+                </div>
+                <div class="col-md-5 mt-3">
+                    <div class="mytext">
+                        <h2 class="fw-900">這是一個蛋糕01</h2>
+                        <p>黃金基金就不則是妻子都有盯着目的幾次還沒有單位眼光，就是全。</p>
+                        <p>任何人以後下面費用環境經營形成有點遠控制意見該公司評價準確，把你部隊主題，低價。</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center align-items-center flex-row-reverse timeline-pointer">
+                <div class="col-md-5 mt-3">
+                    <div class="myimg bg-cover" style="background-image: url(images/cake02.jpg);"></div>
+                </div>
+                <div class="col-md-5 mt-3">
+                    <div class="mytext">
+                        <h2 class="fw-900">這是一個蛋糕02</h2>
+                        <p>黃金基金就不則是妻子都有盯着目的幾次還沒有單位眼光，就是全。</p>
+                        <p>任何人以後下面費用環境經營形成有點遠控制意見該公司評價準確，把你部隊主題，低價。</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center align-items-center timeline-pointer">
+                <div class="col-md-5 mt-3">
+                    <div class="myimg bg-cover" style="background-image: url(images/cake03.jpg);"></div>
+                </div>
+                <div class="col-md-5 mt-3">
+                    <div class="mytext">
+                        <h2 class="fw-900">這是一個蛋糕03</h2>
+                        <p>黃金基金就不則是妻子都有盯着目的幾次還沒有單位眼光，就是全。</p>
+                        <p>任何人以後下面費用環境經營形成有點遠控制意見該公司評價準確，把你部隊主題，低價。</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center align-items-center flex-row-reverse timeline-pointer">
+                <div class="col-md-5 mt-3">
+                    <div class="myimg bg-cover" style="background-image: url(images/cake04.jpg);"></div>
+                </div>
+                <div class="col-md-5 mt-3">
+                    <div class="mytext">
+                        <h2 class="fw-900">這是一個蛋糕04</h2>
+                        <p>黃金基金就不則是妻子都有盯着目的幾次還沒有單位眼光，就是全。</p>
+                        <p>任何人以後下面費用環境經營形成有點遠控制意見該公司評價準確，把你部隊主題，低價。</p>
+                    </div>
+                </div>
+            </div>            
+        </div>
+    </div>
+    <script src="js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

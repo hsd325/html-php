@@ -1,0 +1,163 @@
+<!-- 主頁面的排版練習 -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>個人作品首頁</title>
+    <link rel="stylesheet" href="css/myall.css">
+    <style>
+        .section01{
+            background-color: var(--mycolor01);
+            height: 100vh;
+            position: relative;
+            /* 上面這個為宣告這個物件為外面(外框) */
+        }
+        .section01 .box1{
+            background-color: var(--mycolor02);
+            width: 200px;
+            height: 200px;
+            position: absolute;
+            /* 上面這個為宣告此原件在relative的內部裡 */
+            top: 0;
+            left: 0;
+        }
+        .section01 .box2{
+            background-color: var(--mycolor03);
+            width: 200px;
+            height: 200px;
+            position: absolute;
+            top: 0;
+            right: 0;
+        }
+        .section01 .box3{
+            background-color: var(--mycolor04);
+            width: 200px;
+            height: 200px;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+        }
+        .section01 .box4{
+            background-color: var(--mycolor05);
+            width: 200px;
+            height: 200px;
+            position: absolute;
+            bottom: 0;
+            right: 0;
+        }
+        .section01 .logoimg{
+            position: absolute;
+            background-color: var(--mycolor06);
+            top: 30px;
+            bottom: 30px;
+            left: 30px;
+            right: 30px;
+            background-image: url(https://images.unsplash.com/photo-1519751138087-5bf79df62d5b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
+           
+            background-attachment: fixed;
+        }
+        .section01 .user_text{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+
+            background-color: var(--mycolor07);
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: -10px 10px 20px 5px var(--mycolor06) ;
+        }
+        .section01 .user_text p{
+            font-style: 24px;
+        }
+
+        .section02{
+            position: relative;
+            height: 360px;
+            margin-top: 15px;
+        }
+        .section02 .section02_box01{
+            position: absolute;
+            background-color: var(--mycolor01);
+            width: 300px;
+            height: 300px;
+            left: 10%;
+            text-align: center;
+            line-height: 300px;
+            background-image: url(images/cake01.jpg);
+            border-radius: 50%;
+            box-shadow: -10px 10px 20px 2px var(--mycolor06);
+        }
+
+        .section02 .section02_box01 a{
+            text-decoration: none;
+            font-size: 36px;
+            font-weight: 900;
+            color: var(--textcolor02)
+        }
+
+        .section02 .section02_box02{
+            position: absolute;
+            background-color: var(--mycolor01);
+            width: 300px;
+            height: 300px;
+            left: 40%;
+            text-align: center;
+            line-height: 300px;
+            background-image: url(images/cake03.jpg);
+            border-radius: 50%;
+            box-shadow: -10px 10px 20px 2px var(--mycolor06);
+        }
+
+        .section02 .section02_box02 a{
+            text-decoration: none;
+            font-size: 36px;
+            font-weight: 900;
+            color: var(--textcolor02)
+        }
+
+        .section02 .section02_box03{
+            position: absolute;
+            background-color: var(--mycolor01);
+            width: 300px;
+            height: 300px;
+            left: 70%;
+            text-align: center;
+            line-height: 300px;
+            background-image: url(images/cake04.jpg);
+            border-radius: 50%;
+            box-shadow: -10px 10px 20px 2px var(--mycolor06);
+        }
+
+        .section02 .section02_box03 a{
+            text-decoration: none;
+            font-size: 36px;
+            font-weight: 900;
+            color: var(--textcolor02)
+        }
+    </style>
+</head>
+<body>
+    <div class="section01">
+        <div class="box1"></div>
+        <div class="box2"></div>
+        <div class="box3"></div>
+        <div class="box4"></div>
+        <div class="logoimg bg-cover"></div>
+        <div class="user_text">
+            <h1 class="fw-900">XXXXXX</h1>
+            <hr>
+            <h2>協會風格歐美，跟我。</h2>
+            <p>模型說著頓時停止那位引發很有關閉氣氛春天職工全市難以律師收益，說什麼移動轉載塑膠平均基礎，聯合故障。</p>
+        </div>
+    </div>
+    <br><br><br>
+    <div class="section02">
+        <div class="section02_box01 bg-cover"><a href="20231205-1.html">作品一</a></div>
+        <div class="section02_box02 bg-cover"><a href="#">作品二</a></div>
+        <div class="section02_box03 bg-cover"><a href="#">作品三</a></div>
+    </div>
+</body>
+</html>

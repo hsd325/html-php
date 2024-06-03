@@ -1,0 +1,122 @@
+<!-- 使用jquery進行分類的練習(重組數據jquery)，而不是依靠資料庫進行分類，並使用google map api寫法-只要提供經緯度就可在google map獲得相應位置，點擊縣市會出現相對應的旅館 -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>台北旅館資料練習</title>
+    <link rel="shortcut icon" href="images/icon/icon.ico" type="images/x-icon"><!-- icon更換 -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/myall.css">
+</head>
+
+<body>
+    <div class="header p-4">
+        <div class="fs-1 text-center fw-900 text-bg-success mt-4 py-4">台北OK認證旅館</div>
+    </div>
+    <div class="container-fluid">
+        <div class="row" style="height: 80vh;">
+            <div class="col-md-3 py-3">
+                <ul class="list-group" id="mylist">
+                    <li class="list-group-item">
+                        <div class="d-flex">
+                            <h5>台北市大同區</h5>
+                            <span class="badge text-bg-success ms-auto">99</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-9">
+                <div class="row" id="myhotel">
+                    <div class="col-md-4 p-3 border border-3 border-danger shadow shadow-lg rounded rounded-5">
+                        <h4 class="fw-900">銀寶旅店</h4>
+                        <h5 class="fw-900">地址: 台北市延平北路一段121號</h5>
+                        <h5 class="fw-900">電話: 2555-1130</h5>
+                        <button class="btn btn-primary">google map</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <script>
+        var regionTitle = [];
+        var counter = [];
+        var regionData = [];
+        $(function () {
+            $.ajax({
+                type: "GET",
+                url: "https://hsd325.000webhostapp.com/API/20240222-hotal.php",
+                dataType: "json",
+                async: false,
+                success: showdata,
+                error: function () {
+                    alert("error-20240222-hoteldata_api.php");
+                }
+            });
+            // 點擊地區
+            $("#mylist #myregion").click(function () {
+                console.log($(this).data("key"));
+                drawRegionHotel($(this).data("key"));
+            })
+
+        });
+
+        function showdata(data) {
+            console.log(data);
+            console.log(data.data[0].display_addr);
+            console.log(data.data[0].display_addr.indexOf("區", 0));
+            console.log(data.data[0].display_addr.substring(0, data.data[0].display_addr.indexOf("區", 0) + 1));
+            data.data.forEach(function (item, key) {
+                console.log(key + " : " + item.display_addr.substring(0, data.data[0].display_addr.indexOf("區", 0) + 1));
+
+                // 會顯示到區為止的中文字，0的意思為從第0個字開始顯示(包括第0個字)
+                var getRegion = item.display_addr.substring(0, item.display_addr.indexOf("區", 0) + 1);
+                if (getRegion == "") {
+                    getRegion = "未分類";
+                }
+                // counter[getRegion] : 檢索counter是否有叫getRegion的key值
+                if (counter[getRegion] == undefined) {
+                    // counter的索引值是getRegion，為中文，範例圖第一筆counter的索引值就叫【台北市大同區】
+                    // counter的value為 : regionData的位置，範例圖第一筆counter的的alue叫【0】
+                    counter[getRegion] = regionData.length;
+                    // regionData再推一個新的元素，為了之後給新的counter元素用的
+                    regionData.push(new Array());
+                    // counter[getRegion]=0或1，總之就是數字
+                    // 用counter[getRegion]來決定regionTitle的索引值是哪個，再給予內容
+                    regionTitle[counter[getRegion]] = getRegion;
+                }
+                // 由counter[getRegion]來決定regionData的資料要推到哪裡去
+                // 例子-> getRegion=台北大同區，counter[getRegion]=1
+                regionData[counter[getRegion]].push(item);
+
+            });
+            // counter-> 計算總共有多少個區，key值:數字、內容:台北XX區
+            console.log(counter);
+            // regionTitle -> 將counter的key值和內容互換，key值:台北XX區、內容:數字
+            console.log(regionTitle);
+            // 二維陣列，一維為代表各地區(為數字)，二維為對應一維內容將此地區的全部旅館資料塞進來
+            console.log(regionData);
+
+            //渲染左側選單
+            $("#mylist").empty();
+            for (var i = 0; i < regionTitle.length; i++) {
+                var strHTML = '<li class="list-group-item" data-key="' + i + '" id="myregion"><div class="d-flex"><h5>' + regionTitle[i] + '</h5><span class="badge text-bg-success ms-auto">' + regionData[i].length + '</span></div></li>';
+                $("#mylist").append(strHTML);
+            }
+        }
+
+        function drawRegionHotel(index) {
+            $("#myhotel").empty();
+            for (var i = 0; i < regionData[index].length; i++) {
+                var strHTML = '<div class="col-md-4 p-3 border border-3 border-dangershadow shadow-lg rounded rounded-5 mt-3"><h4 class="fw-900">' + regionData[index][i].name + '</h4><h5 class="fw-900">地址: ' + regionData[index][i].display_addr + '</h5><h5 class="fw-900">電話: ' + regionData[index][i].tel + '</h5><a href="https://www.google.com/maps/search/?api=1&query=' + regionData[index][i].name + '" target="_blank" class="btn btn-primary">google map</a></div>';
+                $("#myhotel").append(strHTML);
+            }
+        }
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,67 @@
+<!-- 資料的顯示，用table顯示，有使用【20240116-Read.php】 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>串接資料練習-Read</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/myall.css">
+</head>
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <table class="table table-bordered mt-3">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>商品編號</th>
+                            <th>商品品名</th>
+                            <th>商品價格</th>
+                            <th>商品數量</th>
+                            <th>商品備註</th>
+                            <th>建檔時間</th>
+                        </tr>
+                    </thead>
+                    <tbody id="mybody">
+                        <tr>
+                            <td>XX</td>
+                            <td>XX</td>
+                            <td>XX</td>
+                            <td>XX</td>
+                            <td>XX</td>
+                            <td>XX</td>
+                        </tr>
+                    </tbody>
+                </tabele>
+            </div>
+        </div>
+    </div>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <script>
+        $(function(){
+            $.ajax({
+                type: "GET",
+                url: "20240116-Read.php",
+                dataType: "json",
+                success: showdata,
+                error: function(){
+                    alert("串接資料錯誤!");
+                }
+            });
+        });
+
+        function showdata(data){
+            console.log(data.data);
+
+            $("#mybody").empty();
+            data.data.forEach(function(item){
+                console.log(item.Product);
+                var strHTML = '<tr><td>' + item.ID + '</td><td>' + item.Product + '</td><td>' + item.Price + '</td><td>' + item.Num + '</td><td>' + item.Remark + '</td><td>' + item.Created_at + '</td></tr>';
+                $("#mybody").append(strHTML);
+            });
+        }
+    </script>
+</body>
+</html>

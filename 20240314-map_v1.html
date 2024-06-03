@@ -1,0 +1,294 @@
+<!-- 口罩地圖，使用leaflet(OMS地圖) 交互式地圖一起使用 -->
+<!-- OMS-訂單管理系統，功能涵蓋訂單的建立、處理、追蹤和執行等功能，OMS地圖就為其中一個功能 -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>口罩地圖</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/myall.css">
+    <!-- leaflet 交互式地圖的前置 -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <!-- 使用Leaflet.markercluster來提升Leaflet的顯示效能的前置 -->
+    <link rel="stylesheet" href="css/MarkerCluster.css">
+    <style>
+        /* 小區域 四方形 */
+        .marker-cluster-small {
+            background-color: rgba(219, 191, 219, 0.5);
+        }
+
+        /* 小區域 圓形 */
+        .marker-cluster-small div {
+            background-color: rgba(153, 32, 102, 0.7);
+        }
+
+        /* 中區域 四方形 */
+        .marker-cluster-medium {
+            background-color: rgba(63, 223, 22, 0.5);
+        }
+
+        /* 中區域 圓形 */
+        .marker-cluster-medium div {
+            background-color: rgba(23, 78, 27, 0.7);
+        }
+
+        /* 大區域 四方形 */
+        .marker-cluster-large {
+            background-color: rgba(216, 233, 243, 0.5);
+        }
+
+        /* 大區域 圓形 */
+        .marker-cluster-large div {
+            background-color: rgba(21, 53, 88, 0.7);
+        }
+
+        /* 字型設定 */
+        .marker-cluster div {
+            width: 30px;
+            height: 30px;
+            margin-top: 5px;
+            margin-left: 5px;
+            text-align: center;
+            border-radius: 50%;
+            font-size: 14;
+            font-weight: 900;
+        }
+
+        /* 讓數字垂直置中 */
+        .marker-cluste span {
+            line-height: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row vh-100">
+            <div class="col-md-3 bg-success pt-3">
+                <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="cityName">
+                    <option selected disabled>選擇縣市名稱</option>
+                    <option value="1">台北市</option>
+                    <option value="2">台中市</option>
+                    <option value="3">Three</option>
+                </select>
+
+                <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="areaName">
+                    <option selected disabled>選擇鄉鎮區名稱</option>
+                    <option value="1">西屯區</option>
+                    <option value="2">北區</option>
+                    <option value="3">Three</option>
+                </select>
+
+                <!-- overflow: scroll; 表示當內容溢出容器時，顯示捲軸，允許使用者捲動查看溢位內容。 -->
+                <ul class="list-group" id="myList" style="height: 80vh; overflow: scroll;">
+                    <li class="list-group-item">
+                        <h4>藥局名稱</h4>
+                        <h5>地址: xxxxx</h5>
+                        <h5>電話: xxxxx</h5>
+                        <h5>成人口罩: <span class="text-danger h4 fw-900">20</span>個</h5>
+                        <h5>兒童口罩: <span class="text-success h4 fw-900">20</span>個</h5>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-9 bg-warning">
+                <div id="map" class="vh-100"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <!-- axios前置 -->
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.6.7/dist/axios.min.js"></script>
+    <!-- leaflet 交互式地圖的前置 -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <!-- 使用Leaflet.markercluster來提升Leaflet的顯示效能的前置 -->
+    <script src="js/leaflet.markercluster.js"></script>
+    <script>
+        // 使用Leaflet.markercluster來提升Leaflet的顯示效能，地圖縮小到一定程度水滴會隱藏(會比較吃記憶體)，且會用數字顯示這個區域總共有幾個水滴*************
+        var selected_cityName; //已選取的縣市名稱
+        var selected_townName; //已選取的鄉鎮區名稱
+        var CityCountyData = []; //縣市區資料
+        var allMaskData = []; //健保局口罩藥局資料
+        var map;
+        var markers;
+
+
+        $(function () {
+            //draw map 
+            // L.map 畫地圖，跟leaflet有關
+            // 15為地圖的放大倍率
+            map = L.map('map').setView([24.171477, 120.609643], 15);
+
+            // 這個為leaflet的前置，為畫出地圖的前置，map為放大倍率和經緯度
+            L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(map);
+
+            // 使用Leaflet.markercluster的前置*********
+            // 這行的功能為將一定區域內的水滴座標圖層包裹起來，好做到顯示或隱藏水滴座標
+            markers = new L.markerClusterGroup().addTo(map);
+
+            // 地圖上顯示水滴marker的寫法
+            // L.marker([24.171477, 120.609643]).addTo(map)
+            // // bind : 監聽 
+            //     .bindPopup('<h1 class="text-danger fw-900">烘培班01</h1>');
+            // // .openPopup() : 自動彈出，不用點一下才出現【<h1 class="text-danger fw-900">烘培班01</h1>】的內容
+            //     .openPopup();
+
+            //載入縣市鄉鎮區資料
+            axios.get('js/CityCountyData.json')
+                .then(function (response) {
+                    // handle success
+                    console.log(response.data);
+                    // CityCountyData儲存CityCountyData.json的所有資料，為陣列
+                    CityCountyData = response.data;
+
+                    // 使用CityCountyData.json(台灣地圖)的資料來寫下拉選單，寫城市名稱
+                    $("#cityName").empty();
+                    $("#cityName").append('<option selected disabled>選擇縣市名稱</option>');
+                    response.data.forEach(function (item) {
+                        console.log(item.CityName);
+
+                        strHTHL = '<option value="' + item.CityName + '">' + item.CityName + '</option>';
+                        $("#cityName").append(strHTHL);
+                    });
+                })
+                .catch(function (error) {
+                    // handle error
+                    console.log(error);
+                })
+                .finally(function () {
+                    // always executed
+                });
+
+            //載入健保局資料，這裡抓取全台灣藥局的資料
+            axios.get('js/points.json')
+                .then(function (response) {
+                    // handle success
+                    console.log(response.data);
+                    allMaskData = response.data.features; // allMaskData為全台灣藥局的資料
+                })
+                .catch(function (error) {
+                    // handle error
+                    console.log(error);
+                })
+                .finally(function () {
+                    // always executed
+                });
+
+            //監聽下拉式縣市選單，下面的下拉選單會一起動作
+            $("#cityName").change(function () {
+                // $(this).val() : 抓取當前選擇到的下拉式選單內容
+                console.log($(this).val());
+                selected_cityName = $(this).val();
+                console.log(CityCountyData);
+                // CityCountyData為全部的資料(台灣地圖)
+                CityCountyData.forEach(function (item) {
+                    // 如果資料裡的CityName有跟目前選擇的城市相同名字的話
+                    if (item.CityName == selected_cityName) {
+                        //產生鄉鎮區選單
+                        $("#areaName").empty();
+                        $("#areaName").append('<option selected disabled>選擇鄉鎮區名稱</option>');
+                        item.AreaList.forEach(function (area) {
+                            var strHTML = '<option value="' + area.AreaName + '">' + area.AreaName + '</option>';
+                            $("#areaName").append(strHTML);
+                        });
+                    }
+                });
+            });
+
+            //監聽鄉鎮區選單
+            $("#areaName").change(function () {
+                console.log($(this).val());
+                // selected_townName 為抓取到的城鎮
+                selected_townName = $(this).val();
+
+                $("#myList").empty();
+                // 清除所有水滴座標
+                removeMarker();
+                var counter = 0;
+                // allMaskData為全台灣藥局的資料
+                allMaskData.forEach(function (item, key) {
+                    // 如果資料的城市、縣市和監聽的城市、縣市一樣的話，就會執行
+                    if (item.properties.county == selected_cityName && item.properties.town == selected_townName) {
+                        console.log(item);
+                        // 要寫data類的，讓地圖可以抓這些資料來顯示出來
+                        var strHTML = '<li class="list-group-item" data-name="' + item.properties.name + '" data-addr="' + item.properties.address + '" data-phone="' + item.properties.phone + '" data-adult="' + item.properties.mask_adult + '" data-child="' + item.properties.mask_child + '" data-lat="' + item.geometry.coordinates[1] + '" data-lng="' + item.geometry.coordinates[0] + '"><h4>' + item.properties.name + '</h4><h5>地址: ' + item.properties.address + '</h5><h5>電話: ' + item.properties.phone + '</h5><h5>成人口罩: <span class="text-danger h4 fw-900">' + item.properties.mask_adult + '</span>個</h5><h5>兒童口罩: <span class="text-success h4 fw-900">' + item.properties.mask_child + '</span>個</h5></li>';
+                        $("#myList").append(strHTML);
+
+                        //加上當前區域所有藥局的水滴座標*************
+                        // lat : 緯度
+                        var lat = item.geometry.coordinates[1];
+                        // lng : 經度
+                        var lng = item.geometry.coordinates[0];
+                        // 加入水滴座標
+                        // L.marker([lat, lng]).addTo(map)
+                        //     .bindPopup('<h1 class="text-danger fw-900">' + item.properties.name + '</h1>');
+
+                        // Leaflet.markercluster的水滴座標寫法*********
+                        // popupHTML : 彈出顯示的內容
+                        var popupHTML = '<div class="card"><div class="card-body"><h4>' + item.properties.name + '</h4><h5>地址: ' + item.properties.address + '</h5><h5>電話: ' + item.properties.phone + '</h5><h5>成人口罩: <span class="text-danger h4 fw-900">' + item.properties.mask_adult + '</span>個</h5><h5>兒童口罩: <span class="text-success h4 fw-900">' + item.properties.mask_child + '</span>個</h5></div></div>';
+                        //水滴座標的寫法，座標+彈出內容(要按才會顯示)
+                        // markers代表這個  markers = new L.markerClusterGroup().addTo(map); 為Leaflet.markercluster的前置
+                        markers.addLayer(L.marker([lat, lng]).bindPopup(popupHTML));
+
+                        //移動地圖，移動到當前縣市第一筆資料的位置(只會執行1次)***********
+                        // 由於這是所有資料(allMaskData)來forEach，所以不能用【key==0】來當作if條件
+                        counter++;
+                        if (counter == 1) {
+                            map.panTo([lat, lng]);
+                        }
+                    }
+                });
+
+                //監聽#myList
+                $("#myList .list-group-item").click(function () {
+                    console.log($(this).data("name"));
+                    console.log($(this).data("addr"));
+                    console.log($(this).data("phone"));
+                    console.log($(this).data("adult"));
+                    console.log($(this).data("child"));
+                    console.log($(this).data("lat"));
+                    console.log($(this).data("lng"));
+
+                    // 原版觸發彈出水滴內容的行為要這樣寫**********
+                    // var marker = L.marker([51.5, -0.09]).addTo(map);
+                    // marker.bindPopup("XXX").openPopup();
+
+                    // 觸發彈出水滴內容的行為，使用markerPopup函數來簡化行為*********
+                    // $(this).val() : 抓取當前被按到的內容
+                    markerPopup($(this).data("name"), $(this).data("addr"), $(this).data("phone"), $(this).data("adult"), $(this).data("child"), $(this).data("lat"), $(this).data("lng"));
+                });
+            });
+        });
+
+        //清除水滴座標(marker)
+        function removeMarker() {
+            // 針對每個圖層(leaflet的地圖為圖曾製作出來)
+            // layer : 配合eachLayer，意思為每個圖層
+            map.eachLayer(function (layer) {
+                // layer instanceof L.Marker : 圖層有小水滴(L.Marker)的話
+                if (layer instanceof L.Marker) {
+                    // 刪除這個圖層
+                    map.removeLayer(layer);
+                }
+            });
+        }
+
+        //markerPopup
+        // 水滴marker跳出內容的函數
+        function markerPopup(name, addr, phone, adult, child, lat, lng) {
+            var popupHTML = '<div class="card"><div class="card-body"><h4>' + name + '</h4><h5>地址: ' + addr + '</h5><h5>電話: ' + phone + '</h5><h5>成人口罩: <span class="text-danger h4 fw-900">' + adult + '</span>個</h5><h5>兒童口罩: <span class="text-success h4 fw-900">' + child + '</span>個</h5></div></div>';
+            L.marker([lat, lng]).addTo(map)
+                // openPopup() : 跳出水滴內容
+                .bindPopup(popupHTML).openPopup();
+        }
+    </script>
+</body>
+
+</html>

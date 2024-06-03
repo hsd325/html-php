@@ -1,0 +1,111 @@
+<!-- 用table顯示20240116-Read3.php的內容  -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="css/myall.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        @media screen and (max-width: 768px){
+            .table-rwd thead{
+                display: none;
+            }
+            .table-rwd tbody tr{
+                display: block;
+                border: 2px solid var(--mycolor04);
+                margin-top: 20px;
+            }
+            .table-rwd tbody tr td{
+                display: block;
+                overflow: hidden;
+            }
+            .table-rwd tbody tr td::before{
+                content: attr(data-th)" : ";
+                color: var(--textcolor03);
+                font-weight: 900;
+                display: block;
+                float: left;
+                width: 6em;
+                text-align: right;
+                padding-right: 1em;
+            }
+            .table-rwd tbody tr td span.table-col{
+                display: block;
+                float: left;
+                width: calc(100% - 6em);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <table class="table table-bordered mt-3 table-hover table-sm border-success table-rwd">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>商品編號</th>
+                            <th>商品品名</th>
+                            <th>商品價格</th>
+                            <th>商品數量</th>
+                            <th>商品備註</th>
+                            <th>建檔時間</th>
+                        </tr>
+                    </thead>
+                    <tbody id="mybody">
+                        <tr>
+                            <td data-th="商品編號"><span class="table-col"></span></td>
+                            <td data-th="商品品名"><span class="table-col"></span></td>
+                            <td data-th="商品價格"><span class="table-col"></span></td>
+                            <td data-th="商品數量"><span class="table-col"></span></td>
+                            <td data-th="商品備註"><span class="table-col"></span></td>
+                            <td data-th="建檔時間"><span class="table-col"></span></td>
+                            <!-- 上面td為ajex要打的，但因為被清空，所以不會顯示出來 -->
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+<script src="js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/counterup2@2.0.2/dist/index.js">	</script>
+    <script src="js/wow.min.js"></script>
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <script>
+        //主程式
+        $(function(){
+            $.ajax({
+                type: "GET",
+                url: "20240116-Read3.php",
+                dataType: "json",
+                /*
+                因為連線的程式為php，電腦會無法辨識，就算php裡面的內容是.json格式，
+                所以用【dataType:】告訴電腦這個檔案是.json檔案
+                */
+                success: showdata,
+                error: function(){
+                    alert("系統錯誤!");
+                }
+            });
+        });
+        
+        function showdata(data){
+            console.log(data.data);
+            // 顯示.json檔案(data)裡的data區域
+            $('#mybody').empty();
+            // 清空內容，對象為id叫【mybody】的物件
+            data.data.forEach(function(item){
+                // data.data.forEach(function(item)
+                console.log(item.Product);
+                var strHTML='<tr><td data-th="商品編號"><span class="table-col">' + item.ID + '</span></td><td data-th="商品品名"><span class="table-col">' + item.Product + '</span></td><td data-th="商品價格"><span class="table-col">' + item.Price + '</span></td><td data-th="商品數量"><span class="table-col">' + item.Num + '</span></td><td data-th="商品備註"><span class="table-col">' + item.Remark + '</span></td><td data-th="建檔時間"><span class="table-col">' + item.Created_at + '</span></td>';
+                $("#mybody").append(strHTML);
+            })
+        }
+    </script>
+</body>
+</html>

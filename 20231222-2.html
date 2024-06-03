@@ -1,0 +1,80 @@
+<!-- 物件位置的練習，translate-middle(位置置中)為最常用的 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ch9</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/myall.css">
+    <style>
+        .demo01{
+            width: 300px;
+            height: 300px;
+            border: 2px solid var(--mycolor04);
+        }
+        .box01{
+            width: 50px;
+            height: 50px;
+            background-color: var(--mycolor01);
+        }
+    </style>
+</head>
+<body>
+    <div class="container p-5">
+        <div class="display-4 fw-900 mb-3">1.position</div>
+        <div class="demo01 position-relative">
+            <!-- position-relative : 建立一個框(範圍) -->
+            <div class="box01 position-absolute"></div>
+            <div class="box01 position-absolute start-50"></div>
+            <div class="box01 position-absolute start-100"></div>
+            <div class="box01 position-absolute top-50"></div>
+            <div class="box01 position-absolute top-50 start-50"></div>
+            <div class="box01 position-absolute top-50 start-100"></div>
+            <div class="box01 position-absolute top-100"></div>
+            <div class="box01 position-absolute top-100 start-50"></div>
+            <div class="box01 position-absolute top-100 start-100"></div>
+            <!-- position-absolute :可在框的範圍隨意移動，所以要搭配position-relative -->
+            <!-- 【0】:為0%的意思 -->
+            <!-- top-0 :這種寫法就是物件的最上面和外框的最上面重和 -->
+            <!-- end-0 :這種寫法就是物件的最右邊和外框的最右邊重和 -->
+        </div>
+    </div>
+
+    <div class="container p-5">
+        <div class="display-4 fw-900 mb-3">2.translate-middle</div>
+        <div class="demo01 position-relative">
+            <!-- position-relative : 建立一個框(範圍) -->
+            <div class="box01 position-absolute translate-middle"></div>
+            <div class="box01 position-absolute start-50 translate-middle"></div>
+            <div class="box01 position-absolute start-100 translate-middle"></div>
+            <div class="box01 position-absolute top-50 translate-middle"></div>
+            <div class="box01 position-absolute top-50 start-50 translate-middle"></div>
+            <div class="box01 position-absolute top-50 start-100 translate-middle"></div>
+            <div class="box01 position-absolute top-100 translate-middle"></div>
+            <div class="box01 position-absolute top-100 start-50 translate-middle"></div>
+            <div class="box01 position-absolute top-100 start-100 translate-middle"></div>
+            <!-- translate-middle 往上移動50% 往左移動50% 這50%是目前這個物件長度的50%(往上)、寬度的50%(往左) -->
+        </div>
+    </div>
+
+    <div class="container p-5">
+        <div class="display-4 fw-900 mb-3">3.position(貼齊邊線)</div>
+        <div class="demo01 position-relative">
+            <div class="box01 position-absolute"></div>
+            <div class="box01 position-absolute start-50 translate-middle-x"></div>
+            <div class="box01 position-absolute end-0"></div>
+            <div class="box01 position-absolute top-50 translate-middle-y"></div>
+            <div class="box01 position-absolute top-50 start-50 translate-middle"></div>
+            <div class="box01 position-absolute top-50 end-0 translate-middle-y"></div>
+            <div class="box01 position-absolute bottom-0"></div>
+            <div class="box01 position-absolute bottom-0 start-50 translate-middle-x"></div>
+            <div class="box01 position-absolute bottom-0 end-0"></div>
+            <!-- translate-middle 往上移動50% 往左移動50% 這50%是目前這個物件長度的50%(往上)、寬度的50%(往左) -->
+            <!-- translate-middle-x 往左移動50% 這50%是目前這個物件寬度的50% -->
+            <!-- translate-middle-y 往上移動50% 這50%是目前這個物件長度的50% -->
+        </div>
+    </div>
+    <script src="js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

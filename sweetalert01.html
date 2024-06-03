@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SweetAlert</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/myall.css">
+    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="css/animate.min.css">
+</head>
+
+<body class="bg-secondary">
+    <div class="container">
+        <div class="row vh-100 align-items-center text-center">
+
+            <i class="fa-solid fa-baby fa-6x text-danger wow animate__zoomInDown" data-wow-duration="3s"
+                data-wow-delay="0s"></i>
+        </div>
+    </div>
+
+    <button class="btn btn-primary" id="ok_btn">OK</button>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="js/wow.min.js"></script>
+    <script>
+        $(function () {
+            new WOW().init();
+            var timeoutID = setTimeout(myAlert, 5000);
+
+            function myAlert() {
+                location.href="20231228-SPA.html"
+            }
+            // $("#ok_btn").click(function () {
+            //     Swal.fire({
+            //         title: "Do you want to save the changes?",
+            //         showDenyButton: true,
+            //         showCancelButton: false,
+            //         confirmButtonText: "Save",
+            //         denyButtonText: `Don't save`
+            //     }).then((result) => {
+            //         /* Read more about isConfirmed, isDenied below */
+            //         if (result.isConfirmed) {
+            //             console.log(result.isConfirmed);
+            //             Swal.fire("Saved!", "", "success");
+            //         } else if (result.isDenied) {
+            //             console.log(result.isConfirmed);
+            //             Swal.fire("Changes are not saved", "", "info");
+            //         }
+            //     });
+            // });
+        })
+    </script>
+</body>
+
+</html>

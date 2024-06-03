@@ -1,0 +1,357 @@
+<!-- 排版練習，col~gutter 間距 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ch6 欄與列的練習</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/myall.css">
+    <style>
+        .box{
+            height: 160px;
+            background-color: var(--mycolor01);
+            border: 2px solid var(--mycolor02);
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <p class="display-4 fw-900">1. 寫12欄位的排版</p>
+        <div class="row">
+            <!-- 第1行 -->
+            <div class="row">
+                <div class="col-1">
+                    <div class="box"></div>
+                </div>
+                <div class="col-1">
+                    <div class="box"></div>
+                </div>
+                <div class="col-1">
+                    <div class="box"></div>
+                </div>
+                <div class="col-1">
+                    <div class="box"></div>
+                </div>
+                <div class="col-1">
+                    <div class="box"></div>
+                </div>
+                <div class="col-1">
+                    <div class="box"></div>
+                </div>
+                <div class="col-1">
+                    <div class="box"></div>
+                </div>
+                <div class="col-1">
+                    <div class="box"></div>
+                </div>
+                <div class="col-1">
+                    <div class="box"></div>
+                </div>
+                <div class="col-1">
+                    <div class="box"></div>
+                </div>
+                <div class="col-1">
+                    <div class="box"></div>
+                </div>
+                <div class="col-1">
+                    <div class="box"></div>
+                </div>
+            </div>
+            <!-- 第2行 -->
+            <div class="row">
+                <div class="col-6">
+                    <div class="box"></div>
+                </div>
+                <div class="col-6">
+                    <div class="box"></div>
+                </div>
+            </div>
+            <!-- 第3行 -->
+            <div class="row">       
+                <div class="col-4">
+                    <div class="box"></div>
+                </div>
+                <div class="col-4">
+                    <div class="box"></div>
+                </div>
+                <div class="col-4">
+                    <div class="box"></div>
+                </div>
+            </div>
+            <!-- 第4行 -->
+            <div class="row">
+                <div class="col-3">
+                    <div class="box"></div>
+                </div>
+                <div class="col-3">
+                    <div class="box"></div>
+                </div>
+                <div class="col-3">
+                    <div class="box"></div>
+                </div>
+                <div class="col-3">
+                    <div class="box"></div>
+                </div>
+            </div>
+            <!-- 第5行 -->
+            <div class="row">
+                <div class="col-2">
+                    <div class="box"></div>
+                </div>
+                <div class="col-2">
+                    <div class="box"></div>
+                </div>
+                <div class="col-2">
+                    <div class="box"></div>
+                </div>
+                <div class="col-2">
+                    <div class="box"></div>
+                </div>
+                <div class="col-2">
+                    <div class="box"></div>
+                </div>
+                <div class="col-2">
+                    <div class="box"></div>
+                </div>
+            </div>
+            <!-- 第6行 -->
+            <div class="row">
+                <div class="col-2">
+                    <div class="box"></div>
+                </div>
+                <div class="col-10">
+                    <div class="box"></div>
+                </div>
+            </div>
+            <!-- 第7行 -->
+            <div class="row">
+                <div class="col-3">
+                    <div class="box"></div>
+                </div>
+                <div class="col-9">
+                    <div class="box"></div>
+                </div>
+            </div>
+        </div>
+
+        <p class="display-4 fw-900">2. flex-12欄位的排版</p>
+        <div class="row">
+            <div class="col">
+                <div class="box"></div>
+            </div>
+            <div class="col">
+                <div class="box"></div>
+            </div>
+            <div class="col">
+                <div class="box"></div>
+            </div>
+            <div class="col">
+                <div class="box"></div>
+            </div>
+            <div class="col">
+                <div class="box"></div>
+            </div>
+            <div class="col">
+                <div class="box"></div>
+            </div>
+            <div class="col">
+                <div class="box"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container pb-5">
+        <p class="display-4 fw-900">3. 斷點(sm、md、lg、xl、xxl) - 12欄位的排版</p>
+        <div class="row">
+            <div class="col-md-6 col-lg-4 col-xl-3 col-xxl-2">
+                <div class="box"></div>
+            </div>
+            <div class="col-md-6 col-lg-4 col-xl-3 col-xxl-2">
+                <div class="box"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container pb-5">
+        <p class="display-4 fw-900">4. 推移 offset</p>
+        <div class="row">
+            <div class="col-6 offset-1">
+                <div class="box bg-danger">
+                    <!-- .box的顏色為紅色 bg-danger 紅色 -->
+                </div>
+            </div>
+        </div>
+        <!-- 練習1 -->
+        <p class="display-4 fw-400">練習1. lg以下滿版、lg以上col-8且調到中間</p>
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2">
+                <div class="box bg-danger">
+                    <!-- .box的顏色為紅色 bg-danger 紅色 -->
+                </div>
+            </div>
+        </div>
+        <!-- 練習2 -->
+        <p class="display-4 fw-400">練習2. 畫面變大格子逐漸往右移動</p>
+        <div class="row">
+            <div class="col-2 offset-md-2 offset-lg-4 offset-xl-6 offset-xxl-8">
+                <div class="box bg-info">
+                    <!-- .box的顏色為藍色 bg-info 藍色 -->
+                </div>
+            </div>
+        </div>
+
+        <div class="container pd-5">
+            <p class="display-4 fw-900">5. gutter 間距</p>
+            <div class="row">
+                <div class="col-3">
+                    <div class="box"></div>
+                </div>
+                <div class="col-3">
+                    <div class="box"></div>
+                </div>
+            </div>
+            <p class="display-4 fw-400">gx</p>
+            <div class="row gx-1">
+                <div class="col-3">
+                    <div class="box "></div>
+                </div>
+                <div class="col-3">
+                    <div class="box"></div>
+                </div>
+                <div class="col-3">
+                    <div class="box"></div>
+                </div>
+            </div>
+            <p class="display-4 fw-400">gy</p>
+            <div class="row gy-5">
+                <div class="col-3">
+                    <div class="box bg-info"></div>
+                </div>
+                <div class="col-3">
+                    <div class="box bg-info"></div>
+                </div>
+                <div class="col-3">
+                    <div class="box bg-info"></div>
+                </div>
+                <div class="col-3">
+                    <div class="box bg-info"></div>
+                </div>
+                <div class="col-3">
+                    <div class="box bg-info"></div>
+                </div>
+                <div class="col-3">
+                    <div class="box bg-info"></div>
+                </div>
+                <div class="col-3">
+                    <div class="box bg-info"></div>
+                </div>
+                <div class="col-3">
+                    <div class="box bg-info"></div>
+                </div>
+            </div>
+            <p class="display-4 fw-400">g</p>
+            <div class="row g-5">
+                <div class="col-3">
+                    <div class="box bg-warning"></div>
+                </div>
+                <div class="col-3">
+                    <div class="box bg-warning"></div>
+                </div>
+                <div class="col-3">
+                    <div class="box bg-warning"></div>
+                </div>
+                <div class="col-3">
+                    <div class="box bg-warning"></div>
+                </div>
+                <div class="col-3">
+                    <div class="box bg-warning"></div>
+                </div>
+                <div class="col-3">
+                    <div class="box bg-warning"></div>
+                </div>
+                <div class="col-3">
+                    <div class="box bg-warning"></div>
+                </div>
+                <div class="col-3">
+                    <div class="box bg-warning"></div>
+                </div>
+            </div>
+
+            <p class="display-4 fw-400">gutter應用</p>
+            <div class="row">
+                <div class="col-3">
+                    <div class="bg-success" style="height: 350px;"></div>
+                </div>
+                <div class="col-9">
+                    <div class="row g-2">
+                        <div class="col-4">
+                            <div class="bg-primary" style="height: 110px;"></div>
+                        </div>
+                        <div class="col-4">
+                            <div class="bg-primary" style="height: 110px;"></div>
+                        </div>
+                        <div class="col-4">
+                            <div class="bg-primary" style="height: 110px;"></div>
+                        </div>
+                        <div class="col-4">
+                            <div class="bg-primary" style="height: 110px;"></div>
+                        </div>
+                        <div class="col-4">
+                            <div class="bg-primary" style="height: 110px;"></div>
+                        </div>
+                        <div class="col-4">
+                            <div class="bg-primary" style="height: 110px;"></div>
+                        </div>
+                        <div class="col-4">
+                            <div class="bg-primary" style="height: 110px;"></div>
+                        </div>
+                        <div class="col-4">
+                            <div class="bg-primary" style="height: 110px;"></div>
+                        </div>
+                        <div class="col-4">
+                            <div class="bg-primary" style="height: 110px;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container pb-5">
+            <p class="display-4 fw-900">6. row-cols-中斷點-欄數</p>
+            <div class="row row-cols-lg-6">
+                <div class="col">
+                    <div class="box"></div>
+                </div>
+                <div class="col">
+                    <div class="box"></div>
+                </div>
+                <div class="col">
+                    <div class="box"></div>
+                </div>
+                <div class="col">
+                    <div class="box"></div>
+                </div>
+                <div class="col">
+                    <div class="box"></div>
+                </div>
+                <div class="col">
+                    <div class="box"></div>
+                </div>
+                <div class="col">
+                    <div class="box"></div>
+                </div>
+                <div class="col">
+                    <div class="box"></div>
+                </div>
+            </div>
+        </div>
+        
+
+
+    </div>
+
+    <script src="js/bootstrap.bundle.min.js"></script>    
+</body>
+</html>

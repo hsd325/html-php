@@ -1,0 +1,96 @@
+<!-- 簡易的資料建造頁面，和20240116-Create.php有關連 -->
+
+<!-- Create的前端，傳資料給後端 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create的前端，傳資料給後端</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="css/myall.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6 pt-5">
+                <div class="mb-3">
+                    <label for="" class="form-label">產品名稱</label>
+                    <input type="text" class="form-control" id="p_name">
+                </div>
+                <div class="mb-3">
+                    <label for="" class="form-label">產品價格</label>
+                    <input type="text" class="form-control" id="p_price" min="0" max="1000">
+                </div>
+                <div class="mb-3">
+                    <label for="" class="form-label">產品數量</label>
+                    <input type="text" class="form-control" id="p_num" min="0" max="1000">
+                </div>
+                <div class="mb-3">
+                    <label for="" class="form-label">產品備註</label>
+                    <input type="text" class="form-control" id="p_remark">
+                </div>
+                <div class="text-center">
+                    <a href="#" class="btn btn-secondary">取消</a>
+                    <a href="#" class="btn btn-primary" id="ok_btn">確認</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/counterup2@2.0.2/dist/index.js">	</script>
+    <script src="js/wow.min.js"></script>
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <script>
+        $(function(){
+            $("#ok_btn").click(function(){
+                // 當id為【ok_btn】按下後，執行下面程式
+                console.log("hi~~~");
+                console.log($("#p_name").val());
+                // 顯示id為p_name物件的內容，在console.log裡面
+                // .val() : 裡面的內容
+                console.log($("#p_price").val());
+                console.log($("#p_num").val());
+                console.log($("#p_remark").val());
+
+                // 傳遞到後端
+                $.ajax({
+                    type: "POST",
+                    url: "20240116-Create.php",
+                    dataType: "json",
+                    // 由於data要接收【20240116-Create.php】顯示出來的值，所以要寫dataType
+                    data: {product: $("#p_name").val(), price: $("#p_price").val(), num: $("#p_num").val(), remark: $("#p_remark").val()},
+                    // data : 功能為->傳送內容資訊到【20240116-Create.php】裡面，並接收【20240116-Create.php】執行後的顯示的東西。
+                    // product: $("#p_name").val() : 傳送的目的地為【url】裡的【POST】裡的product，傳送內容為$("#p_name").val()->id叫p_name元件裡面的內容。
+                    success: showdata,
+                    error: function(){
+                        alert("錯誤!_20240116-Create.php");
+                    }
+                });
+            });
+        });
+
+        function showdata(data){
+            // 由於data為接收【20240116-Create.php】執行後的顯示的東西，目前【20240116-Create.php】顯示出來的為【.json】格式的內容，裡面內容有state、message等等，詳情畫面請看01 16的講義
+            console.log(data);
+            if(data.state){
+                // 【state20240116-Create.php】執行後的顯示的東西(格式為.json)，裡面有state、message等等，這裡if意思為如果顯示state是true，就會用警告視窗顯示message裡面的內容
+                alert(data.message);
+                // alert : 警告視窗
+
+                // 下面功能為清空欄位
+                $("#p_name").val("");
+                $("#p_price").val("");
+                $("#p_num").val("");
+                $("#p_remark").val("");
+            }else{
+                alert(data.message);
+                // 跟if下面的解釋對照
+            }
+        }
+    </script>
+</body>
+</html>

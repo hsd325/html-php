@@ -1,0 +1,1093 @@
+<!-- 產品主頁面，有使用wow套件，可在物件上面使用動畫 -->
+<!-- 有登入功能，跳轉到新建商品-20240123-product01-Create.html、商品更新和刪除-20240125-product01-Read.html -->
+<!-- 有使用密碼加密，使用20240201-Create-api.php註冊時順便加密密碼 -->
+<!-- 登入的API: member-login_api.php -->
+<!-- 有使用cookie來達成重新開啟網頁還是登入狀態 -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>汽車.Sweet(SPA)</title>
+    <link rel="shortcut icon" href="images/icon/icon.ico" type="images/x-icon"><!-- icon更換 -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="css/myall.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        .carousel-caption {
+            background-color: rgba(0, 0, 0, 0.3);
+        }
+
+        /* 時間線前置 */
+        .m01 {
+            position: relative;
+        }
+
+        /* 時間線 */
+        .m01::before {
+            position: absolute;
+            content: "";
+            top: 0;
+            bottom: 0;
+            width: 5px;
+            background-color: rgba(0, 0, 0, 0.5);
+            /* background-image: linear-gradient(45deg, rgba(53, 30, 184, 0.05), rgba(201, 13, 13, 0.7)); */
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .row5 {
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+
+        @media screen and (max-width: 768px) {
+            .s07_text {
+                z-index: 10;
+                /* z-index 數字越大其物件將越上層，上層的物件可以覆蓋下層的物件。 */
+                background-color: rgba(0, 0, 0, 0.2);
+                color: white;
+                padding: 15px;
+                margin-bottom: 25px;
+            }
+
+            .s08_text {
+                z-index: 10;
+                background-color: rgba(0, 0, 0, 0.2);
+                color: white;
+                padding: 15px;
+                margin-bottom: 25px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- section 01 社群網站連結-->
+    <section class="bg-secondary wow animate__animated animate__pulse">
+        <div class="container">
+            <div class="text-end py-1">
+                <a href="#"><i class="fa-brands fa-square-facebook text-white fa-2x"></i></a>
+                <a href="#"><i class="fa-brands fa-x-twitter text-white fa-2x"></i> </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- section 02 目錄-->
+    <section class="wow animate__animated animate__backInLeft">
+        <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+            <div class="container">
+                <!-- 圖標 -->
+                <i class="fa-solid fa-car-side text-primary wow active animate__animated animate__fadeInDownBig"></i>
+                <!-- 多餘的，本來是搜尋按鈕 -->
+                <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button> -->
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link wow active animate__animated animate__fadeInDownBig"
+                                data-wow-duration="1s" data-wow-delay="0s" data-wow-iteration="1" aria-current="page"
+                                href="">首頁</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle wow animate__animated animate__fadeInDownBig" href="#"
+                                role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                產品種類
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Action</a></li>
+                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item wow animate__animated animate__fadeInDownBig">
+                            <a class="nav-link" aria-current="page" href="#s03">幻燈片</a>
+                        </li>
+                        <li class="nav-item wow animate__animated animate__fadeInDownBig">
+                            <a class="nav-link" aria-current="page" href="#s04">得獎介紹</a>
+                        </li>
+                        <li class="nav-item wow animate__animated animate__fadeInDownBig">
+                            <a class="nav-link" aria-current="page" href="#s05">介紹人員</a>
+                        </li>
+                        <li class="nav-item wow animate__animated animate__fadeInDownBig">
+                            <a class="nav-link" aria-current="page" href="#s06">汽車畫面</a>
+                        </li>
+                        <li class="nav-item wow animate__animated animate__fadeInDownBig">
+                            <a class="nav-link" aria-current="page" href="#s07">對角線排版</a>
+                        </li>
+                        <li class="nav-item wow animate__animated animate__fadeInDownBig">
+                            <a class="nav-link" aria-current="page" href="#s10">地圖插入</a>
+                        </li>
+                        <li class="nav-item wow animate__animated animate__fadeInDownBig">
+                            <a class="nav-link" aria-current="page" href="#s11">11</a>
+                        </li>
+                        <li class="nav-item wow animate__animated animate__fadeInDownBig">
+                            <a class="nav-link" aria-current="page" href="#s12">底下footer的文字</a>
+                        </li>
+                        <!-- 0217 -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                高級功能
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item disabled" target="_blank"
+                                        href="20240123-product01-Create.html" id="s02_member_btn01">商品建檔</a></li>
+                                <li><a class="dropdown-item disabled" target="_blank"
+                                        href="20240125-product01-Read.html" id="s02_member_btn02">商品瀏覽</a></li>
+                                <li><a class="dropdown-item disabled" target="_blank" href="member-control_panel.html"
+                                        id="s02_member_btn03">會員管理</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <div>
+                        <!-- span為配合showdata_login函數的if -->
+                        <span class="text-warning h3" id="user_message"></span>
+
+                        <button class="btn btn-outline-success wow animate__animated animate__fadeInDownBig"
+                            data-bs-toggle="modal" data-bs-target="#loginModal" id="into01">登入</button>
+                        <button class="btn btn-success wow animate__animated animate__fadeInDownBig"
+                            data-bs-toggle="modal" data-bs-target="#loginModal3" id="into02">註冊</button>
+                        <!-- 0217 -->
+                        <button class="btn btn-danger d-none" id="s02_logout_btn">登出</button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </section>
+
+    <!-- section 02-1 loginModal 登入 -->
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header text-bg-warning">
+                    <h1 class="modal-title fs-5 fw-900" id="exampleModalLabel">會員登入</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="login_username" class="form-label">帳號</label>
+                        <input type="text" class="form-control" id="login_username" name="login_username">
+                    </div>
+                    <div class="mb-3">
+                        <label for="login_password" class="form-label">密碼</label>
+                        <input type="password" class="form-control" id="login_password" name="login_password">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-primary" id="login_btn">確認</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- section 02-2 loginModal 註冊 -->
+    <div class="modal fade" id="loginModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header text-bg-success">
+                    <h1 class="modal-title fs-5 fw-900" id="exampleModalLabel">會員註冊</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="" class="form-label">帳號</label>
+                        <input type="text" class="form-control" placeholder="帳號字數4~8!">
+                    </div>
+                    <div class="mb-3">
+                        <label for="" class="form-label">密碼</label>
+                        <input type="password" class="form-control" placeholder="密碼字數4~8!">
+                    </div>
+                    <div class="mb-3">
+                        <label for="" class="form-label">密碼確認</label>
+                        <input type="password" class="form-control" placeholder="確認密碼">
+                    </div>
+                    <div class="mb-3">
+                        <label for="" class="form-label">email</label>
+                        <input type="email" class="form-control" placeholder="email字數1~10!">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-primary">確認</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- section 02-3 loginModal 註冊+會員守則 -->
+    <div class="modal fade" id="loginModal3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <!-- modal-xl : 調大小 -->
+            <div class="modal-content">
+                <div class="modal-header text-bg-success">
+                    <h1 class="modal-title fs-5 fw-900" id="exampleModalLabel">會員註冊</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="m01 modal-body">
+                    <div class="row">
+                        <div class="col-6">
+                            <h2 class="fw-900">會員守則</h2>
+                            <p>無派任務呵呵穩定身後賺錢浙江見到讓你，豐原處理說明中文版本週說明驅動會員價怎麼辦表情自己後面，兄弟。</p>
+                            <p>無派任務呵呵穩定身後賺錢浙江見到讓你，豐原處理說明中文版本週說明驅動會員價怎麼辦表情自己後面，兄弟。</p>
+                            <p>無派任務呵呵穩定身後賺錢浙江見到讓你，豐原處理說明中文版本週說明驅動會員價怎麼辦表情自己後面，兄弟。</p>
+                            <p>無派任務呵呵穩定身後賺錢浙江見到讓你，豐原處理說明中文版本週說明驅動會員價怎麼辦表情自己後面，兄弟。</p>
+                            <p>無派任務呵呵穩定身後賺錢浙江見到讓你，豐原處理說明中文版本週說明驅動會員價怎麼辦表情自己後面，兄弟。</p>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="chk01">
+                                <label class="form-check-label" for="chk01">
+                                    同意
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="modal-body">
+                                <div class="mb-3">
+                                    <label for="username" class="form-label">帳號</label>
+                                    <input type="text" class="form-control" placeholder="帳號字數4~8!" id="username"
+                                        name="username">
+                                    <div class="valid-feedback">帳號符合規則</div>
+                                    <div class="invalid-feedback" id="inva01">帳號不符合規則</div>
+                                    <div class="invalid-feedback" id="inva02">帳號已存在</div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="password" class="form-label">密碼</label>
+                                    <input type="password" class="form-control" placeholder="密碼字數5~10!" id="password"
+                                        name="password">
+                                    <div class="valid-feedback">密碼符合規則</div>
+                                    <div class="invalid-feedback">密碼不符合規則</div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="re_password" class="form-label">密碼確認</label>
+                                    <input type="password" class="form-control" placeholder="確認密碼!" id="re_password"
+                                        name="re_password">
+                                    <div class="valid-feedback">密碼一致</div>
+                                    <div class="invalid-feedback">密碼不一致</div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="email" class="form-label">email</label>
+                                    <input type="email" class="form-control" placeholder="email字數1~10!" id="email"
+                                        name="email">
+                                    <div class="valid-feedback">Email符合規則</div>
+                                    <div class="invalid-feedback">Email不符合規則</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-primary" id="reg_btn">確認</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- section 03 幻燈片 -->
+    <section id="s03" class="wow animate__animated animate__backInLeft">
+        <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="false">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
+                    aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+                    aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+                    aria-label="Slide 3"></button>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item bg-cover active"
+                    style="background-image: url(images/car01.png); height: 100vh;">
+                    <div class="carousel-caption d-none d-md-block p-4 rounded-5 shadow-sm">
+                        <h5 class="fw-900">周年慶優惠方案001</h5>
+                        <p class="fw-500">
+                            忘記靈魂等待房子總算完成章節，銷售執行時間，大陸看看沒事不是很通訊，大陸好像它的新臺幣算是患者推廣而且不論財產還是每天房價，房屋衣服搜尋資源房子隊員協會出處先後考核版權所有死亡，兩種本頁將來裝置，各。
+                        </p>
+                    </div>
+                </div>
+                <div class="carousel-item bg-cover" style="background-image: url(images/car02.png); height: 100vh;">
+                    <div class="carousel-caption d-none d-md-block p-4 rounded-5 shadow-sm">
+                        <h5 class="fw-900">周年慶優惠方案002</h5>
+                        <p class="fw-500">
+                            忘記靈魂等待房子總算完成章節，銷售執行時間，大陸看看沒事不是很通訊，大陸好像它的新臺幣算是患者推廣而且不論財產還是每天房價，房屋衣服搜尋資源房子隊員協會出處先後考核版權所有死亡，兩種本頁將來裝置，各。
+                        </p>
+                    </div>
+                </div>
+                <div class="carousel-item bg-cover" style="background-image: url(images/car03.png); height: 100vh;">
+                    <div class="carousel-caption d-none d-md-block p-4 rounded-5 shadow-sm">
+                        <h5 class="fw-900">周年慶優惠方案003</h5>
+                        <p class="fw-500">
+                            忘記靈魂等待房子總算完成章節，銷售執行時間，大陸看看沒事不是很通訊，大陸好像它的新臺幣算是患者推廣而且不論財產還是每天房價，房屋衣服搜尋資源房子隊員協會出處先後考核版權所有死亡，兩種本頁將來裝置，各。
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon text-bg-info" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon text-bg-info" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </section>
+
+    <!-- section 04 得獎介紹 -->
+    <section id="s04">
+        <div class="container-fluid">
+            <div class="row align-items-center text-center"
+                style="background: linear-gradient(180deg,rgba(0, 0, 0, 0.2),rgba(0, 0, 0, 0.5));">
+                <div class="col-md-5" style="background-image: url(images/baker.jpg); height: 600px; background-attachment: fixed; background-size: cover;
+                background-position: -350px center;"></div>
+                <div class="col-md-7 p-5">
+                    <h1 class="mb-4 wow animate__animated animate__fadeInRight">西元1999年<span
+                            class="text-success fw-900">全國第一家</span></h1>
+                    <h1 class="mb-4 wow animate__animated animate__fadeInRight" data-wow-duration="1s"
+                        data-wow-delay="0s" data-wow-iteration="1">汽車專賣場</h1>
+                    <p class="mb-4 wow animate__animated animate__fadeInRight" data-wow-duration="1.5s"
+                        data-wow-delay="0s" data-wow-iteration="1">一定歌手在那裡所以，不喜歡看見，法人演。</p>
+                    <p class="mb-4 wow animate__animated animate__fadeInRight" data-wow-duration="1.5s"
+                        data-wow-delay="0s" data-wow-iteration="1">一定歌手在那裡所以，不喜歡看見，法人演。</p>
+                    <p class="mb-4 wow animate__animated animate__fadeInRight" data-wow-duration="1.5s"
+                        data-wow-delay="0s" data-wow-iteration="1">一定歌手在那裡所以，不喜歡看見，法人演。</p>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <h3>平年銷售額</h3>
+                            <h2 class="fw-900 counter01 wow animate__animated animate__jackInTheBox"
+                                data-wow-duration="2s" data-wow-delay="0s" data-wow-iteration="1">2,000,000元</h2>
+                        </div>
+                        <div class="col-md-3">
+                            <h3>獲獎項目</h3>
+                            <h2 class="fw-900 counter02 wow animate__animated animate__jackInTheBox"
+                                data-wow-duration="2s" data-wow-delay="0s" data-wow-iteration="1">36/項</h2>
+                        </div>
+                        <div class="col-md-3">
+                            <h3>專業認證</h3>
+                            <h2 class="fw-900 counter03 wow animate__animated animate__jackInTheBox"
+                                data-wow-duration="2s" data-wow-delay="0s" data-wow-iteration="1">16/項</h2>
+                        </div>
+                        <div class="col-md-3">
+                            <h3>銷售據點</h3>
+                            <h2 class="fw-900 counter04 wow animate__animated animate__jackInTheBox"
+                                data-wow-duration="2s" data-wow-delay="0s" data-wow-iteration="1">20/個</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- section 05 介紹人員 -->
+    <section class="bg-cover" id="s05"
+        style="background-image: url(images/party006.jpg);background-attachment: fixed; background-size: cover;">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-3 offset-1 wow animate__animated animate__backInLeft">
+                    <!-- offset 往右推移，以12格欄為基礎! -->
+                    <!-- 1 -->
+                    <div class="row5 s05_text01">
+                        <h2>烘培坊的職人精神</h2>
+                        <p>加上遭遇網通想想少年實際才是真實進攻我還群眾簡直，一臉人物認為民國描述加速，學者對她玻璃，劇情商標屬性取得家電科技有限公司教育活動聽說谷歌妻子開始，課堂機關一位公園先進性是因為，一生一直應當時期培訓。
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-8 py-5">
+                    <!-- 2 -->
+                    <div class="row row5 mt-4 wow animate__animated animate__backInRight" data-wow-duration="1.2s"
+                        data-wow-delay="0s" data-wow-iteration="1">
+                        <div class="col-md-6">
+                            雖然人才本人賺錢地位，室內競爭因此整體，如有美元矛盾生日工作似乎價值之間行為文件大小，很多投訴對他更新時間工作人員另一父母處理一笑問題意思感到，台鐵這些建材金錢時候法人畢業，進步才能語言，組合看起來。
+                        </div>
+                        <div class="col-md-6">
+                            雖然人才本人賺錢地位，室內競爭因此整體，如有美元矛盾生日工作似乎價值之間行為文件大小，很多投訴對他更新時間工作人員另一父母處理一笑問題意思感到，台鐵這些建材金錢時候法人畢業，進步才能語言，組合看起來。
+                        </div>
+                        <div class="col-md-6"></div>
+                    </div>
+                    <!-- 3 -->
+                    <div class="row row5 mt-4 wow animate__animated animate__backInRight" data-wow-duration="1.4s"
+                        data-wow-delay="0s" data-wow-iteration="1">
+                        <div class="col-md-6">
+                            雖然人才本人賺錢地位，室內競爭因此整體，如有美元矛盾生日工作似乎價值之間行為文件大小，很多投訴對他更新時間工作人員另一父母處理一笑問題意思感到，台鐵這些建材金錢時候法人畢業，進步才能語言，組合看起來。
+                        </div>
+                        <div class="col-md-6">
+                            雖然人才本人賺錢地位，室內競爭因此整體，如有美元矛盾生日工作似乎價值之間行為文件大小，很多投訴對他更新時間工作人員另一父母處理一笑問題意思感到，台鐵這些建材金錢時候法人畢業，進步才能語言，組合看起來。
+                        </div>
+                        <div class="col-md-6"></div>
+                    </div>
+                    <!-- 4 -->
+                    <div class="row mt-4 row5 wow animate__animated animate__backInRight" data-wow-duration="1.6s"
+                        data-wow-delay="0s" data-wow-iteration="1">
+                        <div class="col-md-6">
+                            雖然人才本人賺錢地位，室內競爭因此整體，如有美元矛盾生日工作似乎價值之間行為文件大小，很多投訴對他更新時間工作人員另一父母處理一笑問題意思感到，台鐵這些建材金錢時候法人畢業，進步才能語言，組合看起來。
+                        </div>
+                        <div class="col-md-6">
+                            雖然人才本人賺錢地位，室內競爭因此整體，如有美元矛盾生日工作似乎價值之間行為文件大小，很多投訴對他更新時間工作人員另一父母處理一笑問題意思感到，台鐵這些建材金錢時候法人畢業，進步才能語言，組合看起來。
+                        </div>
+                        <div class="col-md-6"></div>
+                    </div>
+                    <!-- 5 -->
+                    <div class="row row5 mt-4 wow animate__animated animate__backInRight" data-wow-duration="1.8s"
+                        data-wow-delay="0s" data-wow-iteration="1">
+                        <div class="col-md-6">
+                            雖然人才本人賺錢地位，室內競爭因此整體，如有美元矛盾生日工作似乎價值之間行為文件大小，很多投訴對他更新時間工作人員另一父母處理一笑問題意思感到，台鐵這些建材金錢時候法人畢業，進步才能語言，組合看起來。
+                        </div>
+                        <div class="col-md-6">
+                            雖然人才本人賺錢地位，室內競爭因此整體，如有美元矛盾生日工作似乎價值之間行為文件大小，很多投訴對他更新時間工作人員另一父母處理一笑問題意思感到，台鐵這些建材金錢時候法人畢業，進步才能語言，組合看起來。
+                        </div>
+                        <div class="col-md-6"></div>
+                    </div>
+                    <!-- 6 -->
+                    <div class="row row5 mt-4 wow animate__animated animate__backInRight" data-wow-duration="2s"
+                        data-wow-delay="0s" data-wow-iteration="1">
+                        <div class="col-md-6">
+                            雖然人才本人賺錢地位，室內競爭因此整體，如有美元矛盾生日工作似乎價值之間行為文件大小，很多投訴對他更新時間工作人員另一父母處理一笑問題意思感到，台鐵這些建材金錢時候法人畢業，進步才能語言，組合看起來。
+                        </div>
+                        <div class="col-md-6">
+                            雖然人才本人賺錢地位，室內競爭因此整體，如有美元矛盾生日工作似乎價值之間行為文件大小，很多投訴對他更新時間工作人員另一父母處理一笑問題意思感到，台鐵這些建材金錢時候法人畢業，進步才能語言，組合看起來。
+                        </div>
+                        <div class="col-md-6"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- section 06 蛋糕畫面-->
+    <section class="bg-info py-5" id="s06">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 text-center fw-900 wow animate__animated animate__zoomIn" data-wow-duration="1s"
+                    data-wow-delay="0s" data-wow-iteration="1">
+                    <i class="fa-solid fa-car fa-8x text-danger"></i>
+                    <!-- 上面這行為 Bootstrap Icon，小圖標，text-danger為改顏色 -->
+                    <h3 class="text-white my-4">特色汽車製作</h3>
+                    <!-- my-4 看第8章有寫 -->
+                    <p class="text-success">
+                        只是批發，我家馬上部門一支，接觸良好版權所有五年後面完了有關，評價離線解決方案兒童神秘執行環境演員引擎，本論壇常用失敗規模修改很熱，所需留言板性感，皮膚顯得大。</p>
+                </div>
+                <div class="col-md-4 text-center fw-900 wow animate__animated animate__zoomIn" data-wow-duration="1s"
+                    data-wow-delay="0.3s" data-wow-iteration="1">
+                    <i class="fa-solid fa-flag-checkered fa-8x text-warning"></i>
+                    <h3 class="text-white my-4">聚會餐點發想</h3>
+                    <p class="text-success">
+                        只是批發，我家馬上部門一支，接觸良好版權所有五年後面完了有關，評價離線解決方案兒童神秘執行環境演員引擎，本論壇常用失敗規模修改很熱，所需留言板性感，皮膚顯得大。</p>
+                </div>
+                <div class="col-md-4 text-center fw-900 wow animate__animated animate__zoomIn" data-wow-duration="1s"
+                    data-wow-delay="0.6s" data-wow-iteration="1">
+                    <i class="fa-solid fa-weight-scale fa-8x text-muted"></i>
+                    <h3 class="text-white my-4">酒水配合</h3>
+                    <p class="text-success">
+                        只是批發，我家馬上部門一支，接觸良好版權所有五年後面完了有關，評價離線解決方案兒童神秘執行環境演員引擎，本論壇常用失敗規模修改很熱，所需留言板性感，皮膚顯得大。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- section 07 對角線排版-->
+    <section id="s07">
+        <!-- section 07 對角線排版01-->
+        <section style="position: relative;">
+            <!-- position: relative; :會固定在那邊，排的話也會是從relative這邊開始 -->
+            <div class="row">
+                <div class="col-md-5 wow animate__animated  animate__flipInY"
+                    style="background-image: url(images/party005.jpg); position: absolute; top: 0; bottom: 0;"></div>
+                <!-- 這邊有打【position: absolute】-->
+                <!--  有打這個的元件不會算到排版裡面，且高度會跟<section style="position: relative;">一樣高，
+                    所以<div class="container"> 沒打row或d-flex也會排在最上面，而不是從有打【position: absolute】的原件下面開始排序 -->
+            </div>
+            <div class="container">
+                <div class="row justify-content-end wow animate__animated animate__fadeInRight" data-wow-duration="1.3s"
+                    data-wow-delay="0s" data-wow-iteration="1">
+                    <!-- justify-content-end : 推往右邊 -->
+                    <div class="col-md-7 mt-5 s07_text">
+                        <h2>我對網域名稱對我一部，區別建。</h2>
+                        <p>一半風險專題早上時間果然，給你經驗什麼是，晚上垃圾全國左右自信執行提醒醫生，沒人展示，提出了貨幣實現山西頻率前後基層天下頓時沉默笑話升級積分溫暖，英國你的訪問和他基本上傢俱準備監控登記教育瀏覽器閲讀，也就是方案圖文老公有機會十大種類一副，用來依然網上事件快車地面是怎麼家族客人禮品效率，主持好友街道畫面用途答案龍岡加拿大隊伍醫院，就算女朋友生成類似模式估計新竹國內注重任何人發達，不代表，品種同意是。
+                        </p>
+                        <button class="btn btn-outline-success">查看更多</button>
+                        <div class="row mt-5">
+                            <div class="col-md-6">
+                                <h3>觀察排行榜案件糖尿病，大會總。</h3>
+                                <p>一半風險專題早上時間果然，給你經驗什麼是，晚上垃圾全國左右自信執行提醒醫生，沒人展示，提出了貨幣實現山西頻率前後基層天下頓時沉默笑話升級積分溫暖，英國你的訪問和他基本上傢俱準備監控登記教育瀏覽器閲讀，也就是方案圖文老公有機會十大種類一副，用來依然網上事件快車地面是怎麼家族客人禮品效率，
+                                </p>
+                            </div>
+                            <div class="col-md-6">
+                                <h3>觀察排行榜案件糖尿病，大會總。</h3>
+                                <p>一半風險專題早上時間果然，給你經驗什麼是，晚上垃圾全國左右自信執行提醒醫生，沒人展示，提出了貨幣實現山西頻率前後基層天下頓時沉默笑話升級積分溫暖，英國你的訪問和他基本上傢俱準備監控登記教育瀏覽器閲讀，也就是方案圖文老公有機會十大種類一副，用來依然網上事件快車地面是怎麼家族客人禮品效率，主持好友街道畫面用途答案龍岡加拿大隊伍醫院，就算女朋友生成類似模式估計新竹國內注重任何人發達，不代表，品種同意是。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- section 08 對角線排版02 -->
+        <section>
+            <div class="container wow animate__animated animate__rubberBand" data-wow-duration="1.4s"
+                data-wow-delay="0s" data-wow-iteration="1">
+                <div class="fs-2 fw-900 text-center text-warning">獲獎紀錄</div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="d-flex align-items-center">
+                            <div>
+                                <i class="fa-solid fa-hands-holding-child fa-4x me-3 text-danger"></i>
+                            </div>
+                            <div>
+                                <h2 class="fw-900">獎項名稱001</h2>
+                                <p>戰鬥紛紛認定天地年輕新鮮檔案糖尿病多次增強有利於面臨，社會加上指數計劃品質好看靈魂照片標準都市以往，最近長期幹什麼，授。</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="d-flex align-items-center">
+                            <div>
+                                <i class="fa-solid fa-hands-holding-child fa-4x me-3 text-danger"></i>
+                            </div>
+                            <div>
+                                <h2 class="fw-900">獎項名稱002</h2>
+                                <p>戰鬥紛紛認定天地年輕新鮮檔案糖尿病多次增強有利於面臨，社會加上指數計劃品質好看靈魂照片標準都市以往，最近長期幹什麼，授。</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="d-flex align-items-center">
+                            <div>
+                                <i class="fa-solid fa-hands-holding-child fa-4x me-3 text-danger"></i>
+                            </div>
+                            <div>
+                                <h2 class="fw-900">獎項名稱003</h2>
+                                <p>戰鬥紛紛認定天地年輕新鮮檔案糖尿病多次增強有利於面臨，社會加上指數計劃品質好看靈魂照片標準都市以往，最近長期幹什麼，授。</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="d-flex align-items-center">
+                            <div>
+                                <i class="fa-solid fa-hands-holding-child fa-4x me-3 text-danger"></i>
+                            </div>
+                            <div>
+                                <h2 class="fw-900">獎項名稱004</h2>
+                                <p>戰鬥紛紛認定天地年輕新鮮檔案糖尿病多次增強有利於面臨，社會加上指數計劃品質好看靈魂照片標準都市以往，最近長期幹什麼，授。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- section 09 對角線排版03 -->
+        <section>
+            <section style="position: relative;">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-7 s08_text wow animate__animated  animate__bounceInLeft"
+                            data-wow-duration="1.3s" data-wow-delay="0s" data-wow-iteration="1">
+                            <h2 class="fw-900 text-center">品牌價值介紹</h2>
+                            <p>經歷運用普遍結婚什麼時候身邊我都室內女生，保持像素經濟恢復姓名，模擬不管，她的咱們一系列，意味着青。</p>
+                            <dl class="row">
+                                <dt class="col-sm-3">Description lists</dt>
+                                <dd class="col-sm-9">A description list is perfect for defining terms.</dd>
+
+                                <dt class="col-sm-3">Term</dt>
+                                <dd class="col-sm-9">
+                                    <p>Definition for the term.</p>
+                                    <p>And some more placeholder definition text.</p>
+                                </dd>
+
+                                <dt class="col-sm-3">Another term</dt>
+                                <dd class="col-sm-9">This definition is short, so no extra paragraphs or anything.</dd>
+
+                                <dt class="col-sm-3 text-truncate">Truncated term is truncated</dt>
+                                <dd class="col-sm-9">This can be useful when space is tight. Adds an ellipsis at the
+                                    end.
+                                </dd>
+
+                                <dt class="col-sm-3">Nesting</dt>
+                                <dd class="col-sm-9">
+                                    <dl class="row">
+                                        <dt class="col-sm-4">Nested definition list</dt>
+                                        <dd class="col-sm-8">I heard you like definition lists. Let me put a definition
+                                            list
+                                            inside your definition list.</dd>
+                                    </dl>
+                                </dd>
+                            </dl>
+                        </div>
+                    </div>
+                </div>
+                <div class="row justify-content-end">
+                    <div class="col-md-5 bg-info bg-cover  wow animate__animated  animate__flipInY"
+                        style="position: absolute; top: 0; bottom: 0; background-image: url(images/party007.jpg);">
+                    </div>
+                </div>
+            </section>
+
+            <!-- 練習 -->
+            <section>
+                <div class="col-md-6">
+                    <div class="row mt-5">
+                        <div class="col-md-6">
+                            <h3>觀察排行榜案件糖尿病，大會總。</h3>
+                        </div>
+                        <div class="col-md-6">
+                            <h3>觀察排行榜案件糖尿病，大會總。</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="mt-5">
+                        <div class="col-md-6">
+                            <h3>觀察排行榜案件糖尿病，大會總。</h3>
+                        </div>
+                        <div class="col-md-6">
+                            <h3>觀察排行榜案件糖尿病，大會總。</h3>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </section>
+    </section>
+
+    <!-- section 10 地圖插入 -->
+    <section id="s10">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <iframe class="wow animate__animated animate__bounceInUp"
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3640.0342014645644!2d120.60754807534897!3d24.17053327838611!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x34693e048d342aa9%3A0x2b6f18a6783fa3b!2z5Yue5YuV6YOo5Yue5YuV5Yqb55m85bGV572y5Lit5b2w5oqV5YiG572y77yI6Ie65Lit6IG36KiT5bGA77yJ!5e0!3m2!1szh-TW!2stw!4v1704328891944!5m2!1szh-TW!2stw"
+                        width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    <!-- 去地圖按分享，選【嵌入地圖】 -->
+                </div>
+                <div class="col-md-6 wow animate__animated  animate__bounceInRight" data-wow-duration="1.5s"
+                    data-wow-delay="0s" data-wow-iteration="1">
+                    <div class="mb-3">
+                        <label for="" class="form-label">姓名</label>
+                        <input type="text" class="form-control is-valid">
+                        <div class="valid-feedback">輸入符合規定!</div>
+                        <div class="invalid-feedback">輸入不符合規定!</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="" class="form-label">電話</label>
+                        <input type="phone" class="form-control is-invalid">
+                        <div class="valid-feedback">輸入符合規定!</div>
+                        <div class="invalid-feedback">輸入不符合規定!</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="" class="form-label">Email</label>
+                        <input type="email" class="form-control is-valid">
+                        <div class="valid-feedback">輸入符合規定!</div>
+                        <div class="invalid-feedback">輸入不符合規定!</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="" class="form-label">人數</label>
+                        <input type="number" class="form-control is-invalid" min="1" max="10">
+                        <div class="valid-feedback">輸入符合規定!</div>
+                        <div class="invalid-feedback">輸入不符合規定!</div>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1"
+                            checked>
+                        <label class="form-check-label" for="flexRadioDefault1">
+                            參加
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
+                        <label class="form-check-label" for="flexRadioDefault2">
+                            不參加
+                        </label>
+                    </div>
+                    <div class="text-end">
+                        <button class="btn btn-outline-secondary">取消</button>
+                        <button class="btn btn-primary">確認</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- section 11 -->
+    <section id="s11">
+        <div class="row">
+            <div class="col-md-6 py-5 bg-cover wow animate__animated animate__rotateInDownLeft" data-wow-duration="1.2s"
+                data-wow-delay="0.7s" data-wow-iteration="1" style="background-image: url(images/party008.jpg);">
+                <div class="row">
+                    <div class="col-md-8 p-3 ms-5 rounded-4" style="background-color: rgba(0, 0, 0, 0.4);">
+                        <small class="text-bg-warning fw-300 badge mb-2">加入我們</small>
+                        <h2 class="fw-900 text-white">徵才 - 業務經理數名</h2>
+                        <p class="fw-300 text-white">
+                            工商傳說永遠法國站點失去保證一張，鮮花造成排名鬱悶，有點遠學校工作協會研發平時，今後的人實踐萬華發佈時間元素標誌手指學者市場價紡織，人物運作尤其是在他居然進一步有一些會計中間不需要在那裡，四周擔任不大宜蘭母。
+                        </p>
+                        <a href="#" class="btn btn-outline-danger">詳細資料</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 py-5 bg-cover wow animate__animated animate__rotateInDownRight"
+                data-wow-duration="1.2s" data-wow-delay="0.7s" data-wow-iteration="1"
+                style="background-image: url(images/party009.jpg);">
+                <div class="row">
+                    <div class="col-md-8 p-3 ms-5 rounded-4" style="background-color: rgba(0, 0, 0, 0.4);">
+                        <small class="text-bg-success fw-300 badge mb-2">加入我們</small>
+                        <h2 class="fw-900 text-white">徵才 - 工讀生數名</h2>
+                        <p class="fw-300 text-white">
+                            工商傳說永遠法國站點失去保證一張，鮮花造成排名鬱悶，有點遠學校工作協會研發平時，今後的人實踐萬華發佈時間元素標誌手指學者市場價紡織，人物運作尤其是在他居然進一步有一些會計中間不需要在那裡，四周擔任不大宜蘭母。
+                        </p>
+                        <a href="#" class="btn btn-outline-success">詳細資料</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- section 12 底下footer的文字-->
+    <section id="s12">
+        <div class="container wow animate__animated animate__backInLeft" data-wow-duration="1.2s" data-wow-delay="1s"
+            data-wow-iteration="1">
+            <ul class="nav">
+                <li class="nav-item">
+                    <a class="nav-link active disabled fw-900" aria-current="page" href="#">Copy right XXXX.2024</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">momo購物商城</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">蝦皮購物商城</a>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/counterup2@2.0.2/dist/index.js">	</script>
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <script src="js/wow.min.js"></script>
+    <script>
+        new WOW().init();
+        const counterUp = window.counterUp.default
+
+        const callback = entries => {
+            entries.forEach(entry => {
+                const el = entry.target
+                if (entry.isIntersecting && !el.classList.contains('is-visible')) {
+                    counterUp(el, {
+                        duration: 800,
+                        // 單位為毫秒，千分之1秒
+                        delay: 16,
+                    })
+                    el.classList.add('is-visible')
+                }
+            })
+        }
+
+        const IO = new IntersectionObserver(callback, { threshold: 1 })
+
+        const el01 = document.querySelector('.counter01')
+        //  宣告el01為class名稱有counter01的物件
+        IO.observe(el01)
+        // el01，執行計數器
+        const el02 = document.querySelector('.counter02')
+        IO.observe(el02)
+
+        const el03 = document.querySelector('.counter03')
+        IO.observe(el03)
+
+        const el04 = document.querySelector('.counter04')
+        IO.observe(el04)
+
+        //***********************************************************
+        var flag_username = false;
+        var flag_password = false;
+        var flag_re_password = false;
+        var flag_email = false;
+        var flag_chk01 = false;
+        $(function () {
+            // 0217
+            //此網頁有藉由cookie來持續登入，所以當重新開啟後會判斷cookie存下的內容是否合法(資料是否存在資料庫中)
+            if (getCookie("UID01") != "") {
+                //UID01存在, 傳遞至後端api 判斷是否合法
+                var dataJSON = {};
+                dataJSON["UID01"] = getCookie("UID01");
+                console.log(JSON.stringify(dataJSON));
+                $.ajax({
+                    type: "POST",
+                    url: "member-Check_UID-api.php",
+                    data: JSON.stringify(dataJSON),
+                    dataType: "json",
+                    success: showdata_Check_UID,
+                    error: function () {
+                        alert("error-member-Check_UID-api.php");
+                    }
+                });
+            }
+
+            // 0217
+            //登出按鈕監聽 #s02_logout_btn
+            $("#s02_logout_btn").click(function(){
+                setCookie("UID01", "", 7);
+                location.href = "20240201-SPA.html";
+            });
+
+            //即時監聽 #username
+            $("#username").bind("input propertychange", function () {
+                // 上面為無時無刻的監聽
+                if ($(this).val().length > 3 && $(this).val().length < 9) {
+                    //如果符合規定, 會傳遞至後端檢查帳號是否存在，配合showdata_check_uni函數，來決定註冊的is-valid或is-invalid
+                    var dataJSON = {};
+                    dataJSON["Username"] = $("#username").val();
+                    console.log(JSON.stringify(dataJSON));
+                    $.ajax({
+                        type: "POST",
+                        url: "member-check_uni_api.php",
+                        data: JSON.stringify(dataJSON),
+                        dataType: "json",
+                        success: showdata_check_uni,
+                        error: function () {
+                            alert("error-member-check_uni_api.php");
+                        }
+                    });
+
+                } else {
+                    // 不符合規定
+                    $(this).removeClass('is-valid');
+                    // removeClass :　class增加
+                    $(this).addClass('is-invalid');
+                    // 下面為<div class="invalid-feedback">有多個，決定要顯示哪個
+                    $("#inva01").removeClass('d-none');
+                    $("#inva02").addClass('d-none');
+                    flag_username = false;
+                }
+            });
+
+            //即時監聽 #password
+            $("#password").bind("input propertychange", function () {
+                // console.log($(this).val().length); is-invalid
+                if ($(this).val().length > 4 && $(this).val().length < 11) {
+                    //符合規定
+                    $(this).removeClass('is-invalid');
+                    $(this).addClass('is-valid');
+                    flag_password = true;
+                } else {
+                    //不符合規定
+                    $(this).removeClass('is-valid');
+                    $(this).addClass('is-invalid');
+                    flag_password = false;
+                }
+            });
+
+            //即時監聽 #re_password
+            $("#re_password").bind("input propertychange", function () {
+                if ($(this).val() == $("#password").val()) {
+                    //符合規定
+                    $(this).removeClass('is-invalid');
+                    $(this).addClass('is-valid');
+                    flag_re_password = true;
+                } else {
+                    //不符合規定
+                    $(this).removeClass('is-valid');
+                    $(this).addClass('is-invalid');
+                    flag_re_password = false;
+                }
+            });
+
+            //即時監聽 #email
+            $("#email").bind("input propertychange", function () {
+                // console.log($(this).val().length); is-invalid
+                if ($(this).val().length > 0 && $(this).val().length < 11) {
+                    //符合規定
+                    $(this).removeClass('is-invalid');
+                    $(this).addClass('is-valid');
+                    flag_email = true;
+                } else {
+                    //不符合規定
+                    $(this).removeClass('is-valid');
+                    $(this).addClass('is-invalid');
+                    flag_email = false;
+                }
+            });
+
+            //監聽 checkbox #chk01
+            $("#chk01").change(function () {
+                // change 有變化的時候
+                if ($(this).is(":checked")) {//$(this).is(":checked") : checkbox專用，有勾選的時候為true
+                    flag_chk01 = true;
+                } else {
+                    flag_chk01 = false;
+                }
+            });
+
+            //註冊按鈕監聽 #reg_btn
+            $("#reg_btn").click(function () {
+                // console.log("test");             
+                if (flag_username && flag_password && flag_re_password && flag_email && flag_chk01) {
+                    //{"Username":"XX", "Password":"XXX", "Email":"XXXXX"}
+                    var dataJSON = {};
+                    dataJSON["Username"] = $("#username").val();
+                    dataJSON["Password"] = $("#password").val();
+                    dataJSON["Email"] = $("#email").val();
+                    console.log(JSON.stringify(dataJSON));
+
+                    //傳遞至後端執行註冊行為
+                    $.ajax({
+                        type: "POST",
+                        url: "20240201-Create-api.php",
+                        data: JSON.stringify(dataJSON),
+                        dataType: "json",
+                        success: showdata,
+                        error: function () {
+                            alert("error-member-Create-api.php");
+                        }
+                    });
+
+                } else {
+                    alert("欄位有錯請修正!");
+                }
+            });
+
+            //登入按鈕監聽 #login_btn，配合showdata_login函數
+            $("#login_btn").click(function () {
+                // console.log($("#login_username").val()+$("#login_password").val());
+                //{"Username":"XX", "Password":"XXX"}
+                var dataJSON = {};
+                dataJSON["Username"] = $("#login_username").val();
+                dataJSON["Password"] = $("#login_password").val();
+                console.log(JSON.stringify(dataJSON));
+
+                //傳遞至後端執行登入行為
+                $.ajax({
+                    type: "POST",
+                    url: "member-login_api.php",
+                    data: JSON.stringify(dataJSON),
+                    dataType: "json",
+                    success: showdata_login,
+                    error: function () {
+                        alert("error-member-login_api.php");
+                    }
+                });
+            });
+        });
+
+        function showdata(data) {
+            console.log(data);
+            if (data.state) {
+                alert(data.message);
+                location.href = "20240201-SPA.html"
+            } else {
+                alert(data.message);
+            }
+        }
+
+        function showdata_check_uni(data) {
+            console.log(data);
+            if (data.state) {
+                //帳號不存在, 可以使用!
+                $("#username").removeClass('is-invalid');
+                $("#username").addClass('is-valid');
+                flag_username = true;
+            } else {
+                //帳號存在, 不可以使用!
+                $("#username").removeClass('is-valid');
+                $("#username").addClass('is-invalid');
+                // 下面為<div class="invalid-feedback">有多個，決定要顯示哪個
+                $("#inva01").addClass('d-none');
+                $("#inva02").removeClass('d-none');
+                flag_username = false;
+            }
+        }
+
+        // 登入後
+        function showdata_login(data) {
+            console.log(data);
+            if (data.state) {
+                alert(data.message);
+                //登入時抓取UID01的值，並使用UID01的值來創造cookie
+                // console.log(data.data[0].UID01);
+                var uid01 = data.data[0].UID01;
+                // 創建名叫【UID01】的cookie值，內容為uid01，且會存在持續7天
+                setCookie("UID01", uid01, 7);
+
+                $("#loginModal").modal("hide");
+                $("#user_message").text(data.data[0].Username+ "登入中!");
+                // 隱藏登入和註冊按鈕
+                $("#into01").addClass('d-none');
+                $("#into02").addClass('d-none');
+
+                // 0217
+                //顯示高級功能
+                $("#s02_member_btn01").removeClass("disabled");
+                $("#s02_member_btn02").removeClass("disabled");
+                $("#s02_member_btn03").removeClass("disabled");
+
+                //顯示登出按鈕
+                $("#s02_logout_btn").removeClass("d-none");
+            } else {
+                alert(data.message);
+            }
+        }
+
+        // 0217
+        // 網頁開啟時看cookie來看是否已經登入了
+        function showdata_Check_UID(data) {
+            console.log(data);
+            if (data.state) {
+                //驗證成功
+                $("#user_message").text(data.data[0].Username + "登入中!");
+                // 隱藏登入和註冊按鈕
+                $("#into01").addClass("d-none");
+                $("#into02").addClass("d-none");
+
+                //顯示高級功能
+                $("#s02_member_btn01").removeClass("disabled");
+                $("#s02_member_btn02").removeClass("disabled");
+                $("#s02_member_btn03").removeClass("disabled");
+
+                //顯示登出按鈕
+                $("#s02_logout_btn").removeClass("d-none");
+            }
+            else{
+                // 顯示登入和註冊按鈕
+                $("#into01").removeClass("d-none");
+                $("#into02").removeClass("d-none");
+            }
+        }
+
+        //w3s 創造cookie
+        function setCookie(cname, cvalue, exdays) {
+            const d = new Date();
+            d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+            let expires = "expires=" + d.toUTCString();
+            document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+        }
+
+        // 0217
+        //w3s 尋找cookie的value的內容
+        function getCookie(cname) {
+            let name = cname + "=";
+            let decodedCookie = decodeURIComponent(document.cookie);
+            let ca = decodedCookie.split(';');
+            for (let i = 0; i < ca.length; i++) {
+                let c = ca[i];
+                while (c.charAt(0) == ' ') {
+                    c = c.substring(1);
+                }
+                if (c.indexOf(name) == 0) {
+                    return c.substring(name.length, c.length);
+                }
+            }
+            return "";
+        }
+    </script>
+</body>
+
+</html>

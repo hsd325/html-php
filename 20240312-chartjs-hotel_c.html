@@ -1,0 +1,133 @@
+<!-- chart.js的練習，縣市人口分布折線圖 -->
+<!-- axios的練習 -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>圖表練習 - 旅館民宿 - 觀光資訊資料庫</title>
+    <link rel="shortcut icon" href="images/icon/icon.ico" type="images/x-icon"><!-- icon更換 -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/myall.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="row justify-content-center pt-5">
+            <div class="col-md-10">
+                <div class="card">
+                    <div class="card-body">
+                        <canvas id="myChart01"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.6.7/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        var regionTitle = [];
+        var counter = [];
+        var regionData = [];
+        var chart01;
+        $(function () {
+            //產生折線圖圖表
+            var ctx01 = document.getElementById('myChart01');
+            chart01 = new Chart(ctx01, {
+                type: 'line',
+                data: {
+                    labels: [],
+                    datasets: [{
+                        label: '各區旅館分布圖',
+                        data: [],
+                        borderWidth: 2,
+                        backgroundColor: ['#FAA98B', '#E6AECF', '#AEE0DD', '#01ACBD', '#FF445F', '#6F925A'],
+                        color: '#666'
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: false
+                        }
+                    }
+                }
+            });
+
+            // axios串接資料
+            // axios.get('路徑')
+            axios.get('js/hotel_C_f.json')
+                // .then(function (response) : 如果成功的話
+                // response : 擷取到的資料
+                .then(function (response) {
+                    // handle success
+                    console.log(response);
+                    // response.data.XML_Head.Infos.Info : 資料的位置
+                    console.log(response.data.XML_Head.Infos.Info);
+                    //資料重構
+                    response.data.XML_Head.Infos.Info.forEach(function (item) {
+                        // getRegion :為資料縣市的名稱
+                        var getRegion = item.Region;
+                        // counter為一個陣列
+                        // counter[getRegion] :在counter陣列裡面找尋是否有getRegion這個值內容的key(索引值，類似forEach的key)
+                        if (counter[getRegion] == undefined) {
+                            // counter名字叫getRegion的索引值=regionData陣列資料的數量，這裡算的是有幾個子陣列
+                            counter[getRegion] = regionData.length;
+                            // regionData推一個新的子陣列進去，第一次推進去時regionData會變為2維陣列
+                            regionData.push(new Array());
+                            // counter[getRegion] 的值存到 regionTitle陣列裡面
+                            // counter[getRegion]的值都為數字
+                            // 範例-> 【regionTitle[5] = 2;】 : 在key(索引值)=5的位置新增【2】的內容，且當如果key(索引值)=5為空值(undefined)也就是沒被創造時，會自己創造key(索引值)=5的位置來使用
+                            regionTitle[counter[getRegion]] = getRegion;
+                        }
+                        // 藉由縣市(getRegion)來決定要推到哪個 regionData陣列的子陣列裡面，位置由counter[getRegion]决定。
+                        // counter的key為縣市名稱
+                        regionData[counter[getRegion]].push(item);
+                    });
+
+                    // 下面這3個console.log的結果可看筆記，有圖
+                    // regionTitle : 將counter照順序排列，順序會跟regionData一樣，counter為亂排的，排序: 以counter的內容(是內容不是索引值)從小到大排序
+                    console.log("regionTitle");
+                    console.log(regionTitle);
+                    // counter : counter為當getRegion有新的內容時就記錄1筆，且同時有regionData的分類功能，可在regionData[xx]的xx裡面使用
+                    // 因為索引值是照中文排的，不是照值(內容)的大小排的，所以排序會很亂
+                    console.log("counter");
+                    console.log(counter);
+                    // regionData : 依counter[getRegion]的值來決定這筆資料要放在哪個子陣列裡面
+                    console.log("regionData");
+                    console.log(regionData);
+
+                    // regionTitle : 分類這筆資料總共有幾個不同的縣市(不會重複)，且計算每個縣市總共有幾筆資料(用push決定要推上哪個子陣列，在看子陣列有幾筆資料來推算這個縣市總共有幾筆資料)
+
+                    // regionTitle和counter的關係為: 將key值和內容互換過來的茶別
+
+                    // regionData : 按照counter的內容，將數字從大到小排列，在藉由內容(數字)抓取對應的資料
+
+                    // 更新圖表數據
+                    regionTitle.forEach(function (item, key) {
+                        // chart01為折線圖的意思
+                        // chart01的labels推regionTitle的內容
+                        chart01.data.labels.push(item); //x軸
+                        // 範例 : regionData的內容->{[1,2],[2,3,4],[5,4,2]}
+                        // regionData[2].length :  regionData的第2個子陣列裡總共有幾筆資料，總更有3筆資料
+                        chart01.data.datasets[0].data.push(regionData[key].length); //y軸
+                    });
+                    chart01.update();
+                })
+                // .catch(function (error) : 如果失敗的話
+                .catch(function (error) {
+                    // handle error
+                    console.log(error);
+                })
+                // .finally(function () : 不管對錯都會執行這個
+                .finally(function () {
+                    // always executed
+                });
+        });
+    </script>
+</body>
+
+</html>

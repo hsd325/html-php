@@ -1,0 +1,192 @@
+<!-- 排版練習，增加左邊排版 -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML 和 CSS 語法練習</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/myall.css">
+    <link rel="stylesheet" href="css/all.min.css">
+    <style>
+        body {
+            background-color: var(--mycolor01);
+            padding-top: 15px;
+        }
+
+        .wrapper {
+            width: 1024px;
+            margin-top: 0;
+            margin-bottom: 0;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .banner img {
+            width: 100%;
+        }
+
+        .banner nav {
+            background-color: var(--mycolor02);
+            text-align: center;
+        }
+
+        .banner ul {
+            display: inline-block;
+        }
+
+        .banner nav ul li {
+            list-style-type: none;
+            float: left;
+        }
+
+        .banner nav ul li a{
+            display: block;
+            background-color: var(--mycolor03);
+            padding-top: 15px;
+            padding-bottom: 15px;
+            padding-left: 20px;
+            padding-right: 20px;
+            margin-right: 2px;
+            text-decoration: none;
+            color: var(--textcolor01);
+        }
+
+        .banner nav ul li a:hover{
+            background-color: var(--mycolor01);
+            color: var(--textcolor03);
+        }
+
+        .sidebar{
+            background-color: var(--mycolor04);
+            width: 250px;
+            height: 80vh;
+            /* vh: view螢幕 height高度 */
+            /* 此設定為物件的長度等於瀏覽器可見的長度，但位置不會變，單純只是長度會變化而已 */
+            float: left;
+            margin-right: 5px;
+            margin-top: 5px;            
+        }
+
+        .sidebar nav ul li{
+            list-style-type: none;
+        }
+
+        .sidebar nav ul li a{
+            background-color: var(--mycolor01);
+            display: block;
+            width: 150px;
+            height: 60px;
+            text-align: center;
+            margin-top: 5px;
+            line-height: 60px;
+            text-decoration: none;
+            font-style: 20px;
+            /* 字體大小             */
+        }
+
+        .sidebar nav ul li a:hover{
+            background-color: var(--mycolor02);
+            color: var(--textcolor03);
+        }
+
+        .content_in{
+            padding-top: 15px;
+            padding-bottom: 15px;
+            padding-left: 30px;
+            padding-right: 30px;
+            text-align: center;
+        }
+
+        .content_in p{
+            font-size: 24px;
+            margin-bottom: 36px;
+        }
+
+        .content_in a{
+            display: block;
+            width: 150px;
+            height: 60px;
+            background-color: var(--mycolor04);
+            margin-top: 0;
+            margin-bottom: 0;
+            margin-left: auto;
+            margin-right: auto;
+            text-decoration: none;
+            line-height: 60px;
+            font-size: 32px;
+        }
+
+        .footer{
+            background-color: var(--mycolor03);
+        }
+        .footer p{
+            text-align: center;
+            font-size: 30px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+
+        @media screen and (max-width: 1024px){
+            .wrapper{
+                width: 100%;
+            }
+            .sidebar{
+                width: 100%;
+                height: auto;
+                /* height: auto; 隨著內容調整高度 */
+                text-align: center;
+            }
+            .sidebar ul{
+                display: inline-block;
+            }
+            .sidebar ul li{
+                float: left;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="banner d-lg-block d-none">
+            <img src="https://fakeimg.pl/1600x200/200">
+        <nav>
+            <ul>
+                <li><a href="#">
+                    <i class="fa-solid fa-house-flag mr-3 textcolor03"></i>首頁
+                </a></li>
+                <li><a href="#">
+                    <i class="fa-regular fa-newspaper mr-3"></i></i>最新消息
+                </a></li>
+                <li><a href="#">合作店家</a></li>
+                <li><a href="#">關於我們</a></li>
+                <li><a href="#">聯絡我們</a></li>
+            </ul>
+        </nav>
+        </div>
+        <div class="sidebar d-md-block d-none">
+            <nav>
+                <ul>
+                    <li><a href="#" class="textcolor02  fw-900">點餐流程</a></li>
+                    <li><a href="#" class="textcolor02  fw-900">常見問題</a></li>
+                    <li><a href="#" class="textcolor02  fw-900">優惠資訊</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="content">                      
+            <div class="content_in">
+                <h1 class="textcolor02">歡迎光臨</h1>
+                <p>小學停止檢驗機制始終，外面照片衣服滿意新技術，描述身影有的多個參加推薦擁有你也你就，哪裡創建好激動印刷快捷說話，這種指數保存依據您現在報紙文學宣傳還沒對象證據收入什麼，由此由此進入官員上班衝擊此時群發常常身體體內下來，標準上下提升故事看著。</p>
+                <p>面積兩次先進根本地上湖北，我國土地無線家人開心及其表演結束是一種本頁使得，手續轉移呵呵房屋患者概念姑娘，描述重要需求擁有環保娛樂寫真婦女第二法國照顧日韓，幹部親自提出了證明系列爆炸，批評或者接着植物期間聲明作家用戶名首先呵呵，我現在危險精神女生動態簡直一臉刷新一座效率，尚未網頁希望以前小心日前總結姑娘交換部落有一些，之間和我教材台北就要像素接口突出，學歷形勢患者帶來動畫不承擔，的錢記錄，不能臨床構成，資料庫唱片難以回家基層圖書補充一切，成為任務女孩，最新互動看著讀書宣傳一方面，你可以皇帝感謝很。</p>
+                <p>原料液晶微笑，學歷教程，下面你們，消費者魔獸看出同意網站投訴準確詳細訊息，需求銀行加拿大天然含有鮮花投入實踐授權方式，是以團隊開發商最高，空間女生上漲，作品感。</p>
+                <a href="#" class="textcolor01 fw-900">了解更多</a>
+            </div>
+        </div>
+        <div class="footer d-md-block d-none">
+            <p class="textcolor01">雲端技術應用實務班製作. 20231205.</p>
+        </div>
+    </div>
+</body>
+
+</html>

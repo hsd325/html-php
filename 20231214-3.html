@@ -1,0 +1,297 @@
+<!-- 排版練習，flex-row~mt-auto(上)推格子 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ch7. flex</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/myall.css">
+    <style>
+        .box{
+            height: 160px;
+            text-align: center;
+            border: 2px solid var(--mycolor02);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <p class="display-4 fw-900">1. flex-row</p>
+        <div class="row d-flex flex-row">
+            <div class="col-3">
+                <div class="box bg-success"><h1>1</h1></div>
+            </div>
+            <div class="col-3">
+                <div class="box bg-success"><h1>2</h1></div>
+            </div>
+            <div class="col-3">
+                <div class="box bg-success"><h1>3</h1></div>
+            </div>
+        </div>
+
+        <!-- 水平反轉 -->
+        <p class="display-4 fw-900">2. flex-row-reverse(水平反轉)</p>
+        <div class="row d-flex flex-row-reverse">
+            <div class="col-3">
+                <div class="box bg-success"><h1>1</h1></div>
+            </div>
+            <div class="col-3">
+                <div class="box bg-success"><h1>2</h1></div>
+            </div>
+            <div class="col-3">
+                <div class="box bg-success"><h1>3</h1></div>
+            </div>
+        </div>
+        <!-- 變垂直擺放 -->
+        <p class="display-4 fw-900">3. flex-column(垂直)</p>
+        <div class="row d-flex flex-column">
+            <div class="col-3">
+                <div class="box bg-success"><h1>1</h1></div>
+            </div>
+            <div class="col-3">
+                <div class="box bg-success"><h1>2</h1></div>
+            </div>
+            <div class="col-3">
+                <div class="box bg-success"><h1>3</h1></div>
+            </div>
+        </div>
+        <!-- 垂直反轉 -->
+        <p class="display-4 fw-900">4. flex-column-reverse(垂直反轉)</p>
+        <div class="row d-flex flex-column-reverse">
+            <div class="col-3">
+                <div class="box bg-success"><h1>1</h1></div>
+            </div>
+            <div class="col-3">
+                <div class="box bg-success"><h1>2</h1></div>
+            </div>
+            <div class="col-3">
+                <div class="box bg-success"><h1>3</h1></div>
+            </div>
+        </div>
+        <!-- 所有靠左 -->
+        <p class="display-4 fw-900">5. justify-content-start(所有靠左)</p>
+        <div class="row d-flex justify-content-start">
+            <div class="col-3">
+                <div class="box bg-success"><h1>1</h1></div>
+            </div>
+            <div class="col-3">
+                <div class="box bg-success"><h1>2</h1></div>
+            </div>
+            <div class="col-3">
+                <div class="box bg-success"><h1>3</h1></div>
+            </div>
+        </div>
+        <!-- 所有靠中 -->
+        <p class="display-4 fw-900">6. justify-content-center(所有靠中)</p>
+        <div class="row d-flex justify-content-center">
+            <div class="col-3">
+                <div class="box bg-success"><h1>1</h1></div>
+            </div>
+            <div class="col-3">
+                <div class="box bg-success"><h1>2</h1></div>
+            </div>
+            <div class="col-3">
+                <div class="box bg-success"><h1>3</h1></div>
+            </div>
+        </div>
+        <!-- 所有靠右 -->
+        <p class="display-4 fw-900">7. justify-content-end(所有靠右)</p>
+        <div class="row d-flex justify-content-end">
+            <div class="col-3">
+                <div class="box bg-success"><h1>1</h1></div>
+            </div>
+            <div class="col-3">
+                <div class="box bg-success"><h1>2</h1></div>
+            </div>
+            <div class="col-3">
+                <div class="box bg-success"><h1>3</h1></div>
+            </div>
+        </div>
+        <!-- 最左邊元件靠最左，最右邊元件靠最右，但裡面元件的間距都相同 -->
+        <p class="display-4 fw-900">8. justify-content-between</p>
+        <div class="row d-flex justify-content-between">
+            <div class="col-3">
+                <div class="box bg-success"><h1>1</h1></div>
+            </div>
+            <div class="col-3">
+                <div class="box bg-success"><h1>2</h1></div>
+            </div>
+            <div class="col-3">
+                <div class="box bg-success"><h1>3</h1></div>
+            </div>
+        </div>
+        <!-- 物件的左右間格都相同，但彼此的不會重疊 -->
+        <p class="display-4 fw-900">9. justify-content-around</p>
+        <div class="row d-flex justify-content-around">
+            <div class="col-3">
+                <div class="box bg-success"><h1>1</h1></div>
+            </div>
+            <div class="col-3">
+                <div class="box bg-success"><h1>2</h1></div>
+            </div>
+            <div class="col-3">
+                <div class="box bg-success"><h1>3</h1></div>
+            </div>
+        </div>
+        <!-- 垂直排列靠左 -->
+        <p class="display-4 fw-900">10. justify-content-around</p>
+        <div class="row flex-column align-items-start">
+            <div class="col-3">
+                <div class="box bg-success"><h1>1</h1></div>
+            </div>
+            <div class="col-3">
+                <div class="box bg-success"><h1>2</h1></div>
+            </div>
+            <div class="col-3">
+                <div class="box bg-success"><h1>3</h1></div>
+            </div>
+        </div>
+        <!-- 垂直排列靠左 -->
+        <p class="display-4 fw-900">11. align-items-start</p>
+        <div class="row flex-column align-items-start">
+            <div class="col-3">
+                <div class="box bg-success"><h1>1</h1></div>
+            </div>
+            <div class="col-3">
+                <div class="box bg-success"><h1>2</h1></div>
+            </div>
+            <div class="col-3">
+                <div class="box bg-success"><h1>3</h1></div>
+            </div>
+        </div>
+        <!-- 垂直排列靠中 -->
+        <p class="display-4 fw-900">12. align-items-center</p>
+        <div class="row flex-column align-items-center">
+            <div class="col-3">
+                <div class="box bg-success"><h1>1</h1></div>
+            </div>
+            <div class="col-3">
+                <div class="box bg-success"><h1>2</h1></div>
+            </div>
+            <div class="col-3">
+                <div class="box bg-success"><h1>3</h1></div>
+            </div>
+        </div>
+        <!-- 垂直排列靠左 -->
+        <p class="display-4 fw-900">13. align-items-end</p>
+        <div class="row flex-column align-items-end">
+            <div class="col-3">
+                <div class="box bg-success"><h1>1</h1></div>
+            </div>
+            <div class="col-3">
+                <div class="box bg-success"><h1>2</h1></div>
+            </div>
+            <div class="col-3">
+                <div class="box bg-success"><h1>3</h1></div>
+            </div>
+        </div>
+</div>
+<div class="container">
+        <!-- 隨畫面大小而變動 -->
+        <p class="display-4 fw-900">14. align-items-end</p>
+        <div class="row flex-column align-items-center">
+            <div class="col-sm-3 align-self-start">
+                <div class="box bg-success"><h1>1</h1></div>
+            </div>
+            <div class="col-3">
+                <div class="box bg-success"><h1>2</h1></div>
+            </div>
+            <div class="col-sm-3 align-self-end">
+                <div class="box bg-success"><h1>3</h1></div>
+            </div>
+            <div class="col-3">
+                <div class="box bg-success"><h1>4</h1></div>
+            </div>
+            <div class="col-sm-3 align-self-start">
+                <div class="box bg-success"><h1>5</h1></div>
+            </div>
+        </div>
+
+        <p class="display-4 fw-900">15. 排序 order</p>
+        <div class="row">
+            <div class="col-2 order-1">
+                <div class="box bg-success"><h1>1</h1></div>
+            </div>
+            <div class="col-2 order-2">
+                <div class="box bg-success"><h1>2</h1></div>
+            </div>
+            <div class="col-2 order-0">
+                <div class="box bg-success"><h1>3</h1></div>
+            </div>
+            <div class="col-2 order-3">
+                <div class="box bg-success"><h1>4</h1></div>
+            </div>
+            <div class="col-2 order-5">
+                <div class="box bg-success"><h1>5</h1></div>
+            </div>
+            <div class="col-2 order-4">
+                <div class="box bg-success"><h1>6</h1></div>
+            </div>
+        </div>
+
+        <p class="display-4 fw-900">15-1. 排序 order練習 從小到大</p>
+        <h1>初始:1, 2, 3, 4, 5, 6</h1>
+        <h1>sm:2, 3, 4, 5, 6, 1</h1>
+        <h1>md:3, 4, 5, 6, 1, 2</h1>
+        <h1>lg:4, 5, 6, 1, 2, 3</h1>
+        <h1>xl:5, 6, 1, 2, 3, 4</h1>
+        <div class="row">
+            <div class="col-2 order-sm-1 order-md-2 order-lg-3 order-xl-4">
+                <div class="box bg-success"><h1>1</h1></div>
+            </div>
+            <div class="col-2 order-sm-2 order-md-3 order-lg-4 order-xl-5">
+                <div class="box bg-success"><h1>2</h1></div>
+            </div>
+            <div class="col-2 order-sm-3 order-md-4 order-lg-5 order-xl-0">
+                <div class="box bg-success"><h1>3</h1></div>
+            </div>
+            <div class="col-2 order-sm-4 order-md-5 order-lg-0 order-xl-1">
+                <div class="box bg-success"><h1>4</h1></div>
+            </div>
+            <div class="col-2 order-sm-5 order-md-0 order-lg-1 order-xl-2">
+                <div class="box bg-success"><h1>5</h1></div>
+            </div>
+            <div class="col-2 order-sm-0 order-md-1 order-lg-2 order-xl-3">
+                <div class="box bg-success"><h1>6</h1></div>
+            </div>
+        </div>
+
+        <p class="display-4 fw-900">16. 推格子 ms-auto(左)，me-auto(右)</p>
+        <div class="row">
+            <div class="col-2 me-auto">
+                <div class="box bg-info"><h1>1</h1></div>
+            </div>
+            <div class="col-2">
+                <div class="box bg-info"><h1>2</h1></div>
+            </div>
+            <div class="col-2">
+                <div class="box bg-info"><h1>3</h1></div>
+            </div>
+            </div>
+        </div>
+
+        <p class="display-4 fw-900">16-1. 推格子(上下) mt-auto(上)，mb-auto(下)</p>
+        <div class="row d-flex flex-column" style="height: 100vh;">
+            <div class="col-2 ">
+                <div class="box bg-info"><h1>1</h1></div>
+            </div>
+            <div class="col-2 mb-auto">
+                <div class="box bg-info"><h1>2</h1></div>
+            </div>
+            <div class="col-2">
+                <div class="box bg-info"><h1>3</h1></div>
+            </div>
+            </div>
+        </div>
+
+        <p class="display-4 fw-900">17. 間隔spacinf</p>
+        <div class="row">
+            <div class="col-12">
+                <p>請您立刻於是貨幣本地來到受傷魔獸規律公司親自姓名帳號不去完善，那麼多醫生後面高雄儘量造成家裡購買責任特點製作是由一身讓人，性格經銷商沒什麼情形三年教師企業通知沒有什麼，暴力網頁班，然而提交沒有她們模組按鈕超過組織一絲，最好懷疑戀愛苗栗，機票界面體育違反年。</p>
+            </div>
+        </div>
+</div>
+    <script src="js/bootstrap.bundle.min.js"></script> 
+</body>
+</html>

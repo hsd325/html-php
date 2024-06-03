@@ -1,0 +1,160 @@
+<!-- chart.js的練習，這邊練習長條圖和圓餅圖，資料是從資料庫抓來的 -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>畫圖chartjs</title>
+    <link rel="shortcut icon" href="images/icon/icon.ico" type="images/x-icon"><!-- icon更換 -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/myall.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-10 pt-5">
+                <h1 class="text-center">人口分布長條圖</h1>
+                <div class="card">
+                    <div class="card-body">
+                        <canvas id="myChartAddr"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-10 pt-5">
+                <h1 class="text-center">學歷分布圓餅圖</h1>
+                <div class="card">
+                    <div class="card-body">
+                        <canvas id="myChartEdu"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <!-- chart.js的使用，拿來畫報表圖的 -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <script>
+        //居住人口分布
+        // 長條圖
+        // 必須寫const chart，讓下面可以用chart來push資料進去
+        const ctxAddr = document.getElementById('myChartAddr');
+        const chartAddr = new Chart(ctxAddr, {
+            type: 'bar',
+            data: {
+                labels: [],
+                datasets: [{
+                    label: '居住縣市人口分布圖',
+                    data: [],
+                    borderWidth: 6,
+                    backgroundColor: ['#FAA98B', '#E6AECF', '#AEE0DD', '#01ACBD', '#FF445F', '#6F925A'],
+                    borderColor: '#E8C7B6'
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true //起始點是否要是0
+                    }
+                },
+                // plugins: 插件配置，用于配置插件的参数。
+                plugins: {
+                    // legend: 图例配置，用于定义图例的外观和样式。
+                    legend: {
+                        // 這裡設定labels
+                        labels: {
+                            font: {
+                                size: 24,
+                                weight: 'bolder' //字設為粗體
+
+                            },
+                        }
+                    }
+                }
+            }
+        });
+        // type: 'bar', 決定類型
+        //     data: {
+        //         labels: [], 每一項下面的文字
+        //         datasets: [{
+        //             label: '居住縣市人口分布圖', 圖表的名字
+        //             data: [], 每一項的內容(每一個長條柱的長度)
+        //             borderWidth: 6, 長條柱的寬度
+        //             backgroundColor: ['#FAA98B', '#E6AECF', '#AEE0DD', '#01ACBD', '#FF445F', '#6F925A'], 長條柱的顏色，當數量超過顏色會進行重複
+        //             borderColor: '#E8C7B6' 每個長條柱的外框顏色
+        //         }]
+        //     },
+
+
+
+        //學歷人口分布
+        // 圓餅圖
+        const ctxEdu = document.getElementById('myChartEdu');
+        const chartEdu = new Chart(ctxEdu, {
+            type: 'doughnut',
+            data: {
+                labels: [],
+                datasets: [{
+                    label: '學歷人口分布圖',
+                    data: [],
+                    borderWidth: 2,
+                    backgroundColor: ['#FAA98B', '#E6AECF', '#AEE0DD', '#01ACBD', '#FF445F', '#6F925A'],
+                    color: '#666'
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: false //圓餅圖這邊要用false
+                    }
+                }
+            }
+        });
+
+        $(function () {
+            //load data
+            $.ajax({
+                type: "GET",
+                url: "https://hsd325.000webhostapp.com/API/20240301-chartjs-api.php",
+                dataType: "json",
+                async: false,
+                success: showdata,
+                error: function () {
+                    alert("error-20240301-chartjs-api.php");
+                }
+            });
+        });
+
+        function showdata(data) {
+            console.log(data);
+            //居住人口分布
+            // data裡的dataAddr項目
+            data.dataAddr.forEach(function (item) {
+                // 推一筆資料(因為forEach)進labels(項目名字)裡面，這裡是名字叫【chartAddr】的長條圖
+                // chart.data.labels.push("台北市");
+                chartAddr.data.labels.push(item.Addr);
+                // datasets 是一个数组，用于存储图表中的所有数据集。数组中的每个元素都代表一个数据集，datasets[0]代表當前的數據集的索引从 0 开始
+                // 推一筆資料(因為forEach)進data裡面，這裡的data為是名字叫【chartAddr】的長條圖的
+                // chart.data.datasets[0].data.push(40);
+                chartAddr.data.datasets[0].data.push(item.countRegion);
+            });
+            // 為chart的更新，沒寫上面這些push的動作都不會執行
+            chartAddr.update();
+
+            //學歷人口分布
+            // data裡的dataEdu項目
+            data.dataEdu.forEach(function (item) {
+                chartEdu.data.labels.push(item.Edu);
+                chartEdu.data.datasets[0].data.push(item.countEdu);
+            });
+            chartEdu.update();
+        }
+
+    </script>
+</body>
+
+</html>
