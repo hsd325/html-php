@@ -1,14 +1,23 @@
-<!-- 連線資料庫product，獲取的資料再用【.json】格式傳給20240116-Read4.html和20240116-Read5.html -->
-
 <?php
-//使用.json格式顯示資料庫全部的資料，注意除了.json檔案外不能顯示(echo)除了.json語法的其他的東西，不然無法成為.json檔案，註解要寫在<?php裡面，不然會被當成字串，從而讓.json出現錯誤
+// 連線資料庫product，獲取的資料再用【.json】格式傳給20240116-Read4.html和20240116-Read5.html
+
+// 本機的
+// //使用.json格式顯示資料庫全部的資料，注意除了.json檔案外不能顯示(echo)除了.json語法的其他的東西，不然無法成為.json檔案，註解要寫在<?php裡面，不然會被當成字串，從而讓.json出現錯誤
+// $servername = "localhost";
+// $username = "owner01";
+// // 使用者名稱
+// $password = "123456";
+// // 密碼
+// $dbname = "testdb";
+// // 要使用的資料表名稱
+
+// 網路的
+// 指定網址才能使用此php檔案
+header("Access-Control-Allow-Origin: *");
 $servername = "localhost";
-$username = "owner01";
-// 使用者名稱
-$password = "123456";
-// 密碼
-$dbname = "testdb";
-// 要使用的資料表名稱
+$username = "id22011870_hsd325";
+$password = "Hsd325hsd325.";
+$dbname = "id22011870_hsd325";
 
 // 建立連線
 $conn =mysqli_connect($servername, $username, $password,$dbname);

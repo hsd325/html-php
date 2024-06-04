@@ -1,8 +1,8 @@
-<!-- 登入的比對確認，且會應用時間來創造出一段亂數拿來用在【UID01】裡面，UID01為cookie要使用的數 -->
-
-<!-- password_verify($p_Password, $row["Password"]) //密碼比對正確, 撈取不包含密碼的使用者資料並產生uid -->
-
 <?php
+// 和20240201-SPA.html有關
+// 登入的比對確認，且會應用時間來創造出一段亂數拿來用在【UID01】裡面，UID01為cookie要使用的數
+// password_verify($p_Password, $row["Password"]) //密碼比對正確, 撈取不包含密碼的使用者資料並產生uid
+
 //input: {"Username":"XX", "Password":"XXX"}
 // {"state" : true, "data": "登入後的帳號資料(密碼除外)", "message" : "登入成功!"}
 // {"state" : false, "message" : "登入失敗!"}
@@ -17,11 +17,19 @@ if ($data != "") {
         $p_Username = $mydata["Username"];
         $p_Password = $mydata["Password"];
 
+        // 本機的
+        // $servername = "localhost";
+        // $username = "owner01";
+        // $password = "123456";
+        // $dbname = "testdb";
 
+        // 網路的
+        // 指定網址才能使用此php檔案
+        header("Access-Control-Allow-Origin: *");
         $servername = "localhost";
-        $username = "owner01";
-        $password = "123456";
-        $dbname = "testdb";
+        $username = "id22011870_hsd325";
+        $password = "Hsd325hsd325.";
+        $dbname = "id22011870_hsd325";
 
         $conn = mysqli_connect($servername, $username, $password, $dbname);
         // $conn : 為與資料庫的連接的意思

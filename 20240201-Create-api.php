@@ -1,6 +1,7 @@
-<!-- 接收20240201-SPA.html傳來的資料，且讓$p_Password加密，接下來在資料表member裡新建資料 -->
-<!-- 功能:新增會員 -->
 <?php
+// 接收20240201-SPA.html傳來的資料，且讓$p_Password加密，接下來在資料表member裡新建資料
+// 功能:新增會員
+
 //input: {"Username":"XX", "Password":"XXX", "Email":"XXXXX"}
 // {"state" : true, "message" : "註冊成功!"}
 // {"state" : false, "message" : "註冊失敗!"}
@@ -17,10 +18,19 @@ if ($data != "") {
         $p_Password = password_hash($mydata["Password"], PASSWORD_DEFAULT);
         $p_Email = $mydata["Email"];
 
+        // 本機的
+        // $servername = "localhost";
+        // $username = "owner01";
+        // $password = "123456";
+        // $dbname = "testdb";
+
+        // 網路的
+        // 指定網址才能使用此php檔案
+        header("Access-Control-Allow-Origin: *");
         $servername = "localhost";
-        $username = "owner01";
-        $password = "123456";
-        $dbname = "testdb";
+        $username = "id22011870_hsd325";
+        $password = "Hsd325hsd325.";
+        $dbname = "id22011870_hsd325";
 
         $conn = mysqli_connect($servername, $username, $password, $dbname);
         if (!$conn) {

@@ -1,9 +1,20 @@
 <?php
-// 抓取2筆資料的練習
+// 和20240301-1.html有關連的php
+
+// 本機的
+// // 抓取2筆資料的練習
+// $servername = "localhost";
+// $username = "owner01";
+// $password = "123456";
+// $dbname = "testdb";
+
+// 網路的
+// 指定網址才能使用此php檔案
+header("Access-Control-Allow-Origin: *");
 $servername = "localhost";
-$username = "owner01";
-$password = "123456";
-$dbname = "testdb";
+$username = "id22011870_hsd325";
+$password = "Hsd325hsd325.";
+$dbname = "id22011870_hsd325";
 
 $conn = mysqli_connect($servername, $username, $password, $dbname);
 if (!$conn) {
@@ -31,7 +42,7 @@ if (mysqli_num_rows($result) > 0) {
         $mydataEdu[] = $row;
     }
 
-    echo '{"state":true, "dataAddr": ' . json_encode($mydataAddr) . ',"dataEdu": '.json_encode($mydataEdu).',"message": "會員居住縣市及學歷分布資料查詢成功"}';
+    echo '{"state":true, "dataAddr": ' . json_encode($mydataAddr) . ',"dataEdu": ' . json_encode($mydataEdu) . ',"message": "會員居住縣市及學歷分布資料查詢成功"}';
 } else {
     echo '{"state":false, "message": "查無資料"}';
 }

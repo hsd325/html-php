@@ -1,5 +1,6 @@
-<!-- 更改20240125-product01-Read.html指定的資料，連到product01資料庫 -->
 <?php
+// 更改20240125-product01-Read.html指定的資料，連到product01資料庫
+
 //input: {"ID":"1","Pname":"奶茶", "Price":"50"}
 // output:
 // {"state" : true, "message" : "更新成功!"}
@@ -22,10 +23,19 @@ if ($data != "") {
         $p_Pname = $mydata["Pname"];
         $p_Price = $mydata["Price"];
 
+        // 本機的
+        // $servername = "localhost";
+        // $username = "owner01";
+        // $password = "123456";
+        // $dbname = "testdb";
+
+        // 網路的
+        // 指定網址才能使用此php檔案
+        header("Access-Control-Allow-Origin: *");
         $servername = "localhost";
-        $username = "owner01";
-        $password = "123456";
-        $dbname = "testdb";
+        $username = "id22011870_hsd325";
+        $password = "Hsd325hsd325.";
+        $dbname = "id22011870_hsd325";
 
         $conn = mysqli_connect($servername, $username, $password, $dbname);
         //  連線資料庫

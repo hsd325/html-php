@@ -1,6 +1,5 @@
-<!-- 接收20240116-Create.html傳遞過來的資料，並連線資料庫product，並在資料庫建立新的資料 -->
-
 <?php
+// 接收20240116-Create.html傳遞過來的資料，並連線資料庫product，並在資料庫建立新的資料
 if (isset($_POST["product"]) && isset($_POST["price"]) && isset($_POST["num"]) && isset($_POST["remark"])) {
     // 上面這行if為判斷欄位是否存在和裡面內容不可為【null】，存在且有內容為true
     if ($_POST["product"] != "" && $_POST["price"] != "" && $_POST["num"] != "" && $_POST["remark"] != "") {
@@ -11,10 +10,19 @@ if (isset($_POST["product"]) && isset($_POST["price"]) && isset($_POST["num"]) &
         $p_remark = $_POST["remark"];
         //  上面為設定接收其他網頁傳送過來的資料，用POST來接收
 
+        // 本機的
+        // $servername = "localhost";
+        // $username = "owner01";
+        // $password = "123456";
+        // $dbname = "testdb";
+
+        // 網路的
+        // 指定網址才能使用此php檔案
+        header("Access-Control-Allow-Origin: *");
         $servername = "localhost";
-        $username = "owner01";
-        $password = "123456";
-        $dbname = "testdb";
+        $username = "id22011870_hsd325";
+        $password = "Hsd325hsd325.";
+        $dbname = "id22011870_hsd325";
 
         $conn = mysqli_connect($servername, $username, $password, $dbname);
         //  連線資料庫
@@ -31,7 +39,7 @@ if (isset($_POST["product"]) && isset($_POST["price"]) && isset($_POST["num"]) &
             // echo "新增成功!";
         } else {
             // 新增失敗
-            echo '{"state" : false, "message" : "新增失敗:'. $sql . mysqli_errno($conn).'"}';
+            echo '{"state" : false, "message" : "請再重新整理執行一次，新增失敗:' . $sql . mysqli_errno($conn) . '"}';
             // echo "新增失敗!" . $sql . mysqli_errno($conn);
         }
 

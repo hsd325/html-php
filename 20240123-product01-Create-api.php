@@ -1,5 +1,6 @@
-<!-- 接收20240123-product01-Create.html的資料，並去資料表product01建立資料 -->
 <?php
+// 接收20240123-product01-Create.html的資料，並去資料表product01建立資料
+
 //input: {"Pname":"奶茶", "Price":"50", "Sugar":"全糖", "Num":"10", "Delivery":"true", "Added":"珍珠","Pay":"刷卡","Total":"500"}
 // $data='{"Pname":"無糖奶茶", "Price":"50", "Sugar":"全糖", "Num":"10", "Delivery":"true", "Added":"珍珠","Pay":"刷卡","Total":"500"}';
 // $data : 陣列+jason格式的寫法
@@ -27,10 +28,19 @@ if ($data != "") {
         // 將Price的資料提取出來
 
 
+        // 本機的
+        // $servername = "localhost";
+        // $username = "owner01";
+        // $password = "123456";
+        // $dbname = "testdb";
+
+        // 網路的
+        // 指定網址才能使用此php檔案
+        header("Access-Control-Allow-Origin: *");
         $servername = "localhost";
-        $username = "owner01";
-        $password = "123456";
-        $dbname = "testdb";
+        $username = "id22011870_hsd325";
+        $password = "Hsd325hsd325.";
+        $dbname = "id22011870_hsd325";
 
         $conn = mysqli_connect($servername, $username, $password, $dbname);
         //  連線資料庫
