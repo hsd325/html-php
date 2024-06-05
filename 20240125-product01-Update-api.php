@@ -22,6 +22,7 @@ if ($data != "") {
         $p_ID = $mydata["ID"];
         $p_Pname = $mydata["Pname"];
         $p_Price = $mydata["Price"];
+        $p_Total = $mydata["Total"];
 
         // 本機的
         // $servername = "localhost";
@@ -43,7 +44,7 @@ if ($data != "") {
             // 如果連線失敗
             die("連線失敗" . mysqli_connect_errno());
         }
-        $sql = "UPDATE product01 SET Pname = '$p_Pname', Price = '$p_Price' WHERE ID = '$p_ID'";
+        $sql = "UPDATE product01 SET Pname = '$p_Pname', Price = '$p_Price', Total = '$p_Total' WHERE ID = '$p_ID'";
         // 上面接收的資料用在上面這一行
         if (mysqli_query($conn, $sql)) {
             //更新成功

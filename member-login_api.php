@@ -90,3 +90,4 @@ if ($data != "") {
 } else {
     echo '{"state" : false, "message" : "未傳遞任何參數!"}';
 }
+?>

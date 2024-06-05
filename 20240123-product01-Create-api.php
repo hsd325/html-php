@@ -15,7 +15,7 @@ if ($data != "") {
     // 建立陣列($mydata)
     $mydata = json_decode($data, true);
     // 陣列($mydata)的內容一筆一筆輸入進去，輸入內容為$data的內容(jason格式的寫法)
-    if (isset($mydata["Pname"]) && isset($mydata["Price"]) && isset($mydata["Sugar"]) && isset($mydata["Num"]) && isset($mydata["Delivery"]) && isset($mydata["Added"]) && isset($mydata["Pay"]) && isset($mydata["Total"]) && $mydata["Pname"] != "" && $mydata["Price"] != "" && $mydata["Sugar"] != "" && $mydata["Num"] != "" && $mydata["Delivery"] != "" && $mydata["Added"] != "" && $mydata["Pay"] != "" && $mydata["Total"] != "") {
+    if (isset($mydata["Pname"]) && isset($mydata["Price"]) && isset($mydata["Sugar"]) && isset($mydata["Num"]) && isset($mydata["Delivery"]) && isset($mydata["Added"]) && isset($mydata["Pay"]) && isset($mydata["Total"]) && $mydata["Pname"] != "" && $mydata["Price"] != "" && $mydata["Sugar"] != "" && $mydata["Num"] != "" && $mydata["Delivery"] != "" && $mydata["Pay"] != "" && $mydata["Total"] != "") {
 
         $p_Pname = $mydata["Pname"];
         $p_Price = $mydata["Price"];

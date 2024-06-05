@@ -7,6 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>會員管理系統</title>
+    <link rel="shortcut icon" href="images/icon/icon.ico" type="images/x-icon"><!-- icon更換 -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/myall.css">
 </head>
@@ -15,16 +16,18 @@
     <div class="container pt-5">
         <table class="table table-bordered table-hover table-sm border-success table-rwd">
             <caption class="text-end">會員列表</caption>
+            <!-- table-dark : 背景為黑色 -->
             <thead class="table-dark">
                 <tr>
                     <th>會員編號</th>
                     <th>會員名稱</th>
                     <th>會員信箱</th>
                     <th>註冊時間</th>
-                    <th>#</th>
+                    <th>更新/刪除</th>
                 </tr>
             </thead>
             <tbody id="mydata">
+                <!-- 這個tr為範例，執行時會全部清空 -->
                 <tr>
                     <td>商品編號</td>
                     <td>產品名稱</td>
@@ -46,7 +49,7 @@
         </nav>
     </div>
 
-    <!-- updateModal -->
+    <!-- updateModal，跳出的視窗 -->
     <div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -83,7 +86,7 @@
             //讀取會員資料
             $.ajax({
                 type: "GET",
-                url: "member-Read-api.php",
+                url: "https://hsd325.000webhostapp.com/API/member-Read-api.php",
                 async: false,
                 dataType: "json",
                 success: showdata,
@@ -116,7 +119,7 @@
 
                     $.ajax({
                         type: "POST",
-                        url: "member-Delete-api.php",
+                        url: "https://hsd325.000webhostapp.com/API/member-Delete-api.php",
                         data: JSON.stringify(dataJSON),
                         dataType: "json",
                         success: showdata_delete,
@@ -137,7 +140,7 @@
 
                 $.ajax({
                     type: "POST",
-                    url: "member-Update-api.php",
+                    url: "https://hsd325.000webhostapp.com/API/member-Update-api.php",
                     data: JSON.stringify(dataJSON),
                     dataType: "json",
                     success: showdata_updata,
@@ -147,8 +150,10 @@
                 });
             });
         });
+
+        // 整理分類要幾個頁碼和繪製頁碼連連結
         function showdata(data) {
-            //整理資料儲存為二維陣列
+            //整理資料儲存為二維陣列，data為資料表抓取的所有資料
             data.data.forEach(function (item, key) {
                 // forEach : 像迴圈，顯示每一筆資料，迴圈次數為總共有幾筆資料(key+1)，一筆資料一個迴圈
                 // data.data.forEach : 顯示data中data的每一筆資料
@@ -160,15 +165,23 @@
                     // 上面的資料格式，[1,2,3],[4,5,6],[7,8,9],[10,11,12]
                     // newData.push([]); : 為推了一筆新的資料([])進來
                 }
+                // page為決定當前要把資料推到第幾筆分頁裡面
+                // parseInt(key / 3) : 除出來的結果只會取整數
                 var page = parseInt(key / 3);
-                newData[page].push(item);
+                // page決定將這筆資料放在第幾筆
+                newData[page].push(item); // 將此筆資料推上特定的陣列位置
             });
+            // 繪製第一頁分頁的意思，這個在一開始就會執行
             drawTable(0);
 
             //產生頁碼
+            // 清空頁碼連結
             $("#pageList").empty();
+            // newData : 已經分類好的資料，他的key就等於要幾頁分頁
             newData.forEach(function (item, key) {
+                // key + 1 : 是因為一開始key從0開始算的
                 var thisPage = key + 1;
+                // drawTable 為下面寫的函數，功能:分頁連結被按時會執行動作，產生頁面內容
                 var strHTML = '<li class="page-item"><a class="page-link" href="#" onclick="drawTable(' + key + ')">' + thisPage + '</a></li>';
                 $("#pageList").append(strHTML);
             });
@@ -176,10 +189,14 @@
             console.log(newData);
         }
 
-        // 產生頁面，當被按時會執行動作
+        // 分頁連結被按時會執行動作，產生頁面內容
+        // drawTable : 函數名字而已，沒有任何意思
+        // page代表被按到第幾頁
         function drawTable(page) {
-            // drawTable : 函數名字而已，沒有任何意思
+            // 清空
             $("#mydata").empty();
+            // newData : 分類好的資料
+            // newData[page] : 決定拿取第幾頁的資料
             newData[page].forEach(function (item) {
                 var strHTML = '<tr><td>' + item.ID + '</td><td>' + item.Username + '</td><td>' + item.Email + '</td><td>' + item.Created_at + '</td><td><button class="btn btn-success me-2" data-id="' + item.ID + '" data-email="' + item.Email + '" data-username="' + item.Username + '" id="update_btn"  data-bs-toggle="modal" data-bs-target="#updateModal">更新</button><button class="btn btn-danger" id="delete_btn" data-id="' + item.ID + '">刪除</button></td></tr>';
                 $("#mydata").append(strHTML);
@@ -192,10 +209,9 @@
                 // alert(data.message);
                 Swal.fire({
                     title: "更新完成!",
-                    showDenyButton: true,
-                    showCancelButton: true,
+                    showDenyButton: false,
+                    showCancelButton: false,
                     confirmButtonText: "確認",
-                    denyButtonText: `Don't save`
                 }).then((result) => {
                     /* Read more about isConfirmed, isDenied below */
                     if (result.isConfirmed) {
